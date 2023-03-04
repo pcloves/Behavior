@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://0s3wpie2xuaj"]
+
+[ext_resource type="Script" path="res://Behavior/Action/ActionShowBubble.cs" id="1_nqmk7"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_nqmk7")
+_content = "Hello!!!~!"
+metadata/_editor_prop_ptr__bubbleUI = NodePath("")

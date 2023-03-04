@@ -30,6 +30,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="Game"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/MonoCustomResourceRegistry/plugin.cfg")
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

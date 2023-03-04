@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bob2qjdnjhdvp"]
+
+[ext_resource type="Script" path="res://Behavior/Check/CheckOr.cs" id="1_dmwsi"]
+
+[resource]
+script = ExtResource("1_dmwsi")
+_checkers = null

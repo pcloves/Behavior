@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://i6pefwnhqm6l"]
+
+[ext_resource type="Resource" uid="uid://d8ljrqo4khcu" path="res://Behavior/Define/Black/Unit/UnitTest.tres" id="1_f6ga2"]
+[ext_resource type="Script" path="res://Behavior/BehaviorDefine.cs" id="1_pxbj4"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_pxbj4")
+_behaviorUnits = Array[Resource]([ExtResource("1_f6ga2")])
