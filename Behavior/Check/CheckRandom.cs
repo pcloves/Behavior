@@ -1,15 +1,16 @@
 ﻿using System;
 using Godot;
 using Godot.Collections;
-using Array = Godot.Collections.Array;
+using MonoCustomResourceRegistry;
 
 namespace Game.Behavior.Check;
 
-public partial class CheckRandom : AbstractChecker
+[RegisteredType(nameof(CheckRandom))]
+public partial class CheckRandom : BehaviorChecker
 {
     private static readonly Random Random = new();
 
-    [Export] public Array<AbstractChecker> _checkers { get; set; }
+    [Export] public Array<BehaviorChecker> _checkers { get; set; }
 
     public override bool Check(Node entity, params Variant[] signalParam)
     {

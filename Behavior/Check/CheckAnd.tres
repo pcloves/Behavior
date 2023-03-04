@@ -1,7 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://beax51s7kgpor"]
-
-[ext_resource type="Script" path="res://Behavior/Check/CheckAnd.cs" id="1_xbl3m"]
-
-[resource]
-script = ExtResource("1_xbl3m")
-_checkers = null

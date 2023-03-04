@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://kjhih0o04vn1"]
+[gd_scene load_steps=6 format=3 uid="uid://kjhih0o04vn1"]
 
 [ext_resource type="Texture2D" uid="uid://cua0n23rn5moc" path="res://NPC/Black/Black.png" id="1_kglj8"]
 [ext_resource type="PackedScene" uid="uid://doqx6d60p77w0" path="res://Behavior/BehaviorAi.tscn" id="2_fl2a2"]
-[ext_resource type="Resource" uid="uid://i6pefwnhqm6l" path="res://Behavior/BehaviorDefine.tres" id="3_kle4f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_spxyh"]
 
@@ -46,10 +45,8 @@ _data = {
 shape = SubResource("CircleShape2D_spxyh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1.01934, 0.980656)
 texture = ExtResource("1_kglj8")
 hframes = 4
-frame = 2
 region_rect = Rect2(0, 0, 96.3401, 25.1836)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -59,4 +56,3 @@ libraries = {
 }
 
 [node name="BehaviorAi" parent="." instance=ExtResource("2_fl2a2")]
-_behaviorDefine = ExtResource("3_kle4f")

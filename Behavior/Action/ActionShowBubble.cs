@@ -1,12 +1,13 @@
 using Godot;
-using Godot.Collections;
+using MonoCustomResourceRegistry;
 
 namespace Game.Behavior.Action;
 
 /// <summary>
 /// 显示气泡
 /// </summary>
-public partial class ActionShowBubble : AbstractAction
+[RegisteredType(nameof(ActionShowBubble))]
+public partial class ActionShowBubble : BehaviorAction
 {
     [Export] public string _content { get; set; }
 

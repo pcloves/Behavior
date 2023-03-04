@@ -1,13 +1,14 @@
 ﻿using System.Linq;
 using Godot;
 using Godot.Collections;
-using Array = Godot.Collections.Array;
+using MonoCustomResourceRegistry;
 
 namespace Game.Behavior.Check;
 
-public partial class CheckOr : AbstractChecker
+[RegisteredType(nameof(CheckOr))]
+public partial class CheckOr : BehaviorChecker
 {
-    [Export] public Array<AbstractChecker> _checkers { get; set; }
+    [Export] public Array<BehaviorChecker> _checkers { get; set; }
 
     public override bool Check(Node entity, params Variant[] signalParam)
     {

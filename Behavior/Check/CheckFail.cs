@@ -1,9 +1,10 @@
 ﻿using Godot;
-using Godot.Collections;
+using MonoCustomResourceRegistry;
 
 namespace Game.Behavior.Check;
 
-public partial class CheckFail : AbstractChecker
+[RegisteredType(nameof(CheckFail))]
+public partial class CheckFail : BehaviorChecker
 {
     public override bool Check(Node entity, params Variant[] signalParam)
     {

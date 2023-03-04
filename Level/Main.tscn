@@ -7,3 +7,4 @@
 script = ExtResource("1_vd7ja")
 
 [node name="Black" parent="." instance=ExtResource("1_tcnmf")]
+position = Vector2(152, 104)

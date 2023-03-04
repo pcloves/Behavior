@@ -1,12 +1,13 @@
 ﻿using Godot;
-using Godot.Collections;
+using MonoCustomResourceRegistry;
 
 namespace Game.Behavior.Check;
 
 /// <summary>
 /// Signal检查器
 /// </summary>
-public abstract partial class AbstractChecker : Resource
+[RegisteredType(nameof(BehaviorChecker))]
+public partial class BehaviorChecker : Resource
 {
     /// <summary>
     /// 对实体和信号进行检查
@@ -14,5 +15,8 @@ public abstract partial class AbstractChecker : Resource
     /// <param name="entity">要进行检查的实体</param>
     /// <param name="signalParam">Signal的参数</param>
     /// <returns></returns>
-    public abstract bool Check(Node entity, params Variant[] signalParam);
+    public virtual bool Check(Node entity, params Variant[] signalParam)
+    {
+        return false;
+    }
 }

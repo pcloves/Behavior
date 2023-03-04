@@ -1,6 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dmr0e7oxgn87s"]
-
-[ext_resource type="Script" path="res://Behavior/Check/CheckFail.cs" id="1_18tjc"]
-
-[resource]
-script = ExtResource("1_18tjc")
