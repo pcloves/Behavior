@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://j7e2f50nrl8e"]
+
+[ext_resource type="PackedScene" uid="uid://kjhih0o04vn1" path="res://NPC/Black/Black.tscn" id="1_tcnmf"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Black" parent="." instance=ExtResource("1_tcnmf")]
+position = Vector2(42, 48)
+
+[node name="Black2" parent="." instance=ExtResource("1_tcnmf")]
+position = Vector2(622, 91)
+
+[node name="Black3" parent="." instance=ExtResource("1_tcnmf")]
+position = Vector2(30, 272)
+
+[node name="Black4" parent="." instance=ExtResource("1_tcnmf")]
+position = Vector2(230, 76)
+
+[node name="Black5" parent="." instance=ExtResource("1_tcnmf")]
+position = Vector2(502, 74)
+
+[node name="Black6" parent="." instance=ExtResource("1_tcnmf")]
+position = Vector2(335, 76)
+
+[node name="Black7" parent="." instance=ExtResource("1_tcnmf")]
+position = Vector2(429, 161)
+
+[node name="Black8" parent="." instance=ExtResource("1_tcnmf")]
+position = Vector2(151, 193)
+
+[node name="Black9" parent="." instance=ExtResource("1_tcnmf")]
+position = Vector2(325, 231)
+
+[node name="Black10" parent="." instance=ExtResource("1_tcnmf")]
+position = Vector2(512, 216)
+
+[node name="Black11" parent="." instance=ExtResource("1_tcnmf")]
+position = Vector2(422, 287)
+
+[node name="Black12" parent="." instance=ExtResource("1_tcnmf")]
+position = Vector2(609, 258)
+
+[node name="Black13" parent="." instance=ExtResource("1_tcnmf")]
+position = Vector2(325, 163)
+
+[node name="Black14" parent="." instance=ExtResource("1_tcnmf")]
+position = Vector2(237, 293)
