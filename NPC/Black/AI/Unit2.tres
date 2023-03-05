@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://di1e7d114i4n"]
+
+[ext_resource type="Resource" uid="uid://ddtfh08rorm0h" path="res://NPC/Black/AI/ActionShowBubble.tres" id="1_1w3me"]
+[ext_resource type="Resource" uid="uid://c5nnxmxleahuk" path="res://NPC/Black/AI/ActionCreateTimer.tres" id="2_hlgo0"]
+[ext_resource type="Resource" uid="uid://krth7k41yjf3" path="res://NPC/Black/AI/CheckSuccess.tres" id="3_64ja6"]
+[ext_resource type="Script" path="res://Behavior/BehaviorUnit.cs" id="4_lyvlu"]
+
+[resource]
+script = ExtResource("4_lyvlu")
+_signal = "Timeout"
+_checkers = Array[Resource]([ExtResource("3_64ja6")])
+_actions = Array[Resource]([ExtResource("1_1w3me"), ExtResource("2_hlgo0")])

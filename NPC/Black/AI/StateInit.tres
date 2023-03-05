@@ -1,9 +1,10 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://yxpyawyli8dy"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://crinhs6tl277k"]
 
-[ext_resource type="Resource" uid="uid://bleyy0fmufcck" path="res://NPC/Black/AI/Unit.tres" id="1_15p2y"]
+[ext_resource type="Resource" uid="uid://bleyy0fmufcck" path="res://NPC/Black/AI/Unit1.tres" id="1_j6l53"]
 [ext_resource type="Script" path="res://Behavior/BehaviorState.cs" id="2_a4lio"]
+[ext_resource type="Resource" uid="uid://di1e7d114i4n" path="res://NPC/Black/AI/Unit2.tres" id="2_ky1vv"]
 
 [resource]
 script = ExtResource("2_a4lio")
 Id = "Init"
-Units = Array[Resource]([ExtResource("1_15p2y")])
+Units = Array[Resource]([ExtResource("1_j6l53"), ExtResource("2_ky1vv")])

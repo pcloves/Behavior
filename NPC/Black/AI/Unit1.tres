@@ -1,6 +1,7 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://bleyy0fmufcck"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://bleyy0fmufcck"]
 
 [ext_resource type="Resource" uid="uid://ddtfh08rorm0h" path="res://NPC/Black/AI/ActionShowBubble.tres" id="1_5gyf6"]
+[ext_resource type="Resource" uid="uid://c5nnxmxleahuk" path="res://NPC/Black/AI/ActionCreateTimer.tres" id="2_2dvaa"]
 [ext_resource type="Resource" uid="uid://krth7k41yjf3" path="res://NPC/Black/AI/CheckSuccess.tres" id="2_7wlxh"]
 [ext_resource type="Script" path="res://Behavior/BehaviorUnit.cs" id="3_st3rd"]
 
@@ -8,4 +9,4 @@
 script = ExtResource("3_st3rd")
 _signal = "StateEnter"
 _checkers = Array[Resource]([ExtResource("2_7wlxh")])
-_actions = Array[Resource]([ExtResource("1_5gyf6")])
+_actions = Array[Resource]([ExtResource("1_5gyf6"), ExtResource("2_2dvaa")])

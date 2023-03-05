@@ -15,16 +15,8 @@ public partial class ComBehavior : Node
     public override void _Ready()
     {
         base._Ready();
-        
-        if (BehaviorDefine != null)
-        {
-            var units = BehaviorDefine._BehaviorStates;
 
-            var unit = units[0];
-            
-            ChangeState(unit.Id);
-        }
-
+        ChangeState(BehaviorDefine?._BehaviorStates[0].Id);
     }
 
     public void ChangeState(string stateName)
@@ -47,7 +39,11 @@ public partial class ComBehavior : Node
             var signals = CurrentSate.Units.Select(unit => unit._signal).Distinct();
             foreach (var signal in signals)
             {
-                AddUserSignal(signal);
+                if (!HasSignal(signal))
+                {
+                    AddUserSignal(signal);
+                }
+
                 Connect(signal, new Callable(this, nameof(OnSignal)));
             }
 
