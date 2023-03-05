@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://krth7k41yjf3"]
+
+[ext_resource type="Script" path="res://Behavior/Check/CheckSuccess.cs" id="1_5l8wc"]
+
+[resource]
+script = ExtResource("1_5l8wc")

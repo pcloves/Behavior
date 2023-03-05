@@ -1,5 +1,5 @@
-﻿using Godot;
-using Godot.Collections;
+﻿using System.Linq;
+using Godot;
 
 namespace Game.Behavior;
 
@@ -8,29 +8,50 @@ public partial class ComBehavior : Node
     [Export(PropertyHint.ResourceType, hintString: nameof(Behavior.BehaviorDefine))]
     public BehaviorDefine BehaviorDefine { get; set; }
 
+    private BehaviorState CurrentSate { get; set; }
+
+    private string _signal;
+
     public override void _Ready()
     {
         base._Ready();
-
-        GD.Print("define:", BehaviorDefine?._behaviorUnits.Count ?? 0);
-
-        foreach (var unit in BehaviorDefine?._behaviorUnits ?? new Array<BehaviorUnit>())
+        
+        if (BehaviorDefine != null)
         {
-            var signal = unit._signal;
-            var checkers = unit._checkers;
-            var actions = unit._actions;
+            var units = BehaviorDefine._BehaviorStates;
 
-            GD.Print("signal:", signal);
+            var unit = units[0];
+            
+            ChangeState(unit.Id);
+        }
 
-            foreach (var checker in checkers)
+    }
+
+    public void ChangeState(string stateName)
+    {
+        if (CurrentSate != null)
+        {
+            EmitSignal("StateExit", CurrentSate.Id);
+
+            var signals = CurrentSate.Units.Select(unit => unit._signal).Distinct();
+            foreach (var signal in signals)
             {
-                GD.Print("check:", checker.GetType().Name);
+                Disconnect(signal, new Callable(this, nameof(OnSignal)));
+            }
+        }
+
+        CurrentSate = BehaviorDefine._BehaviorStates.First(state => state.Id.Equals(stateName));
+
+        if (CurrentSate != null)
+        {
+            var signals = CurrentSate.Units.Select(unit => unit._signal).Distinct();
+            foreach (var signal in signals)
+            {
+                AddUserSignal(signal);
+                Connect(signal, new Callable(this, nameof(OnSignal)));
             }
 
-            foreach (var action in actions)
-            {
-                GD.Print("action:", action.GetType().Name);
-            }
+            EmitSignal("StateEnter", CurrentSate.Id);
         }
     }
 }

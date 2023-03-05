@@ -13,8 +13,9 @@ public partial class BehaviorAction : Resource
     /// <summary>
     /// 行为执行操作
     /// </summary>
-    /// <param name="signalParam">Signal附带的参数</param>
-    public virtual void Execute(params Variant[] signalParam)
+    /// <param name="entity"></param>
+    /// <param name="signalArgs">Signal附带的参数</param>
+    public virtual void Execute(Node entity, params Variant[] signalArgs)
     {
     }
 }

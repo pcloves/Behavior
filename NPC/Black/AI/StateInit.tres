@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://yxpyawyli8dy"]
+
+[ext_resource type="Resource" uid="uid://bleyy0fmufcck" path="res://NPC/Black/AI/Unit.tres" id="1_15p2y"]
+[ext_resource type="Script" path="res://Behavior/BehaviorState.cs" id="2_a4lio"]
+
+[resource]
+script = ExtResource("2_a4lio")
+Id = "Init"
+Units = Array[Resource]([ExtResource("1_15p2y")])

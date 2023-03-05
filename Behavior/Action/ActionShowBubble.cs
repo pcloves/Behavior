@@ -13,7 +13,7 @@ public partial class ActionShowBubble : BehaviorAction
 
     [Export] public Control _bubbleUI { get; set; }
 
-    public override void Execute(params Variant[] signalParam)
+    public override void Execute(Node entity, params Variant[] signalArgs)
     {
         GD.Print("content:", _content);
     }

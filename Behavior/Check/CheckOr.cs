@@ -10,13 +10,13 @@ public partial class CheckOr : BehaviorChecker
 {
     [Export] public Array<BehaviorChecker> _checkers { get; set; }
 
-    public override bool Check(Node entity, params Variant[] signalParam)
+    public override bool Check(Node entity, params Variant[] signalArgs)
     {
         if (_checkers.Count == 0)
         {
             return false;
         }
 
-        return _checkers.Any(checker => checker.Check(entity, signalParam));
+        return _checkers.Any(checker => checker.Check(entity, signalArgs));
     }
 }

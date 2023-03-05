@@ -13,9 +13,9 @@ public partial class BehaviorChecker : Resource
     /// 对实体和信号进行检查
     /// </summary>
     /// <param name="entity">要进行检查的实体</param>
-    /// <param name="signalParam">Signal的参数</param>
+    /// <param name="signalArgs">Signal的参数</param>
     /// <returns></returns>
-    public virtual bool Check(Node entity, params Variant[] signalParam)
+    public virtual bool Check(Node entity, params Variant[] signalArgs)
     {
         return false;
     }

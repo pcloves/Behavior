@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://kjhih0o04vn1"]
+[gd_scene load_steps=7 format=3 uid="uid://ctqdr0ssp26t2"]
 
 [ext_resource type="Texture2D" uid="uid://cua0n23rn5moc" path="res://NPC/Black/Black.png" id="1_kglj8"]
 [ext_resource type="PackedScene" uid="uid://doqx6d60p77w0" path="res://Behavior/BehaviorAi.tscn" id="2_fl2a2"]
+[ext_resource type="Resource" uid="uid://cf5tt3ehgqrfc" path="res://NPC/Black/AI/AI.tres" id="3_4qhwt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_spxyh"]
 
@@ -56,3 +57,4 @@ libraries = {
 }
 
 [node name="BehaviorAi" parent="." instance=ExtResource("2_fl2a2")]
+BehaviorDefine = ExtResource("3_4qhwt")
