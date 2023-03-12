@@ -1,7 +1,7 @@
 using Godot;
 using MonoCustomResourceRegistry;
 
-namespace Game.Behavior.Action;
+namespace Game.addons.Behavior.Action;
 
 /// <summary>
 /// 显示气泡

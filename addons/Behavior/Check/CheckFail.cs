@@ -1,7 +1,7 @@
 ﻿using Godot;
 using MonoCustomResourceRegistry;
 
-namespace Game.Behavior.Check;
+namespace Game.addons.Behavior.Check;
 
 [RegisteredType(nameof(CheckFail))]
 public partial class CheckFail : BehaviorChecker

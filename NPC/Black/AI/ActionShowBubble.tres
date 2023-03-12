@@ -1,7 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ddtfh08rorm0h"]
-
-[ext_resource type="Script" path="res://Behavior/Action/ActionShowBubble.cs" id="1_ji056"]
-
-[resource]
-script = ExtResource("1_ji056")
-_content = "Hello"

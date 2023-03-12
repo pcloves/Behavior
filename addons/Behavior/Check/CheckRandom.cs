@@ -3,7 +3,7 @@ using Godot;
 using Godot.Collections;
 using MonoCustomResourceRegistry;
 
-namespace Game.Behavior.Check;
+namespace Game.addons.Behavior.Check;
 
 [RegisteredType(nameof(CheckRandom))]
 public partial class CheckRandom : BehaviorChecker

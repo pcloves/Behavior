@@ -2,10 +2,10 @@
 using Godot.Collections;
 using MonoCustomResourceRegistry;
 
-namespace Game.Behavior;
+namespace Game.addons.Behavior;
 
 [RegisteredType(nameof(BehaviorDefine))]
 public partial class BehaviorDefine : Resource
 {
-    [Export] public Array<BehaviorState> _BehaviorStates { get; set; }
+    [Export] public Array<BehaviorState> BehaviorStates { get; set; } = new();
 }

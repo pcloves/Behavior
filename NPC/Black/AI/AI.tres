@@ -1,8 +1,0 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cf5tt3ehgqrfc"]
-
-[ext_resource type="Resource" uid="uid://yxpyawyli8dy" path="res://NPC/Black/AI/StateInit.tres" id="1_0erot"]
-[ext_resource type="Script" path="res://Behavior/BehaviorDefine.cs" id="2_387i7"]
-
-[resource]
-script = ExtResource("2_387i7")
-_BehaviorStates = Array[Resource]([ExtResource("1_0erot")])

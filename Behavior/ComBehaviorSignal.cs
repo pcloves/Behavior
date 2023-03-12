@@ -34,11 +34,11 @@ public partial class ComBehavior
             return;
         }
 
-        var units = CurrentSate.Units.Where(unit => unit._signal.Equals(this._signal));
+        var units = CurrentSate.Units.Where(unit => unit.Signal.Equals(this._signal));
         foreach (var unit in units)
         {
-            var checkers = unit._checkers;
-            var actions = unit._actions;
+            var checkers = unit.Checkers;
+            var actions = unit.Actions;
 
             var checkPass = true;
             foreach (var checker in checkers)

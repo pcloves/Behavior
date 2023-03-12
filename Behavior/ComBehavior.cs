@@ -1,11 +1,12 @@
 ﻿using System.Linq;
+using Game.addons.Behavior;
 using Godot;
 
 namespace Game.Behavior;
 
 public partial class ComBehavior : Node
 {
-    [Export(PropertyHint.ResourceType, hintString: nameof(Behavior.BehaviorDefine))]
+    [Export(PropertyHint.ResourceType, hintString: nameof(BehaviorDefine))]
     public BehaviorDefine BehaviorDefine { get; set; }
 
     private BehaviorState CurrentSate { get; set; }
@@ -16,7 +17,7 @@ public partial class ComBehavior : Node
     {
         base._Ready();
 
-        ChangeState(BehaviorDefine?._BehaviorStates[0].Id);
+        // ChangeState(BehaviorDefine?.BehaviorStates[0].Id);
     }
 
     public void ChangeState(string stateName)
@@ -25,18 +26,18 @@ public partial class ComBehavior : Node
         {
             EmitSignal("StateExit", CurrentSate.Id);
 
-            var signals = CurrentSate.Units.Select(unit => unit._signal).Distinct();
+            var signals = CurrentSate.Units.Select(unit => unit.Signal).Distinct();
             foreach (var signal in signals)
             {
                 Disconnect(signal, new Callable(this, nameof(OnSignal)));
             }
         }
 
-        CurrentSate = BehaviorDefine._BehaviorStates.First(state => state.Id.Equals(stateName));
+        CurrentSate = BehaviorDefine.BehaviorStates.First(state => state.Id.Equals(stateName));
 
         if (CurrentSate != null)
         {
-            var signals = CurrentSate.Units.Select(unit => unit._signal).Distinct();
+            var signals = CurrentSate.Units.Select(unit => unit.Signal).Distinct();
             foreach (var signal in signals)
             {
                 if (!HasSignal(signal))

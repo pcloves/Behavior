@@ -3,10 +3,10 @@ using Godot;
 using Godot.Collections;
 using MonoCustomResourceRegistry;
 
-namespace Game.Behavior.Check;
+namespace Game.addons.Behavior.Check;
 
-[RegisteredType(nameof(CheckAnd))]
-public partial class CheckAnd : BehaviorChecker
+[RegisteredType(nameof(CheckOr))]
+public partial class CheckOr : BehaviorChecker
 {
     [Export] public Array<BehaviorChecker> _checkers { get; set; }
 
@@ -17,6 +17,6 @@ public partial class CheckAnd : BehaviorChecker
             return false;
         }
 
-        return _checkers.All(checker => checker.Check(entity, signalArgs));
+        return _checkers.Any(checker => checker.Check(entity, signalArgs));
     }
 }

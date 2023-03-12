@@ -1,8 +1,7 @@
 ﻿using Godot;
-using Godot.Collections;
 using MonoCustomResourceRegistry;
 
-namespace Game.Behavior.Action;
+namespace Game.addons.Behavior.Action;
 
 /// <summary>
 /// 行为执行器

@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Reflection;
-using Game.Behavior;
+using Game.addons.Behavior;
 using Game.Extensions;
 using Godot;
 
@@ -19,6 +19,28 @@ public partial class Main : Node2D
         var characterBody2D = this.GetFirstChild<CharacterBody2D>();
 
         // GD.Print("CharacterBody2D:", characterBody2D?.Name);
+
+        // var define = new BehaviorDefine();
+        //
+        // var behaviorState = new BehaviorState();
+        //
+        // behaviorState.Id = "Init";
+        // var behaviorUnit = new BehaviorUnit();
+        // behaviorUnit.Signal = "StateEnter";
+        // behaviorUnit.Checkers.Add(new CheckSuccess());
+        // var actionCreateTimer = new ActionCreateTimer();
+        // actionCreateTimer.TimeSecond = 10;
+        // actionCreateTimer.TimerName = "myTimer";
+        //
+        // behaviorUnit.Actions.Add(actionCreateTimer);
+        //
+        //
+        // behaviorState.Units.Add(behaviorUnit);
+        //
+        // define.BehaviorStates.Add(behaviorState);
+        //
+        // ResourceSaver.Save(define, "res://My.tres");
+
 
         var callingAssembly = Assembly.GetCallingAssembly();
         GD.Print("calling");
