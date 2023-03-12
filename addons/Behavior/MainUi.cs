@@ -28,7 +28,8 @@ public partial class MainUi : Control
         
         var actionCreateTimer = new ActionCreateTimer();
 
-        Plugin._Handles(actionCreateTimer);
+        Plugin.GetEditorInterface().EditResource(actionCreateTimer);
+        // Plugin._Handles(actionCreateTimer);
         // EditorPlugin._Edit(actionCreateTimer);
     }
 
