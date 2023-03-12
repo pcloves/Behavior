@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dmkuos4y4u1fy"]
+
+[ext_resource type="Script" path="res://addons/Behavior/Define/BehaviorDefine.cs" id="1_3ki6a"]
+
+[resource]
+script = ExtResource("1_3ki6a")
+BehaviorStates = []

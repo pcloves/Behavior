@@ -1,4 +1,4 @@
-﻿using Game.Behavior;
+﻿using Game.addons.Behavior.Action;
 using Godot;
 
 namespace Game.addons.Behavior;
@@ -7,11 +7,11 @@ public partial class BehaviorInspectorPlugin : EditorInspectorPlugin
 {
     public override bool _CanHandle(GodotObject @object)
     {
-        var canHandle = @object is ComBehavior;
+        var canHandle = @object is ActionCreateTimer;
         
         GD.Print("Type:", @object.GetType(), ", canHandle:", canHandle);
         
-        return true;
+        return canHandle;
     }
 
     public override bool _ParseProperty(GodotObject @object, Variant.Type type, string name, PropertyHint hintType, string hintString,

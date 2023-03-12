@@ -7,6 +7,7 @@ namespace Game.addons.Behavior.Action;
 /// 行为执行器
 /// </summary>
 [RegisteredType(nameof(BehaviorAction))]
+[Tool]
 public partial class BehaviorAction : Resource
 {
     /// <summary>

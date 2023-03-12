@@ -1,10 +1,12 @@
+using Game.addons.Behavior.Action;
 using Godot;
 
 namespace Game.addons.Behavior;
 
+[Tool]
 public partial class MainUi : Control
 {
-    public BehaviorPlugin BehaviorPlugin { get; set; }
+    public BehaviorPlugin Plugin { get; set; }
 
     private Tree _tree;
 
@@ -16,17 +18,18 @@ public partial class MainUi : Control
         var treeItem = _tree.CreateItem();
         treeItem.SetText(0, "Test");
 
-        _tree.ItemSelected += TreeOnItemSelected;
+        _tree.ItemSelected += OnItemSelected;
     }
 
-    private void TreeOnItemSelected()
+    private void OnItemSelected()
     {
         var text = _tree.GetSelected().GetText(0);
         GD.Print("treeItem click, name:", text);
         
-        var behaviorDefine = ResourceLoader.Load<BehaviorDefine>("res://My.tres");
+        var actionCreateTimer = new ActionCreateTimer();
 
-        BehaviorPlugin._Handles(behaviorDefine);
+        Plugin._Handles(actionCreateTimer);
+        // EditorPlugin._Edit(actionCreateTimer);
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.

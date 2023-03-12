@@ -6,13 +6,9 @@ using MonoCustomResourceRegistry;
 namespace Game.addons.Behavior.Action;
 
 [RegisteredType(nameof(ActionCreateTimer))]
+[Tool]
 public partial class ActionCreateTimer : BehaviorAction
 {
-    public ActionCreateTimer()
-    {
-        GD.Print("!!!!!!!!!!!!");
-    }
-
     [Export] public string TimerName { get; set; }
 
     [Export] public double TimeSecond { get; set; }
