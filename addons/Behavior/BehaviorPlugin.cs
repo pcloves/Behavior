@@ -7,22 +7,23 @@ namespace Game.addons.Behavior;
 [Tool]
 public partial class BehaviorPlugin : EditorPlugin
 {
-    private MainUi _mainUi = ResourceLoader.Load<PackedScene>("addons/Behavior/MainUi.tscn").Instantiate<MainUi>();
+    private MainUi _mainUi = ResourceLoader.Load<PackedScene>("addons/Behavior/Editor/MainUi.tscn").Instantiate<MainUi>();
     private BehaviorInspectorPlugin _inspectorPlugin = new();
 
     public override void _EnterTree()
     {
+        GD.Print(nameof(BehaviorPlugin), ":", nameof(_EnterTree));
         _mainUi.Plugin = this;
 
-        AddControlToBottomPanel(_mainUi, "Behavior");
-        AddInspectorPlugin(_inspectorPlugin);
+        GetEditorInterface().GetEditorMainScreen().AddChild(_mainUi);
+        // AddInspectorPlugin(_inspectorPlugin);
     }
 
     public override void _ExitTree()
     {
-        // Clean-up of the plugin goes here.
-        RemoveControlFromBottomPanel(_mainUi);
-        RemoveInspectorPlugin(_inspectorPlugin);
+        GD.Print(nameof(BehaviorPlugin), ":", nameof(_ExitTree));
+        GetEditorInterface().GetEditorMainScreen().RemoveChild(_mainUi);
+        // RemoveInspectorPlugin(_inspectorPlugin);
 
         _mainUi.Plugin = null;
         _mainUi.QueueFree();
@@ -30,13 +31,19 @@ public partial class BehaviorPlugin : EditorPlugin
 
     public override void _Edit(GodotObject @object)
     {
-        base._Edit(@object);
-        GD.Print(nameof(_Edit), "########################");
+        _MakeVisible(true);
+        GD.Print(nameof(BehaviorPlugin), ":", nameof(_Edit));
+    }
+
+    public override string _GetPluginName()
+    {
+        GD.Print(nameof(BehaviorPlugin), ":", nameof(_GetPluginName));
+        return "Behavior";
     }
 
     public override bool _Handles(GodotObject @object)
     {
-        GD.Print(nameof(_Handles), "---------------------------------");
+        GD.Print(nameof(BehaviorPlugin), ":", nameof(_Handles), ":", @object?.GetType().Name ?? "null");
 
         if (@object is ActionCreateTimer)
         {
@@ -45,7 +52,19 @@ public partial class BehaviorPlugin : EditorPlugin
             return true;
         }
 
-        return base._Handles(@object);
+        return false;
+    }
+
+    public override bool _HasMainScreen()
+    {
+        GD.Print(nameof(BehaviorPlugin), ":", nameof(_HasMainScreen));
+        return true;
+    }
+
+    public override void _MakeVisible(bool visible)
+    {
+        GD.Print(nameof(BehaviorPlugin), ":", nameof(_MakeVisible), ":", visible.ToString());
+        _mainUi.Visible = visible;
     }
 }
 #endif

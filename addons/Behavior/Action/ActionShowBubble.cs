@@ -7,6 +7,7 @@ namespace Game.addons.Behavior.Action;
 /// 显示气泡
 /// </summary>
 [RegisteredType(nameof(ActionShowBubble))]
+[Tool]
 public partial class ActionShowBubble : BehaviorAction
 {
     [Export] public string _content { get; set; }

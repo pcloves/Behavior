@@ -5,6 +5,7 @@ using MonoCustomResourceRegistry;
 namespace Game.addons.Behavior;
 
 [RegisteredType(nameof(BehaviorState))]
+[Tool]
 public partial class BehaviorState : Resource
 {
     [Export] public string Id { get; set; }

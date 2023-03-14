@@ -6,6 +6,7 @@ using MonoCustomResourceRegistry;
 namespace Game.addons.Behavior.Check;
 
 [RegisteredType(nameof(CheckRandom))]
+[Tool]
 public partial class CheckRandom : BehaviorChecker
 {
     private static readonly Random Random = new();

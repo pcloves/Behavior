@@ -7,6 +7,7 @@ using BehaviorAction = Game.addons.Behavior.Action.BehaviorAction;
 namespace Game.addons.Behavior;
 
 [RegisteredType(nameof(BehaviorUnit))]
+[Tool]
 public partial class BehaviorUnit : Resource
 {
     [Export] public string Signal { get; set; }

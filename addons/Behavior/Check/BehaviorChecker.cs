@@ -7,6 +7,7 @@ namespace Game.addons.Behavior.Check;
 /// Signal检查器
 /// </summary>
 [RegisteredType(nameof(BehaviorChecker))]
+[Tool]
 public partial class BehaviorChecker : Resource
 {
     /// <summary>

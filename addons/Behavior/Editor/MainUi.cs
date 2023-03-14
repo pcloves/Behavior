@@ -16,9 +16,11 @@ public partial class MainUi : Control
         _tree = GetNodeOrNull<Tree>("%Tree");
 
         var treeItem = _tree.CreateItem();
-        treeItem.SetText(0, "Test");
+        treeItem.SetText(0, "Test111");
 
         _tree.ItemSelected += OnItemSelected;
+        
+        GD.Print("_tree:", _tree?.Name ?? "null");
     }
 
     private void OnItemSelected()

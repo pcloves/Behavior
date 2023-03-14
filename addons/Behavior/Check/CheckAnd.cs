@@ -6,6 +6,7 @@ using MonoCustomResourceRegistry;
 namespace Game.addons.Behavior.Check;
 
 [RegisteredType(nameof(CheckAnd))]
+[Tool]
 public partial class CheckAnd : BehaviorChecker
 {
     [Export] public Array<BehaviorChecker> _checkers { get; set; }
