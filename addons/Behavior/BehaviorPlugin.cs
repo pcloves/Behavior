@@ -1,5 +1,6 @@
 #if TOOLS
 using Game.addons.Behavior.Action;
+using Game.addons.Behavior.Editor;
 using Godot;
 
 namespace Game.addons.Behavior;
@@ -14,6 +15,7 @@ public partial class BehaviorPlugin : EditorPlugin
     {
         GD.Print(nameof(BehaviorPlugin), ":", nameof(_EnterTree));
         _mainUi.Plugin = this;
+        _mainUi.Visible = false;
 
         GetEditorInterface().GetEditorMainScreen().AddChild(_mainUi);
         // AddInspectorPlugin(_inspectorPlugin);
