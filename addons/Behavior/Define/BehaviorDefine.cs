@@ -8,5 +8,6 @@ namespace Game.addons.Behavior;
 [Tool]
 public partial class BehaviorDefine : Resource
 {
+    [Export] public string Name;
     [Export] public Array<BehaviorState> BehaviorStates { get; set; } = new();
 }
