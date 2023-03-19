@@ -8,12 +8,13 @@ namespace Game.addons.Behavior;
 [Tool]
 public partial class BehaviorPlugin : EditorPlugin
 {
-    private MainUi _mainUi = ResourceLoader.Load<PackedScene>("addons/Behavior/Editor/MainUi.tscn").Instantiate<MainUi>();
+    private MainUi _mainUi;
     private BehaviorInspectorPlugin _inspectorPlugin = new();
 
     public override void _EnterTree()
     {
         GD.Print(nameof(BehaviorPlugin), ":", nameof(_EnterTree));
+        _mainUi = ResourceLoader.Load<PackedScene>("addons/Behavior/Editor/MainUi.tscn").Instantiate<MainUi>();
         _mainUi.Plugin = this;
         _mainUi.Visible = false;
 
