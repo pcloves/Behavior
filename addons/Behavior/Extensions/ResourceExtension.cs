@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-namespace Game.Extensions;
+namespace Game.addons.Behavior.Extensions;
 
 public static class ResourceExtension
 {

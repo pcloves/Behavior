@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Game.addons.Behavior.Extensions;
 using Godot;
 
 namespace Game.addons.Behavior.Editor;
@@ -8,14 +9,23 @@ namespace Game.addons.Behavior.Editor;
 [Tool]
 public partial class MainUi : Control
 {
+    private const string UiBehaviorDefineScenePath = "res://addons/Behavior/Editor/UiBehaviorDefine.tscn";
+
+    private static readonly PackedScene UiBehaviorDefinePackedScene =
+        ResourceLoader.Load<PackedScene>(UiBehaviorDefineScenePath);
+
     public BehaviorPlugin Plugin { get; set; }
 
+    private HSplitContainer _splitContainer;
     private Tree _tree;
     private string _path = "res://";
+    private BehaviorDefine _currentBehaviorDefine;
     private readonly Dictionary<string, BehaviorDefine> _behaviorDefines = new();
 
     public override void _Ready()
     {
+        _splitContainer = GetNodeOrNull<HSplitContainer>("%HSplitContainer");
+
         _tree = GetNodeOrNull<Tree>("%Tree");
         _tree.ItemSelected += OnItemSelected;
 
@@ -28,6 +38,19 @@ public partial class MainUi : Control
         var path = treeItem.GetMeta("path").AsString();
 
         Plugin.GetEditorInterface().EditResource(_behaviorDefines[path]);
+
+        //先把之前的删掉
+        var uiBehaviorDefine = _splitContainer.RemoveFirstChild<UiBehaviorDefine>();
+        var behaviorDefine = uiBehaviorDefine?.BehaviorDefine;
+        if (behaviorDefine != null)
+        {
+            ResourceSaver.Save(behaviorDefine, behaviorDefine.ResourcePath);
+        }
+
+        uiBehaviorDefine = UiBehaviorDefinePackedScene.Instantiate<UiBehaviorDefine>();
+        uiBehaviorDefine.BehaviorDefine = _behaviorDefines[path];
+
+        _splitContainer.AddChild(uiBehaviorDefine);
     }
 
     public override void _Process(double delta)

@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Reflection;
 using Game.addons.Behavior;
-using Game.Extensions;
+using Game.addons.Behavior.Extensions;
 using Godot;
 
 namespace Game.Level;

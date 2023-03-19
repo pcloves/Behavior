@@ -1,6 +1,6 @@
 ﻿using System;
+using Game.addons.Behavior.Extensions;
 using Game.Behavior;
-using Game.Extensions;
 using Godot;
 using MonoCustomResourceRegistry;
 

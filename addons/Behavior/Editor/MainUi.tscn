@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cttt1shw5c2gf"]
+[gd_scene load_steps=3 format=3 uid="uid://cttt1shw5c2gf"]
 
 [ext_resource type="Script" path="res://addons/Behavior/Editor/MainUi.cs" id="1_xyo3b"]
+[ext_resource type="PackedScene" uid="uid://ywtlyot4uiqf" path="res://addons/Behavior/Editor/UiBehaviorDefine.tscn" id="2_qj0um"]
 
 [node name="MainUi" type="Control"]
 layout_mode = 3
@@ -13,7 +14,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_xyo3b")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,8 +23,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Tree" type="Tree" parent="HBoxContainer"]
+[node name="Tree" type="Tree" parent="HSplitContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 0)
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+allow_reselect = true
 hide_root = true
+
+[node name="UiBehaviorDefine" parent="HSplitContainer" instance=ExtResource("2_qj0um")]
+layout_mode = 2
