@@ -1,24 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://ywtlyot4uiqf"]
+[gd_scene load_steps=3 format=3 uid="uid://ywtlyot4uiqf"]
 
 [ext_resource type="PackedScene" uid="uid://cjqfpx4q6fre4" path="res://addons/Behavior/Editor/UiBehaviorState.tscn" id="1_nsiwc"]
 [ext_resource type="Script" path="res://addons/Behavior/Editor/UiBehaviorDefine.cs" id="1_qv6dw"]
-[ext_resource type="Texture2D" uid="uid://ccbvkgcoxebvb" path="res://addons/Behavior/Image/plus.png" id="3_gp2he"]
 
 [node name="UiBehaviorDefine" type="VBoxContainer"]
-anchors_preset = 15
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
+offset_bottom = 31.0
 grow_horizontal = 2
-grow_vertical = 2
 size_flags_horizontal = 3
 script = ExtResource("1_qv6dw")
 
 [node name="UiBehaviorState" parent="." instance=ExtResource("1_nsiwc")]
-visible = false
 layout_mode = 2
 
-[node name="New" type="TextureButton" parent="."]
+[node name="New" type="Button" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
-texture_normal = ExtResource("3_gp2he")
-stretch_mode = 5
+text = "New Behavior State"

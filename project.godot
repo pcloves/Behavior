@@ -38,7 +38,7 @@ project/assembly_name="Game"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/MonoCustomResourceRegistry/plugin.cfg", "res://addons/Behavior/plugin.cfg", "res://addons/SafeStrings/plugin.cfg")
+enabled=PackedStringArray("res://addons/MonoCustomResourceRegistry/plugin.cfg", "res://addons/SafeStrings/plugin.cfg", "res://addons/Behavior/plugin.cfg")
 
 [rendering]
 

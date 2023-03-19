@@ -6,18 +6,21 @@ namespace Game.addons.Behavior.Editor;
 [Tool]
 public partial class UiBehaviorDefine : VBoxContainer
 {
-    private static readonly string UiBehaviorStateScenePath = "res://addons/Behavior/Editor/UiBehaviorState.tscn";
-    private static readonly PackedScene PackedScene = ResourceLoader.Load<PackedScene>(UiBehaviorStateScenePath);
+    private const string UiBehaviorStateScenePath = "res://addons/Behavior/Editor/UiBehaviorState.tscn";
+    private static readonly PackedScene UiBehaviorStatePackedScene = ResourceLoader.Load<PackedScene>(UiBehaviorStateScenePath);
 
     public BehaviorDefine BehaviorDefine { get; set; }
-    private TextureButton _new;
+    private Button _new;
 
     public override void _Ready()
     {
         base._Ready();
 
-        _new = GetNodeOrNull<TextureButton>("%New");
+        _new = GetNodeOrNull<Button>("%New");
         _new.Pressed += OnNewPressed;
+        _new.Disabled = false;
+
+        // this.RemoveFirstChild<UiBehaviorState>();
 
         if (BehaviorDefine == null) return;
 
@@ -29,7 +32,7 @@ public partial class UiBehaviorDefine : VBoxContainer
 
     private void AddNewBehaviorState(BehaviorState state)
     {
-        var uiBehaviorState = PackedScene.Instantiate<UiBehaviorState>();
+        var uiBehaviorState = UiBehaviorStatePackedScene.Instantiate<UiBehaviorState>();
         uiBehaviorState.BehaviorState = state;
 
         this.AddChildBefore(uiBehaviorState, _new);

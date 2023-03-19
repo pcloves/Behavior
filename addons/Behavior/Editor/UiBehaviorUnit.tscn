@@ -1,18 +1,33 @@
-[gd_scene load_steps=2 format=3 uid="uid://ed8s1xkq38yb"]
+[gd_scene load_steps=4 format=3 uid="uid://ed8s1xkq38yb"]
 
+[ext_resource type="Script" path="res://addons/Behavior/Editor/UiBehaviorUnit.cs" id="1_0kk22"]
+[ext_resource type="Texture2D" uid="uid://ccbvkgcoxebvb" path="res://addons/Behavior/Image/plus.png" id="1_wxqpx"]
 [ext_resource type="Texture2D" uid="uid://dbmvir0nqymhb" path="res://addons/Behavior/Image/cross.png" id="1_xsw4q"]
 
-[node name="PanelContainer" type="PanelContainer"]
-anchors_preset = 15
+[node name="UiBehaviorUnit" type="MarginContainer"]
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
+offset_bottom = 51.0
 grow_horizontal = 2
-grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_0kk22")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="MenuButton" type="OptionButton" parent="HBoxContainer"]
+[node name="Signal" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Signal"]
+layout_mode = 2
+text = "Signal"
+
+[node name="Signal" type="OptionButton" parent="HBoxContainer/Signal"]
+unique_name_in_owner = true
 layout_mode = 2
 item_count = 2
 popup/item_0/text = "Test"
@@ -20,9 +35,88 @@ popup/item_0/id = 0
 popup/item_1/text = "Hello"
 popup/item_1/id = 1
 
-[node name="Remove" type="TextureButton" parent="HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Checkers" type="HBoxContainer" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="HBoxContainer/Checkers"]
+layout_mode = 2
+text = "Checkers"
+
+[node name="Checker1" type="OptionButton" parent="HBoxContainer/Checkers"]
+layout_mode = 2
+item_count = 2
+popup/item_0/text = "Test"
+popup/item_0/id = 0
+popup/item_1/text = "Hello"
+popup/item_1/id = 1
+
+[node name="Checker2" type="OptionButton" parent="HBoxContainer/Checkers"]
+layout_mode = 2
+item_count = 2
+popup/item_0/text = "Test"
+popup/item_0/id = 0
+popup/item_1/text = "Hello"
+popup/item_1/id = 1
+
+[node name="AddChecker" type="TextureButton" parent="HBoxContainer/Checkers"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
-texture_normal = ExtResource("1_xsw4q")
+texture_normal = ExtResource("1_wxqpx")
 stretch_mode = 5
+
+[node name="VSeparator2" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Actions" type="HBoxContainer" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/Actions"]
+layout_mode = 2
+text = "Actions"
+
+[node name="Action1" type="OptionButton" parent="HBoxContainer/Actions"]
+layout_mode = 2
+item_count = 2
+popup/item_0/text = "Test"
+popup/item_0/id = 0
+popup/item_1/text = "Hello"
+popup/item_1/id = 1
+
+[node name="Action2" type="OptionButton" parent="HBoxContainer/Actions"]
+layout_mode = 2
+item_count = 2
+popup/item_0/text = "Test"
+popup/item_0/id = 0
+popup/item_1/text = "Hello"
+popup/item_1/id = 1
+
+[node name="AddAction" type="TextureButton" parent="HBoxContainer/Actions"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+texture_normal = ExtResource("1_wxqpx")
+stretch_mode = 5
+
+[node name="VSeparator3" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Active" type="CheckButton" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "This behavior unit is active or not"
+button_pressed = true
+
+[node name="Remove" type="TextureButton" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+texture_normal = ExtResource("1_xsw4q")
+stretch_mode = 3
