@@ -34,8 +34,18 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+size_flags_horizontal = 0
 allow_reselect = true
 hide_root = true
 
 [node name="UiBehaviorDefine" parent="MarginContainer/HSplitContainer" instance=ExtResource("2_qj0um")]
+visible = false
 layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HSplitContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+text = "Select a Behavior"
+horizontal_alignment = 1
+vertical_alignment = 1

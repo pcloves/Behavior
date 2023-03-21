@@ -18,6 +18,7 @@ public partial class MainUi : Control
 
     private HSplitContainer _splitContainer;
     private Tree _tree;
+    private Label _label;
     private string _path = "res://";
     private BehaviorDefine _currentBehaviorDefine;
     private readonly Dictionary<string, BehaviorDefine> _behaviorDefines = new();
@@ -28,6 +29,9 @@ public partial class MainUi : Control
 
         _tree = GetNodeOrNull<Tree>("%Tree");
         _tree.ItemSelected += OnItemSelected;
+
+        _label = GetNodeOrNull<Label>("%Label");
+        _label.Visible = true;
 
         LoadBehaviorDefine();
     }
@@ -51,6 +55,7 @@ public partial class MainUi : Control
         uiBehaviorDefine.BehaviorDefine = _behaviorDefines[path];
 
         _splitContainer.AddChild(uiBehaviorDefine);
+        _label.Visible = false;
     }
 
     public override void _Process(double delta)

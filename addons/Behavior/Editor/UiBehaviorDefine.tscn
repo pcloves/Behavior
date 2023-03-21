@@ -3,18 +3,24 @@
 [ext_resource type="PackedScene" uid="uid://cjqfpx4q6fre4" path="res://addons/Behavior/Editor/UiBehaviorState.tscn" id="1_nsiwc"]
 [ext_resource type="Script" path="res://addons/Behavior/Editor/UiBehaviorDefine.cs" id="1_qv6dw"]
 
-[node name="UiBehaviorDefine" type="VBoxContainer"]
-anchors_preset = 10
+[node name="UiBehaviorDefine" type="ScrollContainer"]
+anchors_preset = 15
 anchor_right = 1.0
-offset_bottom = 31.0
+anchor_bottom = 1.0
 grow_horizontal = 2
-size_flags_horizontal = 3
+grow_vertical = 2
 script = ExtResource("1_qv6dw")
 
-[node name="UiBehaviorState" parent="." instance=ExtResource("1_nsiwc")]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Demo" parent="VBoxContainer" instance=ExtResource("1_nsiwc")]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="New" type="Button" parent="."]
+[node name="New" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "New Behavior State"

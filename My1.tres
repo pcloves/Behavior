@@ -1,8 +1,64 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ceclynvyydfw8"]
+[gd_resource type="Resource" load_steps=12 format=3 uid="uid://ceclynvyydfw8"]
 
 [ext_resource type="Script" path="res://addons/Behavior/Define/BehaviorDefine.cs" id="1_bc065"]
+[ext_resource type="Script" path="res://addons/Behavior/Define/BehaviorState.cs" id="1_vxwmo"]
+[ext_resource type="Script" path="res://addons/Behavior/Define/BehaviorUnit.cs" id="2_sfba5"]
+
+[sub_resource type="Resource" id="Resource_qjs32"]
+script = ExtResource("1_vxwmo")
+Id = "New Behavior State"
+Active = true
+Units = []
+
+[sub_resource type="Resource" id="Resource_7dwbv"]
+script = ExtResource("2_sfba5")
+Signal = ""
+Active = true
+Checkers = []
+Actions = []
+
+[sub_resource type="Resource" id="Resource_180mc"]
+script = ExtResource("2_sfba5")
+Signal = ""
+Active = true
+Checkers = []
+Actions = []
+
+[sub_resource type="Resource" id="Resource_8r3x0"]
+script = ExtResource("2_sfba5")
+Signal = ""
+Active = true
+Checkers = []
+Actions = []
+
+[sub_resource type="Resource" id="Resource_a6pxs"]
+script = ExtResource("2_sfba5")
+Signal = ""
+Active = true
+Checkers = []
+Actions = []
+
+[sub_resource type="Resource" id="Resource_vue36"]
+script = ExtResource("2_sfba5")
+Signal = ""
+Active = true
+Checkers = []
+Actions = []
+
+[sub_resource type="Resource" id="Resource_c4x2k"]
+script = ExtResource("2_sfba5")
+Signal = ""
+Active = true
+Checkers = []
+Actions = []
+
+[sub_resource type="Resource" id="Resource_2u87l"]
+script = ExtResource("1_vxwmo")
+Id = "New Behavior State"
+Active = true
+Units = [SubResource("Resource_7dwbv"), SubResource("Resource_180mc"), SubResource("Resource_8r3x0"), SubResource("Resource_a6pxs"), SubResource("Resource_vue36"), SubResource("Resource_7dwbv"), SubResource("Resource_180mc"), SubResource("Resource_8r3x0"), SubResource("Resource_a6pxs"), SubResource("Resource_vue36"), SubResource("Resource_c4x2k")]
 
 [resource]
 script = ExtResource("1_bc065")
 Name = "My1"
-BehaviorStates = []
+BehaviorStates = [SubResource("Resource_qjs32"), SubResource("Resource_2u87l")]

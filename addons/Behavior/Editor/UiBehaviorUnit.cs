@@ -6,11 +6,10 @@ namespace Game.addons.Behavior.Editor;
 public partial class UiBehaviorUnit : MarginContainer
 {
     private HBoxContainer _checkers;
-    private Button _addChecker;
-
+    private TextureButton _addChecker;
 
     private HBoxContainer _actions;
-    private Button _addAction;
+    private TextureButton _addAction;
 
     private CheckButton _active;
 
@@ -24,10 +23,10 @@ public partial class UiBehaviorUnit : MarginContainer
         _active.ButtonPressed = BehaviorUnit?.Active ?? false;
 
         _checkers = GetNodeOrNull<HBoxContainer>("%Checkers");
-        _addChecker = GetNodeOrNull<Button>("%AddChecker");
+        _addChecker = GetNodeOrNull<TextureButton>("%AddChecker");
 
         _actions = GetNodeOrNull<HBoxContainer>("%Actions");
-        _addAction = GetNodeOrNull<Button>("%AddAction");
+        _addAction = GetNodeOrNull<TextureButton>("%AddAction");
 
         _remove = GetNodeOrNull<TextureButton>("%Remove");
         _remove.Pressed += OnRemovePressed;
@@ -35,11 +34,11 @@ public partial class UiBehaviorUnit : MarginContainer
 
     private void OnRemovePressed()
     {
-        var behaviorState = GetOwner<UiBehaviorState>();
-        behaviorState.BehaviorState.Units.Remove(BehaviorUnit);
-        
+        var uiBehaviorState = GetParent().GetParent<UiBehaviorState>();
+        uiBehaviorState.BehaviorState.Units.Remove(BehaviorUnit);
+
         GetParent().RemoveChild(this);
-        
+
         QueueFree();
     }
 }
