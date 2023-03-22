@@ -9,9 +9,8 @@
 [node name="UiBehaviorState" type="MarginContainer"]
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 95.0
+offset_bottom = 150.0
 grow_horizontal = 2
-size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -35,6 +34,7 @@ unique_name_in_owner = true
 modulate = Color(0.678431, 0.862745, 0.368627, 1)
 layout_mode = 2
 size_flags_horizontal = 3
+text = "Error"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -60,7 +60,9 @@ layout_mode = 2
 texture_normal = ExtResource("2_tkcqc")
 stretch_mode = 5
 
-[node name="UiBehaviorUnit" parent="VBoxContainer" instance=ExtResource("5_d3q4k")]
+[node name="Demo" parent="VBoxContainer" instance=ExtResource("5_d3q4k")]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="New" type="Button" parent="VBoxContainer"]

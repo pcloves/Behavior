@@ -1,4 +1,8 @@
 #if TOOLS
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Game.addons.Behavior.Action;
 using Game.addons.Behavior.Editor;
 using Godot;
@@ -68,6 +72,16 @@ public partial class BehaviorPlugin : EditorPlugin
     {
         GD.Print(nameof(BehaviorPlugin), ":", nameof(_MakeVisible), ":", visible.ToString());
         _mainUi.Visible = visible;
+    }
+
+    public static IDictionary<string, Type> GetBehaviorTypes(Type type)
+    {
+        var assembly = Assembly.GetAssembly(typeof(BehaviorPlugin));
+
+        return assembly?.GetTypes()
+                   .Where(t => t.IsSubclassOf(type))
+                   .ToDictionary(type => type.Name, type => type) ??
+               Enumerable.Empty<Type>().ToDictionary(type => type.Name, type => type);
     }
 }
 #endif

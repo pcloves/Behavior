@@ -1,14 +1,12 @@
 ﻿using Godot;
-using MonoCustomResourceRegistry;
 
 namespace Game.addons.Behavior.Check;
 
 /// <summary>
 /// Signal检查器
 /// </summary>
-[RegisteredType(nameof(BehaviorChecker))]
 [Tool]
-public partial class BehaviorChecker : Resource
+public abstract partial class BehaviorChecker : Resource
 {
     /// <summary>
     /// 对实体和信号进行检查

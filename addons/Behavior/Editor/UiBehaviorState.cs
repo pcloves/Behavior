@@ -41,7 +41,7 @@ public partial class UiBehaviorState : MarginContainer
 
         _demo = GetNodeOrNull<UiBehaviorUnit>("%Demo");
         _demo.Visible = false;
-        
+
         foreach (var unit in BehaviorState?.Units ?? new Array<BehaviorUnit>()) NewBehaviorUnit(unit);
     }
 
@@ -52,7 +52,10 @@ public partial class UiBehaviorState : MarginContainer
         var uiBehaviorUnit = UiBehaviorUnitPackedScene.Instantiate<UiBehaviorUnit>();
         uiBehaviorUnit.BehaviorUnit = behaviorUnit;
 
-        BehaviorState?.Units.Add(behaviorUnit);
+        if (!BehaviorState!.Units.Contains(behaviorUnit))
+        {
+            BehaviorState.Units.Add(behaviorUnit);
+        }
 
         _vBoxContainer.AddChildBefore(uiBehaviorUnit, _newButton);
     }

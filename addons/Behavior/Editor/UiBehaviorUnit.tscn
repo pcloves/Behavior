@@ -46,14 +46,6 @@ size_flags_horizontal = 3
 layout_mode = 2
 text = "Checkers"
 
-[node name="Checker1" type="OptionButton" parent="HBoxContainer/Checkers"]
-layout_mode = 2
-item_count = 2
-popup/item_0/text = "Test"
-popup/item_0/id = 0
-popup/item_1/text = "Hello"
-popup/item_1/id = 1
-
 [node name="AddChecker" type="TextureButton" parent="HBoxContainer/Checkers"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -72,14 +64,6 @@ size_flags_horizontal = 3
 [node name="Label" type="Label" parent="HBoxContainer/Actions"]
 layout_mode = 2
 text = "Actions"
-
-[node name="Action1" type="OptionButton" parent="HBoxContainer/Actions"]
-layout_mode = 2
-item_count = 2
-popup/item_0/text = "Test"
-popup/item_0/id = 0
-popup/item_1/text = "Hello"
-popup/item_1/id = 1
 
 [node name="AddAction" type="TextureButton" parent="HBoxContainer/Actions"]
 unique_name_in_owner = true

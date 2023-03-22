@@ -1,3 +1,7 @@
+using System;
+using Game.addons.Behavior.Action;
+using Game.addons.Behavior.Check;
+using Game.addons.Behavior.Extensions;
 using Godot;
 
 namespace Game.addons.Behavior.Editor;
@@ -21,12 +25,19 @@ public partial class UiBehaviorUnit : MarginContainer
     {
         _active = GetNodeOrNull<CheckButton>("%Active");
         _active.ButtonPressed = BehaviorUnit?.Active ?? false;
+        _active.Pressed += () => BehaviorUnit.Active = _active.ButtonPressed;
 
         _checkers = GetNodeOrNull<HBoxContainer>("%Checkers");
         _addChecker = GetNodeOrNull<TextureButton>("%AddChecker");
+        _addChecker.Pressed += () => NewOptionButton(_checkers, _addChecker, typeof(BehaviorChecker));
+        
+        NewOptionButton(_checkers, _addChecker, typeof(BehaviorChecker));
 
         _actions = GetNodeOrNull<HBoxContainer>("%Actions");
         _addAction = GetNodeOrNull<TextureButton>("%AddAction");
+        _addAction.Pressed += () => NewOptionButton(_actions, _addAction, typeof(BehaviorAction));
+        
+        NewOptionButton(_actions, _addAction, typeof(BehaviorAction));
 
         _remove = GetNodeOrNull<TextureButton>("%Remove");
         _remove.Pressed += OnRemovePressed;
@@ -40,5 +51,17 @@ public partial class UiBehaviorUnit : MarginContainer
         GetParent().RemoveChild(this);
 
         QueueFree();
+    }
+
+    private void NewOptionButton(Node parent, Node brother, Type type)
+    {
+        var optionButton = new OptionButton();
+
+        foreach (var action in BehaviorPlugin.GetBehaviorTypes(type).Keys)
+        {
+            optionButton.AddItem(action);
+        }
+        
+        parent.AddChildBefore(optionButton, brother);
     }
 }

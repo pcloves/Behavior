@@ -1,8 +1,12 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using Game.addons.Behavior.Action;
 using Game.addons.Behavior.Extensions;
 using Godot;
+using MonoCustomResourceRegistry;
 
 namespace Game.addons.Behavior.Editor;
 
@@ -87,4 +91,6 @@ public partial class MainUi : Control
             _behaviorDefines[behaviorDefine.ResourcePath] = behaviorDefine;
         }
     }
+
+
 }
