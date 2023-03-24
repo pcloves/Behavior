@@ -1,0 +1,86 @@
+[gd_scene load_steps=4 format=3 uid="uid://gthofngbkx1j"]
+
+[ext_resource type="Script" path="res://addons/Behavior/Editor/UiBehaviorCheckers.cs" id="1_wtmdp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spo12"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.137255, 0.160784, 0.2, 0.607843)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.756863, 0.486275, 0.188235, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2dbio"]
+content_margin_left = 26.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="PanelContainer" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_spo12")
+script = ExtResource("1_wtmdp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="And" type="Button" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(43, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+toggle_mode = true
+button_pressed = true
+text = "AND"
+
+[node name="Or" type="Button" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(43, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+toggle_mode = true
+text = "OR"
+
+[node name="AddRule" type="Button" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(65, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Rule"
+
+[node name="AddGroup" type="Button" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(65, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Group"
+
+[node name="Delete" type="Button" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(65, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Delete"
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2dbio")
+
+[node name="ChildContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

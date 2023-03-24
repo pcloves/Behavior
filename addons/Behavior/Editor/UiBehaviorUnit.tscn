@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ed8s1xkq38yb"]
+[gd_scene load_steps=5 format=3 uid="uid://ed8s1xkq38yb"]
 
 [ext_resource type="Script" path="res://addons/Behavior/Editor/UiBehaviorUnit.cs" id="1_0kk22"]
 [ext_resource type="Texture2D" uid="uid://ccbvkgcoxebvb" path="res://addons/Behavior/Image/plus.png" id="1_wxqpx"]
 [ext_resource type="Texture2D" uid="uid://dbmvir0nqymhb" path="res://addons/Behavior/Image/cross.png" id="1_xsw4q"]
+[ext_resource type="PackedScene" uid="uid://gthofngbkx1j" path="res://addons/Behavior/Editor/UiBehaviorCheckers.tscn" id="2_mffno"]
 
 [node name="UiBehaviorUnit" type="MarginContainer"]
 anchors_preset = 10
@@ -20,6 +21,7 @@ layout_mode = 2
 
 [node name="Signal" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 4
 
 [node name="Label" type="Label" parent="HBoxContainer/Signal"]
 layout_mode = 2
@@ -37,21 +39,10 @@ popup/item_1/id = 1
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
 layout_mode = 2
 
-[node name="Checkers" type="HBoxContainer" parent="HBoxContainer"]
-unique_name_in_owner = true
+[node name="Checkers" parent="HBoxContainer" instance=ExtResource("2_mffno")]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="Label2" type="Label" parent="HBoxContainer/Checkers"]
-layout_mode = 2
-text = "Checkers"
-
-[node name="AddChecker" type="TextureButton" parent="HBoxContainer/Checkers"]
-unique_name_in_owner = true
-layout_mode = 2
 size_flags_vertical = 4
-texture_normal = ExtResource("1_wxqpx")
-stretch_mode = 5
 
 [node name="VSeparator2" type="VSeparator" parent="HBoxContainer"]
 layout_mode = 2
@@ -60,6 +51,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 
 [node name="Label" type="Label" parent="HBoxContainer/Actions"]
 layout_mode = 2
@@ -69,6 +61,7 @@ text = "Actions"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
+disabled = true
 texture_normal = ExtResource("1_wxqpx")
 stretch_mode = 5
 
@@ -78,12 +71,14 @@ layout_mode = 2
 [node name="Active" type="CheckButton" parent="HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 4
 tooltip_text = "This behavior unit is active or not"
 
 [node name="Remove" type="TextureButton" parent="HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
+size_flags_vertical = 4
 texture_normal = ExtResource("1_xsw4q")
 stretch_mode = 3
 

@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://dal5t0kt4fhiu"]
+
+[ext_resource type="Script" path="res://addons/Behavior/Editor/UiBehaviorChecker.cs" id="1_434t8"]
+
+[node name="Rule" type="HBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+script = ExtResource("1_434t8")
+
+[node name="OptionButton" type="OptionButton" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+item_count = 1
+popup/item_0/text = "Test"
+popup/item_0/id = 0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Delete
+"
