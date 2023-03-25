@@ -17,7 +17,7 @@ public partial class BehaviorPlugin : EditorPlugin
 
     public override void _EnterTree()
     {
-        GD.Print(nameof(BehaviorPlugin), ":", nameof(_EnterTree));
+        // GD.Print(nameof(BehaviorPlugin), ":", nameof(_EnterTree));
         _mainUi = ResourceLoader.Load<PackedScene>("addons/Behavior/Editor/MainUi.tscn").Instantiate<MainUi>();
         _mainUi.Plugin = this;
         _mainUi.Visible = false;
@@ -28,7 +28,7 @@ public partial class BehaviorPlugin : EditorPlugin
 
     public override void _ExitTree()
     {
-        GD.Print(nameof(BehaviorPlugin), ":", nameof(_ExitTree));
+        // GD.Print(nameof(BehaviorPlugin), ":", nameof(_ExitTree));
         GetEditorInterface().GetEditorMainScreen().RemoveChild(_mainUi);
         // RemoveInspectorPlugin(_inspectorPlugin);
 
@@ -39,18 +39,18 @@ public partial class BehaviorPlugin : EditorPlugin
     public override void _Edit(GodotObject @object)
     {
         _MakeVisible(true);
-        GD.Print(nameof(BehaviorPlugin), ":", nameof(_Edit));
+        // GD.Print(nameof(BehaviorPlugin), ":", nameof(_Edit));
     }
 
     public override string _GetPluginName()
     {
-        GD.Print(nameof(BehaviorPlugin), ":", nameof(_GetPluginName));
+        // GD.Print(nameof(BehaviorPlugin), ":", nameof(_GetPluginName));
         return "Behavior";
     }
 
     public override bool _Handles(GodotObject @object)
     {
-        GD.Print(nameof(BehaviorPlugin), ":", nameof(_Handles), ":", @object?.GetType().Name ?? "null");
+        // GD.Print(nameof(BehaviorPlugin), ":", nameof(_Handles), ":", @object?.GetType().Name ?? "null");
 
         if (@object is ActionCreateTimer)
         {
@@ -64,13 +64,13 @@ public partial class BehaviorPlugin : EditorPlugin
 
     public override bool _HasMainScreen()
     {
-        GD.Print(nameof(BehaviorPlugin), ":", nameof(_HasMainScreen));
+        // GD.Print(nameof(BehaviorPlugin), ":", nameof(_HasMainScreen));
         return true;
     }
 
     public override void _MakeVisible(bool visible)
     {
-        GD.Print(nameof(BehaviorPlugin), ":", nameof(_MakeVisible), ":", visible.ToString());
+        // GD.Print(nameof(BehaviorPlugin), ":", nameof(_MakeVisible), ":", visible.ToString());
         _mainUi.Visible = visible;
     }
 

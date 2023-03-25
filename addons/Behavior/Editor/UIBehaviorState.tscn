@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://addons/Behavior/Editor/UiBehaviorState.cs" id="1_xd25k"]
 [ext_resource type="Texture2D" uid="uid://hc73y4q7db4r" path="res://addons/Behavior/Image/angle-small-down.png" id="2_asd1n"]
-[ext_resource type="Texture2D" uid="uid://dbmvir0nqymhb" path="res://addons/Behavior/Image/cross.png" id="2_tkcqc"]
 [ext_resource type="Texture2D" uid="uid://cs3mb71pi0t28" path="res://addons/Behavior/Image/angle-small-right.png" id="3_sgh7g"]
+[ext_resource type="Theme" uid="uid://blpde8jj8enqp" path="res://addons/Behavior/Editor/Themes/DeleteButton.tres" id="4_dlgpo"]
 [ext_resource type="PackedScene" uid="uid://ed8s1xkq38yb" path="res://addons/Behavior/Editor/UiBehaviorUnit.tscn" id="5_d3q4k"]
 
 [node name="UiBehaviorState" type="MarginContainer"]
@@ -54,11 +54,12 @@ layout_mode = 2
 tooltip_text = "This behavior state is active or not"
 button_pressed = true
 
-[node name="Remove" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+[node name="Remove" type="Button" parent="VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-texture_normal = ExtResource("2_tkcqc")
-stretch_mode = 5
+theme = ExtResource("4_dlgpo")
+text = "X"
+icon_alignment = 1
 
 [node name="Demo" parent="VBoxContainer" instance=ExtResource("5_d3q4k")]
 unique_name_in_owner = true

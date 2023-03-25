@@ -16,9 +16,9 @@ public partial class UiBehaviorState : MarginContainer
     public BehaviorState? BehaviorState { get; set; }
 
     private VBoxContainer? _vBoxContainer;
-    private TextureButton? _removeButton;
-    private Button? _showButton;
-    private Button? _newButton;
+    private Button? _remove;
+    private Button? _show;
+    private Button? _new;
     private Label? _label;
     private UiBehaviorUnit? _demo;
     private bool _isExpand = true;
@@ -27,14 +27,14 @@ public partial class UiBehaviorState : MarginContainer
     {
         _vBoxContainer = GetNodeOrNull<VBoxContainer>("%VBoxContainer");
 
-        _removeButton = GetNodeOrNull<TextureButton>("%Remove");
-        _removeButton.Pressed += OnRemoveButtonPressed;
+        _remove = GetNodeOrNull<Button>("%Remove");
+        _remove.Pressed += OnRemovePressed;
 
-        _showButton = GetNodeOrNull<Button>("%Show");
-        _showButton.Connect(BaseButton.SignalName.Pressed, Callable.From(Expand));
+        _show = GetNodeOrNull<Button>("%Show");
+        _show.Connect(BaseButton.SignalName.Pressed, Callable.From(Expand));
 
-        _newButton = GetNodeOrNull<Button>("%New");
-        _newButton.Connect(BaseButton.SignalName.Pressed, Callable.From(() => NewBehaviorUnit()));
+        _new = GetNodeOrNull<Button>("%New");
+        _new.Connect(BaseButton.SignalName.Pressed, Callable.From(() => NewBehaviorUnit()));
 
         _label = GetNodeOrNull<Label>("%Label");
         _label.Text = BehaviorState?.Id ?? "Error";
@@ -42,12 +42,12 @@ public partial class UiBehaviorState : MarginContainer
         _demo = GetNodeOrNull<UiBehaviorUnit>("%Demo");
         _demo.Visible = false;
 
-        foreach (var unit in BehaviorState?.Units ?? new Array<BehaviorUnit>()) NewBehaviorUnit(unit);
+        foreach (var unit in BehaviorState?.Units ?? new Array<Define.BehaviorUnit>()) NewBehaviorUnit(unit);
     }
 
-    private void NewBehaviorUnit(BehaviorUnit? behaviorUnit = default)
+    private void NewBehaviorUnit(Define.BehaviorUnit? behaviorUnit = default)
     {
-        behaviorUnit ??= new BehaviorUnit();
+        behaviorUnit ??= new Define.BehaviorUnit();
 
         var uiBehaviorUnit = UiBehaviorUnitPackedScene.Instantiate<UiBehaviorUnit>();
         uiBehaviorUnit.BehaviorUnit = behaviorUnit;
@@ -57,10 +57,10 @@ public partial class UiBehaviorState : MarginContainer
             BehaviorState.Units.Add(behaviorUnit);
         }
 
-        _vBoxContainer.AddChildBefore(uiBehaviorUnit, _newButton);
+        _vBoxContainer.AddChildBefore(uiBehaviorUnit, _new);
     }
 
-    private void OnRemoveButtonPressed()
+    private void OnRemovePressed()
     {
         var uiBehaviorDefine = GetParent().GetParent<UiBehaviorDefine>();
         uiBehaviorDefine.BehaviorDefine.BehaviorStates.Remove(BehaviorState);

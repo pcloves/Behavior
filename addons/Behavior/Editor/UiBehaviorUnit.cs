@@ -9,13 +9,13 @@ namespace Game.addons.Behavior.Editor;
 public partial class UiBehaviorUnit : MarginContainer
 {
     private HBoxContainer _actions;
-    private TextureButton _addAction;
+    private Button _addAction;
 
     private CheckButton _active;
 
-    private TextureButton _remove;
+    private Button _remove;
 
-    public BehaviorUnit BehaviorUnit { get; set; }
+    public Define.BehaviorUnit BehaviorUnit { get; set; }
 
     public override void _Ready()
     {
@@ -24,12 +24,12 @@ public partial class UiBehaviorUnit : MarginContainer
         _active.Pressed += () => BehaviorUnit.Active = _active.ButtonPressed;
 
         _actions = GetNodeOrNull<HBoxContainer>("%Actions");
-        _addAction = GetNodeOrNull<TextureButton>("%AddAction");
+        _addAction = GetNodeOrNull<Button>("%AddAction");
         _addAction.Pressed += OnAddActionPressed;
         
         OnAddActionPressed();
 
-        _remove = GetNodeOrNull<TextureButton>("%Remove");
+        _remove = GetNodeOrNull<Button>("%Remove");
         _remove.Pressed += OnRemovePressed;
     }
 

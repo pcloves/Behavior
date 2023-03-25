@@ -37,26 +37,15 @@ public partial class ComBehavior
         var units = CurrentSate.Units.Where(unit => unit.Signal.Equals(this._signal));
         foreach (var unit in units)
         {
-            var checkers = unit.Checkers;
+            var checkers = unit.Checker;
             var actions = unit.Actions;
 
-            var checkPass = true;
-            foreach (var checker in checkers)
+            //TODO: 这里的GetOwnerOrNull极其不妥当！
+            if (!checkers.Check(GetOwnerOrNull<Node>(), args)) continue;
+            
+            foreach (var action in actions)
             {
-                var checkResult = checker.Check(GetOwnerOrNull<Node>(), args);
-                if (!checkResult)
-                {
-                    checkPass = false;
-                    break;
-                }
-            }
-
-            if (checkPass)
-            {
-                foreach (var action in actions)
-                {
-                    action.Execute(GetOwnerOrNull<Node>(), args);
-                }
+                action.Execute(GetOwnerOrNull<Node>(), args);
             }
         }
     }

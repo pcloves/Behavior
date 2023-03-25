@@ -9,15 +9,12 @@ namespace Game.addons.Behavior.Check;
 [Tool]
 public partial class CheckOr : BehaviorChecker
 {
-    [Export] public Array<BehaviorChecker> _checkers { get; set; }
+    [Export] public Array<BehaviorChecker> Checkers { get; set; }
 
     public override bool Check(Node entity, params Variant[] signalArgs)
     {
-        if (_checkers.Count == 0)
-        {
-            return false;
-        }
+        if (Checkers.Count == 0) return true;
 
-        return _checkers.Any(checker => checker.Check(entity, signalArgs));
+        return Checkers.Any(checker => checker.Check(entity, signalArgs));
     }
 }

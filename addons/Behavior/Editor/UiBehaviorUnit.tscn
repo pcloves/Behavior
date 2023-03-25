@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://addons/Behavior/Editor/UiBehaviorUnit.cs" id="1_0kk22"]
 [ext_resource type="Texture2D" uid="uid://ccbvkgcoxebvb" path="res://addons/Behavior/Image/plus.png" id="1_wxqpx"]
-[ext_resource type="Texture2D" uid="uid://dbmvir0nqymhb" path="res://addons/Behavior/Image/cross.png" id="1_xsw4q"]
-[ext_resource type="PackedScene" uid="uid://gthofngbkx1j" path="res://addons/Behavior/Editor/UiBehaviorCheckers.tscn" id="2_mffno"]
+[ext_resource type="PackedScene" uid="uid://d3m7dd205y4a0" path="res://addons/Behavior/Editor/UiBehaviorCheckers.tscn" id="2_mffno"]
+[ext_resource type="Theme" uid="uid://blpde8jj8enqp" path="res://addons/Behavior/Editor/Themes/DeleteButton.tres" id="4_rfo5t"]
 
 [node name="UiBehaviorUnit" type="MarginContainer"]
 anchors_preset = 10
@@ -39,6 +39,10 @@ popup/item_1/id = 1
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
 layout_mode = 2
 
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Checkers"
+
 [node name="Checkers" parent="HBoxContainer" instance=ExtResource("2_mffno")]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -57,13 +61,13 @@ size_flags_vertical = 4
 layout_mode = 2
 text = "Actions"
 
-[node name="AddAction" type="TextureButton" parent="HBoxContainer/Actions"]
+[node name="AddAction" type="Button" parent="HBoxContainer/Actions"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 disabled = true
-texture_normal = ExtResource("1_wxqpx")
-stretch_mode = 5
+icon = ExtResource("1_wxqpx")
+icon_alignment = 1
 
 [node name="VSeparator3" type="VSeparator" parent="HBoxContainer"]
 layout_mode = 2
@@ -74,13 +78,11 @@ layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "This behavior unit is active or not"
 
-[node name="Remove" type="TextureButton" parent="HBoxContainer"]
+[node name="Remove" type="Button" parent="HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-texture_normal = ExtResource("1_xsw4q")
-stretch_mode = 3
+theme = ExtResource("4_rfo5t")
+text = "X"
 
 [node name="HSeparator" type="HSeparator" parent="."]
 layout_mode = 2

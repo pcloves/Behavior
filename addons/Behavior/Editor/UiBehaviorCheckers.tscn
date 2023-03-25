@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://gthofngbkx1j"]
+[gd_scene load_steps=6 format=3 uid="uid://d3m7dd205y4a0"]
 
 [ext_resource type="Script" path="res://addons/Behavior/Editor/UiBehaviorCheckers.cs" id="1_wtmdp"]
+[ext_resource type="Theme" uid="uid://b6f12mmg7ircu" path="res://addons/Behavior/Editor/Themes/AndOrButton.tres" id="2_kv7bs"]
+[ext_resource type="Theme" uid="uid://blpde8jj8enqp" path="res://addons/Behavior/Editor/Themes/DeleteButton.tres" id="3_66tkq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spo12"]
 content_margin_left = 5.0
@@ -20,11 +22,10 @@ content_margin_left = 26.0
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="PanelContainer" type="PanelContainer"]
-anchors_preset = 15
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
+offset_bottom = 45.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_spo12")
 script = ExtResource("1_wtmdp")
 
@@ -38,18 +39,23 @@ theme_override_constants/separation = 0
 
 [node name="And" type="Button" parent="VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(43, 0)
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 size_flags_horizontal = 0
+theme = ExtResource("2_kv7bs")
 toggle_mode = true
 button_pressed = true
 text = "AND"
 
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
 [node name="Or" type="Button" parent="VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(43, 0)
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 size_flags_horizontal = 0
+theme = ExtResource("2_kv7bs")
 toggle_mode = true
 text = "OR"
 
@@ -69,11 +75,9 @@ text = "Group"
 
 [node name="Delete" type="Button" parent="VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(65, 0)
 layout_mode = 2
-size_flags_horizontal = 8
-text = "Delete"
+theme = ExtResource("3_66tkq")
+text = "X"
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2

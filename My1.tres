@@ -1,8 +1,22 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ceclynvyydfw8"]
+[gd_resource type="Resource" load_steps=6 format=3 uid="uid://ceclynvyydfw8"]
 
 [ext_resource type="Script" path="res://addons/Behavior/Define/BehaviorDefine.cs" id="1_bc065"]
+[ext_resource type="Script" path="res://addons/Behavior/Define/BehaviorUnit.cs" id="1_d5667"]
+[ext_resource type="Script" path="res://addons/Behavior/Define/BehaviorState.cs" id="2_j8b52"]
+
+[sub_resource type="Resource" id="Resource_qwv2y"]
+script = ExtResource("1_d5667")
+Signal = ""
+Active = true
+Actions = []
+
+[sub_resource type="Resource" id="Resource_koyus"]
+script = ExtResource("2_j8b52")
+Id = "New Behavior State"
+Active = true
+Units = [SubResource("Resource_qwv2y")]
 
 [resource]
 script = ExtResource("1_bc065")
 Name = "My12"
-BehaviorStates = []
+BehaviorStates = [SubResource("Resource_koyus")]

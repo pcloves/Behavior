@@ -27,8 +27,6 @@ GameEvents="*res://GameEvents.cs"
 
 [display]
 
-window/size/viewport_width=720
-window/size/viewport_height=480
 window/size/resizable=false
 window/stretch/mode="viewport"
 
