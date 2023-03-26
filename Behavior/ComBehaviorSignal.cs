@@ -16,7 +16,7 @@ public partial class ComBehavior
         }
         catch (Exception e)
         {
-            GD.Print("exception caught, message:", e.Message);
+            GD.PrintErr("exception caught, message:", e.Message);
             error = Error.Failed;
         }
         finally

@@ -17,8 +17,6 @@ public partial class UiBehaviorDefine : ScrollContainer
     private VBoxContainer _vBoxContainer;
     private Button _new;
 
-    private UiBehaviorState _demo;
-
     public override void _Ready()
     {
         base._Ready();
@@ -28,14 +26,10 @@ public partial class UiBehaviorDefine : ScrollContainer
         _new = GetNodeOrNull<Button>("%New");
         _new.Pressed += OnNewPressed;
         _new.Disabled = false;
-
-        _demo = GetNodeOrNull<UiBehaviorState>("%Demo");
-        _demo.Visible = false;
         
-        
-        foreach (var state in BehaviorDefine?.BehaviorStates ?? new Array<BehaviorState>())
+        foreach (var behaviorState in BehaviorDefine?.BehaviorStates ?? new Array<BehaviorState>())
         {
-            AddNewBehaviorState(state);
+            AddNewBehaviorState(behaviorState);
         }
     }
     
@@ -49,6 +43,7 @@ public partial class UiBehaviorDefine : ScrollContainer
     private void AddNewBehaviorState(BehaviorState state)
     {
         var uiBehaviorState = UiBehaviorStatePackedScene.Instantiate<UiBehaviorState>();
+        uiBehaviorState.BehaviorDefine = BehaviorDefine;
         uiBehaviorState.BehaviorState = state;
 
         _vBoxContainer.AddChildBefore(uiBehaviorState, _new);

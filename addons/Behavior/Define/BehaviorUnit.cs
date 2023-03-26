@@ -12,6 +12,6 @@ public partial class BehaviorUnit : Resource
 {
     [Export] public string Signal { get; set; }
     [Export] public bool Active { get; set; } = true;
-    [Export] public BehaviorChecker Checker { get; set; }
+    [Export] public CheckAndOr Checker { get; set; } = new();
     [Export] public Array<BehaviorAction> Actions { get; set; } = new();
 }

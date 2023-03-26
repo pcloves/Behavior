@@ -1,18 +1,19 @@
 using System;
 using System.Linq;
-using Game.addons.Behavior.Check;
+using Game.addons.Behavior.Action;
+using Game.addons.Behavior.Define;
 using Godot;
 
 namespace Game.addons.Behavior.Editor;
 
 [Tool]
-public partial class UiBehaviorChecker : HBoxContainer
+public partial class UiBehaviorAction : HBoxContainer
 {
     private OptionButton _optionButton;
     private Button _remove;
 
-    public CheckAndOr CheckerBelong { get; set; }
-    public BehaviorChecker Checker { get; set; }
+    public BehaviorUnit BehaviorUnitBelong { get; set; }
+    public BehaviorAction Action { get; set; }
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -26,69 +27,70 @@ public partial class UiBehaviorChecker : HBoxContainer
 
         InitOptionButton();
     }
-
+    
     private void OnFocusEntered()
     {
-        if (Checker != null)
+        if (Action != null)
         {
-            BehaviorPlugin.Plugin.GetEditorInterface().EditResource(Checker);
+            BehaviorPlugin.Plugin.GetEditorInterface().EditResource(Action);
         }
     }
 
+
     private void OnRemovePressed()
     {
-        if (Checker != null)
+        if (Action != null)
         {
-            CheckerBelong.Checkers.Remove(Checker);
+            BehaviorUnitBelong.Actions.Remove(Action);
         }
-
+        
         QueueFree();
     }
 
     private void OnItemSelected(long index)
     {
         GD.Print($"{nameof(OnItemSelected)}");
+        
         var typeName = _optionButton.GetItemMetadata((int)index).AsString();
         var type = Type.GetType(typeName);
 
-        var behaviorChecker = (BehaviorChecker)Activator.CreateInstance(type);
+        var behaviorAction = (BehaviorAction)Activator.CreateInstance(type);
 
-        var indexOld = CheckerBelong.Checkers.IndexOf(Checker);
+        var indexOld = BehaviorUnitBelong.Actions.IndexOf(Action);
         if (indexOld != -1)
         {
-            CheckerBelong.Checkers[indexOld] = behaviorChecker;
+            BehaviorUnitBelong.Actions[indexOld] = behaviorAction;
         }
         else
         {
-            CheckerBelong.Checkers.Add(behaviorChecker);
+            BehaviorUnitBelong.Actions.Add(behaviorAction);
         }
 
-        Checker = behaviorChecker;
-        BehaviorPlugin.Plugin.GetEditorInterface().EditResource(Checker);
+        Action = behaviorAction;
+        BehaviorPlugin.Plugin.GetEditorInterface().EditResource(behaviorAction);
     }
 
     private void InitOptionButton()
     {
         _optionButton.Clear();
-
-        var behaviorTypes = BehaviorPlugin.GetBehaviorTypes(typeof(BehaviorChecker))
-            .Where(type => type != typeof(CheckAndOr))
+        
+        var behaviorTypes = BehaviorPlugin.GetBehaviorTypes(typeof(BehaviorAction))
             .ToList();
 
         for (var index = 0; index < behaviorTypes.Count; index++)
         {
-            var checkerType = behaviorTypes[index];
-            _optionButton.AddItem(checkerType.Name);
-            _optionButton.SetItemMetadata(index, checkerType.FullName);
+            var actionType = behaviorTypes[index];
+            _optionButton.AddItem(actionType.Name);
+            _optionButton.SetItemMetadata(index, actionType.FullName);
         }
 
-        if (Checker == null)
+        if (Action == null)
         {
             _optionButton.Selected = -1;
         }
         else
         {
-            _optionButton.Selected = behaviorTypes.IndexOf(Checker.GetType());
+            _optionButton.Selected = behaviorTypes.IndexOf(Action.GetType());
         }
     }
 }

@@ -1,6 +1,5 @@
-[gd_scene load_steps=3 format=3 uid="uid://ywtlyot4uiqf"]
+[gd_scene load_steps=2 format=3 uid="uid://ywtlyot4uiqf"]
 
-[ext_resource type="PackedScene" uid="uid://cjqfpx4q6fre4" path="res://addons/Behavior/Editor/UiBehaviorState.tscn" id="1_nsiwc"]
 [ext_resource type="Script" path="res://addons/Behavior/Editor/UiBehaviorDefine.cs" id="1_qv6dw"]
 
 [node name="UiBehaviorDefine" type="ScrollContainer"]
@@ -15,11 +14,7 @@ script = ExtResource("1_qv6dw")
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="Demo" parent="VBoxContainer" instance=ExtResource("1_nsiwc")]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="New" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true

@@ -7,7 +7,7 @@ public partial class BehaviorInspectorPlugin : EditorInspectorPlugin
 {
     public override bool _CanHandle(GodotObject @object)
     {
-        var canHandle = @object is ActionCreateTimer;
+        var canHandle = @object is ActionAwaitTime;
         
         GD.Print("Type:", @object.GetType(), ", canHandle:", canHandle);
         

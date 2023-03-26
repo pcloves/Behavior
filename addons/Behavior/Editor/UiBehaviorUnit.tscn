@@ -1,22 +1,20 @@
 [gd_scene load_steps=5 format=3 uid="uid://ed8s1xkq38yb"]
 
 [ext_resource type="Script" path="res://addons/Behavior/Editor/UiBehaviorUnit.cs" id="1_0kk22"]
+[ext_resource type="StyleBox" uid="uid://d1nnkasdi3mot" path="res://addons/Behavior/Editor/Themes/PanelContainerStyles.tres" id="1_bs3cq"]
 [ext_resource type="Texture2D" uid="uid://ccbvkgcoxebvb" path="res://addons/Behavior/Image/plus.png" id="1_wxqpx"]
-[ext_resource type="PackedScene" uid="uid://d3m7dd205y4a0" path="res://addons/Behavior/Editor/UiBehaviorCheckers.tscn" id="2_mffno"]
 [ext_resource type="Theme" uid="uid://blpde8jj8enqp" path="res://addons/Behavior/Editor/Themes/DeleteButton.tres" id="4_rfo5t"]
 
-[node name="UiBehaviorUnit" type="MarginContainer"]
+[node name="UiBehaviorUnit" type="PanelContainer"]
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 51.0
+offset_bottom = 45.0
 grow_horizontal = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_styles/panel = ExtResource("1_bs3cq")
 script = ExtResource("1_0kk22")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Signal" type="HBoxContainer" parent="HBoxContainer"]
@@ -27,29 +25,27 @@ size_flags_vertical = 4
 layout_mode = 2
 text = "Signal"
 
-[node name="Signal" type="OptionButton" parent="HBoxContainer/Signal"]
+[node name="Signal" type="LineEdit" parent="HBoxContainer/Signal"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-item_count = 2
-popup/item_0/text = "Test"
-popup/item_0/id = 0
-popup/item_1/text = "Hello"
-popup/item_1/id = 1
+placeholder_text = "Type signal..."
+clear_button_enabled = true
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer"]
+[node name="CheckersLabel" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 text = "Checkers"
 
-[node name="Checkers" parent="HBoxContainer" instance=ExtResource("2_mffno")]
+[node name="CheckersActionsSeparator" type="VSeparator" parent="HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
 
-[node name="VSeparator2" type="VSeparator" parent="HBoxContainer"]
+[node name="ActionsLabel" type="Label" parent="HBoxContainer"]
 layout_mode = 2
+text = "Actions"
 
 [node name="Actions" type="HBoxContainer" parent="HBoxContainer"]
 unique_name_in_owner = true
@@ -57,15 +53,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="HBoxContainer/Actions"]
-layout_mode = 2
-text = "Actions"
-
 [node name="AddAction" type="Button" parent="HBoxContainer/Actions"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
-disabled = true
 icon = ExtResource("1_wxqpx")
 icon_alignment = 1
 
@@ -80,11 +71,7 @@ tooltip_text = "This behavior unit is active or not"
 
 [node name="Remove" type="Button" parent="HBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 45)
 layout_mode = 2
 theme = ExtResource("4_rfo5t")
 text = "X"
-
-[node name="HSeparator" type="HSeparator" parent="."]
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_constants/separation = -1

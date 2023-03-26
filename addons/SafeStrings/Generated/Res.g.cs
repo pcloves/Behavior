@@ -14,7 +14,6 @@ public static class Res
         public static readonly ResourcePath<Godot.CSharpScript> ComBehavior_cs = "res://Behavior/ComBehavior.cs";
         public static readonly ResourcePath<Godot.PackedScene> ComBehavior_tscn = "res://Behavior/ComBehavior.tscn";
         public static readonly ResourcePath<Godot.CSharpScript> ComBehaviorSignal_cs = "res://Behavior/ComBehaviorSignal.cs";
-        public static readonly ResourcePath<Godot.CSharpScript> ComBehaviorSignals_cs = "res://Behavior/ComBehaviorSignals.cs";
     }
     public static class Level
     {

@@ -12,11 +12,13 @@ namespace Game.addons.Behavior;
 [Tool]
 public partial class BehaviorPlugin : EditorPlugin
 {
+    public static BehaviorPlugin Plugin;
     private MainUi _mainUi;
     private BehaviorInspectorPlugin _inspectorPlugin = new();
 
     public override void _EnterTree()
     {
+        Plugin = this;
         // GD.Print(nameof(BehaviorPlugin), ":", nameof(_EnterTree));
         _mainUi = ResourceLoader.Load<PackedScene>("addons/Behavior/Editor/MainUi.tscn").Instantiate<MainUi>();
         _mainUi.Plugin = this;
@@ -52,7 +54,7 @@ public partial class BehaviorPlugin : EditorPlugin
     {
         // GD.Print(nameof(BehaviorPlugin), ":", nameof(_Handles), ":", @object?.GetType().Name ?? "null");
 
-        if (@object is ActionCreateTimer)
+        if (@object is ActionAwaitTime)
         {
             GD.Print("_Handles, type:", @object.GetType(), ", class:", @object.GetClass());
 
@@ -74,14 +76,11 @@ public partial class BehaviorPlugin : EditorPlugin
         _mainUi.Visible = visible;
     }
 
-    public static IDictionary<string, Type> GetBehaviorTypes(Type type)
+    public static IEnumerable<Type> GetBehaviorTypes(Type type)
     {
         var assembly = Assembly.GetAssembly(typeof(BehaviorPlugin));
 
-        return assembly?.GetTypes()
-                   .Where(t => t.IsSubclassOf(type))
-                   .ToDictionary(type => type.Name, type => type) ??
-               Enumerable.Empty<Type>().ToDictionary(type => type.Name, type => type);
+        return assembly?.GetTypes().Where(t => t.IsSubclassOf(type) && !t.IsAbstract).ToList();
     }
 }
 #endif

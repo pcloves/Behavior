@@ -13,14 +13,7 @@ public partial class ComBehavior : Node
 
     private string _signal;
 
-    public override void _Ready()
-    {
-        base._Ready();
-
-        // ChangeState(BehaviorDefine?.BehaviorStates[0].Id);
-    }
-
-    public void ChangeState(string stateName)
+    public void ChangeState(string stateId)
     {
         if (CurrentSate != null)
         {
@@ -33,7 +26,7 @@ public partial class ComBehavior : Node
             }
         }
 
-        CurrentSate = BehaviorDefine.BehaviorStates.First(state => state.Id.Equals(stateName));
+        CurrentSate = BehaviorDefine.BehaviorStates.First(state => state.Id.Equals(stateId));
 
         if (CurrentSate != null)
         {
@@ -50,5 +43,11 @@ public partial class ComBehavior : Node
 
             EmitSignal("StateEnter", CurrentSate.Id);
         }
+    }
+
+
+    public bool hasState(string stateId)
+    {
+        return (BehaviorDefine?.BehaviorStates.Select(state => state.Id.Equals(stateId))).Any();
     }
 }

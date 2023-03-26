@@ -1,4 +1,6 @@
+using Game.addons.Behavior.Check;
 using Godot;
+using Godot.Collections;
 
 namespace Game.addons.Behavior.Editor;
 
@@ -13,57 +15,101 @@ public partial class UiBehaviorCheckers : PanelContainer
 
     private static readonly PackedScene UiBehaviorCheckerPackedScene =
         ResourceLoader.Load<PackedScene>(UiBehaviorCheckerScenePath);
-    
+
+    public CheckAndOr CheckerAndOrBelong { get; set; }
+    public CheckAndOr CheckerAndOr { get; set; }
+
     private Button _and;
     private Button _or;
     private VBoxContainer _childContainer;
 
     private Button _addRule;
     private Button _addGroup;
-    private Button _delete;
+    private Button _remove;
 
-    public override void _Ready()
+    public override async void _Ready()
     {
-        _and = GetNodeOrNull<Button>("%And");
-        _and.Pressed += () => _or.ButtonPressed = false;
+        GD.Print($"{nameof(UiBehaviorCheckers)} ready");
+
         _or = GetNodeOrNull<Button>("%Or");
-        _or.Pressed += () => _and.ButtonPressed = false;
+        _or.Pressed += () => OnAndOrButtonPressed(true);
+        _or.ButtonPressed = CheckerAndOr is { Or: true };
+
+        _and = GetNodeOrNull<Button>("%And");
+        _and.Pressed += () => OnAndOrButtonPressed(false);
+        _and.ButtonPressed = CheckerAndOr is { Or: false };
 
         _childContainer = GetNodeOrNull<VBoxContainer>("%ChildContainer");
 
         _addRule = GetNodeOrNull<Button>("%AddRule");
-        _addRule.Pressed += OnAddRulePressed;
-        _addGroup = GetNodeOrNull<Button>("%AddGroup");
-        _delete = GetNodeOrNull<Button>("%Delete");
-        _delete.Pressed += OnDeletePressed;
-        _delete.Visible = HasMeta("deleteVisible") && GetMeta("deleteVisible").AsBool();
+        _addRule.Pressed += () => OnAddRulePressed();
 
-        _addGroup.Pressed += OnAddGroupPressed;
+        _addGroup = GetNodeOrNull<Button>("%AddGroup");
+        _addGroup.Pressed += () => OnAddGroupPressed();
+
+        _remove = GetNodeOrNull<Button>("%Remove");
+        _remove.Pressed += OnRemovePressed;
+        _remove.Visible = HasMeta("deleteVisible") && GetMeta("deleteVisible").AsBool();
+
+        foreach (var checker in CheckerAndOr?.Checkers ?? new Array<BehaviorChecker>())
+        {
+            if (checker is CheckAndOr checkAndOr)
+            {
+                OnAddGroupPressed(checkAndOr);
+            }
+            else
+            {
+                OnAddRulePressed(checker);
+            }
+        }
+
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+        
+        QueueRedraw();
     }
 
-    private void OnDeletePressed()
+    private void OnAndOrButtonPressed(bool or)
     {
-        GetParent().RemoveChild(this);
+        _or.ButtonPressed = or;
+        _and.ButtonPressed = !or;
+
+        CheckerAndOr.Or = or;
+    }
+
+    private void OnRemovePressed()
+    {
+        //从父Checker中删除
+        CheckerAndOrBelong?.Checkers?.Remove(CheckerAndOr);
+
         QueueFree();
     }
 
-    private void OnAddRulePressed()
+    private void OnAddRulePressed(BehaviorChecker behaviorChecker = null)
     {
         var uiBehaviorChecker = UiBehaviorCheckerPackedScene.Instantiate<UiBehaviorChecker>();
+
+        uiBehaviorChecker.Checker = behaviorChecker;
+        uiBehaviorChecker.CheckerBelong = CheckerAndOr;
+
         _childContainer.AddChild(uiBehaviorChecker);
     }
 
-    private void OnAddGroupPressed()
+    private void OnAddGroupPressed(CheckAndOr checkAndOr = null)
     {
-        var parent = UiBehaviorCheckersPackedScene.Instantiate<UiBehaviorCheckers>();
-        parent.SetMeta("deleteVisible", true);
+        var uiBehaviorCheckers = UiBehaviorCheckersPackedScene.Instantiate<UiBehaviorCheckers>();
 
-        _childContainer.AddChild(parent);
-    }
+        checkAndOr ??= new CheckAndOr();
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
-    {
+        uiBehaviorCheckers.CheckerAndOr = checkAndOr;
+        uiBehaviorCheckers.CheckerAndOrBelong = CheckerAndOr;
+        uiBehaviorCheckers.SetMeta("deleteVisible", true);
+
+        if (!CheckerAndOr.Checkers.Contains(checkAndOr))
+        {
+            CheckerAndOr.Checkers.Add(checkAndOr);
+        }
+
+        _childContainer.AddChild(uiBehaviorCheckers);
     }
 
     public override void _Draw()

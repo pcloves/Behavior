@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cttt1shw5c2gf"]
+[gd_scene load_steps=2 format=3 uid="uid://cttt1shw5c2gf"]
 
 [ext_resource type="Script" path="res://addons/Behavior/Editor/MainUi.cs" id="1_xyo3b"]
-[ext_resource type="PackedScene" uid="uid://ywtlyot4uiqf" path="res://addons/Behavior/Editor/UiBehaviorDefine.tscn" id="2_qj0um"]
 
 [node name="MainUi" type="Control"]
 layout_mode = 3
@@ -37,10 +36,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 allow_reselect = true
 hide_root = true
-
-[node name="UiBehaviorDefine" parent="MarginContainer/HSplitContainer" instance=ExtResource("2_qj0um")]
-visible = false
-layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/HSplitContainer"]
 unique_name_in_owner = true

@@ -1,14 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://i3usii4fgo3v"]
+[gd_scene load_steps=3 format=3 uid="uid://d4mxra2r7sv7t"]
 
-[ext_resource type="Script" path="res://addons/Behavior/Editor/UiBehaviorChecker.cs" id="1_434t8"]
-[ext_resource type="Theme" uid="uid://blpde8jj8enqp" path="res://addons/Behavior/Editor/Themes/DeleteButton.tres" id="3_xc5xm"]
+[ext_resource type="Script" path="res://addons/Behavior/Editor/UiBehaviorAction.cs" id="1_p6f5y"]
+[ext_resource type="Theme" uid="uid://blpde8jj8enqp" path="res://addons/Behavior/Editor/Themes/DeleteButton.tres" id="2_5kocq"]
 
-[node name="Rule" type="HBoxContainer"]
-anchors_preset = 10
-anchor_right = 1.0
+[node name="BehaviorAction" type="HBoxContainer"]
+offset_right = 191.0
 offset_bottom = 32.0
-grow_horizontal = 2
-script = ExtResource("1_434t8")
+script = ExtResource("1_p6f5y")
 
 [node name="OptionButton" type="OptionButton" parent="."]
 unique_name_in_owner = true
@@ -29,5 +27,5 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 10
-theme = ExtResource("3_xc5xm")
+theme = ExtResource("2_5kocq")
 text = "X"

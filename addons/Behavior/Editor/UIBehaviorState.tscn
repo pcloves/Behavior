@@ -1,72 +1,129 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjqfpx4q6fre4"]
+[gd_scene load_steps=7 format=3 uid="uid://cjqfpx4q6fre4"]
 
+[ext_resource type="StyleBox" uid="uid://d1nnkasdi3mot" path="res://addons/Behavior/Editor/Themes/PanelContainerStyles.tres" id="1_j84l0"]
 [ext_resource type="Script" path="res://addons/Behavior/Editor/UiBehaviorState.cs" id="1_xd25k"]
 [ext_resource type="Texture2D" uid="uid://hc73y4q7db4r" path="res://addons/Behavior/Image/angle-small-down.png" id="2_asd1n"]
+[ext_resource type="Texture2D" uid="uid://758ccwqeid61" path="res://addons/Behavior/Image/edit.png" id="3_a4w72"]
 [ext_resource type="Texture2D" uid="uid://cs3mb71pi0t28" path="res://addons/Behavior/Image/angle-small-right.png" id="3_sgh7g"]
 [ext_resource type="Theme" uid="uid://blpde8jj8enqp" path="res://addons/Behavior/Editor/Themes/DeleteButton.tres" id="4_dlgpo"]
-[ext_resource type="PackedScene" uid="uid://ed8s1xkq38yb" path="res://addons/Behavior/Editor/UiBehaviorUnit.tscn" id="5_d3q4k"]
 
-[node name="UiBehaviorState" type="MarginContainer"]
+[node name="UiBehaviorState" type="PanelContainer"]
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 150.0
+offset_bottom = 99.0
 grow_horizontal = 2
+theme_override_styles/panel = ExtResource("1_j84l0")
+script = ExtResource("1_xd25k")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
-script = ExtResource("1_xd25k")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+metadata/no_hide = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+metadata/no_hide = true
+
+[node name="ChangeContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 6
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+[node name="NameLineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer/ChangeContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-metadata/no_hide = true
+size_flags_horizontal = 3
+placeholder_text = "Type new name..."
+alignment = 1
+clear_button_enabled = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Accept" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/ChangeContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-metadata/no_hide = true
+theme = ExtResource("4_dlgpo")
+text = "√"
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="Cancel" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/ChangeContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+theme = ExtResource("4_dlgpo")
+text = "X"
+
+[node name="NameContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/NameContainer"]
 unique_name_in_owner = true
 modulate = Color(0.678431, 0.862745, 0.368627, 1)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 4
 text = "Error"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Show" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
+[node name="Edit" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/NameContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
+icon = ExtResource("3_a4w72")
+flat = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Show" type="CheckBox" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
 theme_override_icons/checked = ExtResource("2_asd1n")
 theme_override_icons/unchecked = ExtResource("3_sgh7g")
 expand_icon = true
 
-[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Active" type="CheckButton" parent="VBoxContainer/HBoxContainer"]
+[node name="Active" type="CheckButton" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "This behavior state is active or not"
 button_pressed = true
 
-[node name="Remove" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Remove" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 theme = ExtResource("4_dlgpo")
 text = "X"
 icon_alignment = 1
 
-[node name="Demo" parent="VBoxContainer" instance=ExtResource("5_d3q4k")]
-unique_name_in_owner = true
-visible = false
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
 
-[node name="New" type="Button" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="NewBehaviorUnit" type="Button" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "New Behavior Unit"

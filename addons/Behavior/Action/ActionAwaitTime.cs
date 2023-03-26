@@ -1,20 +1,14 @@
-﻿using System;
-using Game.addons.Behavior.Extensions;
+﻿using Game.addons.Behavior.Extensions;
 using Game.Behavior;
 using Godot;
 using MonoCustomResourceRegistry;
 
 namespace Game.addons.Behavior.Action;
 
-[RegisteredType(nameof(ActionCreateTimer))]
+[RegisteredType(nameof(ActionAwaitTime))]
 [Tool]
-public partial class ActionCreateTimer : BehaviorAction
+public partial class ActionAwaitTime : BehaviorAction
 {
-    /// <summary>
-    /// 计算器的名称
-    /// </summary>
-    [Export]
-    public string TimerName { get; set; }
 
     /// <summary>
     /// 计算时间时间范围下限（包括）
@@ -35,7 +29,5 @@ public partial class ActionCreateTimer : BehaviorAction
             GD.RandRange(Mathf.Min(TimeSecondMin, TimeSecondMax), Mathf.Max(TimeSecondMin, TimeSecondMax));
 
         await comBehavior.ToSignal(entity.GetTree().CreateTimer(randomSecond), Timer.SignalName.Timeout);
-
-        comBehavior.EmitSignal("Timeout", TimerName);
     }
 }
