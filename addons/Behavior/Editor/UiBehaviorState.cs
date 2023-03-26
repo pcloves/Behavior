@@ -126,5 +126,7 @@ public partial class UiBehaviorState : PanelContainer
 
             child.Visible = _isExpand;
         }
+
+        _newBehaviorUnit.Visible = _isExpand;
     }
 }

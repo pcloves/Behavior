@@ -91,6 +91,4 @@ public partial class MainUi : Control
             _behaviorDefines[behaviorDefine.ResourcePath] = behaviorDefine;
         }
     }
-
-
 }
