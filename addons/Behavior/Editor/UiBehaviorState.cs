@@ -67,6 +67,11 @@ public partial class UiBehaviorState : PanelContainer
         _edit.Pressed += OnEditPressed;
 
         foreach (var unit in BehaviorState?.Units ?? new Array<BehaviorUnit>()) NewBehaviorUnit(unit);
+        
+        if (HasMeta("editName"))
+        {
+            OnEditPressed();
+        }
     }
 
     private void OnEditPressed()

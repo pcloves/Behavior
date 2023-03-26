@@ -5,7 +5,7 @@ using Godot.Collections;
 namespace Game.addons.Behavior.Editor;
 
 [Tool]
-public partial class UiBehaviorDefine : ScrollContainer 
+public partial class UiBehaviorDefine : ScrollContainer
 {
     private const string UiBehaviorStateScenePath = "res://addons/Behavior/Editor/UiBehaviorState.tscn";
 
@@ -22,29 +22,33 @@ public partial class UiBehaviorDefine : ScrollContainer
         base._Ready();
 
         _vBoxContainer = GetNodeOrNull<VBoxContainer>("%VBoxContainer");
-        
+
         _new = GetNodeOrNull<Button>("%New");
         _new.Pressed += OnNewPressed;
         _new.Disabled = false;
-        
+
         foreach (var behaviorState in BehaviorDefine?.BehaviorStates ?? new Array<BehaviorState>())
         {
             AddNewBehaviorState(behaviorState);
         }
     }
-    
+
     public override void _ExitTree()
     {
         base._ExitTree();
 
         BehaviorDefine = null;
     }
-    
-    private void AddNewBehaviorState(BehaviorState state)
+
+    private void AddNewBehaviorState(BehaviorState state, bool editName = false)
     {
         var uiBehaviorState = UiBehaviorStatePackedScene.Instantiate<UiBehaviorState>();
         uiBehaviorState.BehaviorDefine = BehaviorDefine;
         uiBehaviorState.BehaviorState = state;
+        if (editName)
+        {
+            uiBehaviorState.SetMeta("editName", true);
+        }
 
         _vBoxContainer.AddChildBefore(uiBehaviorState, _new);
     }
@@ -54,6 +58,6 @@ public partial class UiBehaviorDefine : ScrollContainer
         var behaviorState = new BehaviorState();
         BehaviorDefine.BehaviorStates.Add(behaviorState);
 
-        AddNewBehaviorState(behaviorState);
+        AddNewBehaviorState(behaviorState, true);
     }
 }

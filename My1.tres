@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=26 format=3 uid="uid://ceclynvyydfw8"]
+[gd_resource type="Resource" load_steps=27 format=3 uid="uid://ceclynvyydfw8"]
 
 [ext_resource type="Script" path="res://addons/Behavior/Define/BehaviorDefine.cs" id="1_bc065"]
 [ext_resource type="Script" path="res://addons/Behavior/Check/CheckAndOr.cs" id="1_cyg8a"]
@@ -94,7 +94,13 @@ Id = "State_5"
 Active = true
 Units = []
 
+[sub_resource type="Resource" id="Resource_o0lr8"]
+script = ExtResource("2_j8b52")
+Id = "State_6"
+Active = true
+Units = []
+
 [resource]
 script = ExtResource("1_bc065")
 Name = "My12"
-BehaviorStates = [SubResource("Resource_juu82"), SubResource("Resource_7gylk"), SubResource("Resource_dbiet"), SubResource("Resource_jpnbt"), SubResource("Resource_3ooce")]
+BehaviorStates = [SubResource("Resource_juu82"), SubResource("Resource_7gylk"), SubResource("Resource_dbiet"), SubResource("Resource_jpnbt"), SubResource("Resource_3ooce"), SubResource("Resource_o0lr8")]
