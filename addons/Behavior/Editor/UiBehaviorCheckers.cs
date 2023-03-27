@@ -29,8 +29,6 @@ public partial class UiBehaviorCheckers : PanelContainer
 
     public override async void _Ready()
     {
-        GD.Print($"{nameof(UiBehaviorCheckers)} ready");
-
         _or = GetNodeOrNull<Button>("%Or");
         _or.Pressed += () => OnAndOrButtonPressed(true);
         _or.ButtonPressed = CheckerAndOr is { Or: true };

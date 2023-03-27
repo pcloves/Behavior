@@ -52,15 +52,16 @@ public partial class MainUi : Control
         var treeItem = _tree.GetSelected();
         var path = treeItem.GetMeta("path").AsString();
 
-        Plugin.GetEditorInterface().EditResource(_behaviorDefines[path]);
+        var newBehaviorDefine = _behaviorDefines[path];
+        Plugin.GetEditorInterface().EditResource(newBehaviorDefine);
 
         //先把之前的删掉
         var uiBehaviorDefine = _splitContainer.RemoveFirstChild<UiBehaviorDefine>();
-        var behaviorDefine = uiBehaviorDefine?.BehaviorDefine;
-        behaviorDefine?.Save();
+        _currentBehaviorDefine?.Save();
+        _currentBehaviorDefine = newBehaviorDefine;
 
         uiBehaviorDefine = UiBehaviorDefinePackedScene.Instantiate<UiBehaviorDefine>();
-        uiBehaviorDefine.BehaviorDefine = _behaviorDefines[path];
+        uiBehaviorDefine.BehaviorDefine = newBehaviorDefine;
 
         _splitContainer.AddChild(uiBehaviorDefine);
         _label.Visible = false;
