@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://6ft3ta3cccta"]
+
+[ext_resource type="Script" path="res://addons/Behavior/BehaviorAi.cs" id="1_yiiul"]
+
+[node name="BehaviorAi" type="Node"]
+script = ExtResource("1_yiiul")

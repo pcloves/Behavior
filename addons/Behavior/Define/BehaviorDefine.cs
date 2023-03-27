@@ -1,10 +1,8 @@
 ﻿using Godot;
 using Godot.Collections;
-using MonoCustomResourceRegistry;
 
-namespace Game.addons.Behavior;
+namespace Game.addons.Behavior.Define;
 
-[RegisteredType(nameof(BehaviorDefine))]
 [Tool]
 public partial class BehaviorDefine : Resource
 {

@@ -1,3 +1,4 @@
+using System.Linq;
 using Game.addons.Behavior.Define;
 using Godot;
 using Godot.Collections;
@@ -16,6 +17,9 @@ public partial class UiBehaviorState : PanelContainer
     public BehaviorState BehaviorState { get; set; }
 
     private VBoxContainer _vBoxContainer;
+
+    private Button _isInitState;
+
     private Button _remove;
     private Button _show;
     private Button _newBehaviorUnit;
@@ -35,6 +39,9 @@ public partial class UiBehaviorState : PanelContainer
     {
         _vBoxContainer = GetNodeOrNull<VBoxContainer>("%VBoxContainer");
 
+        _isInitState = GetNodeOrNull<Button>("%IsInitState");
+        _isInitState.Visible = BehaviorDefine?.BehaviorStates.FirstOrDefault() == BehaviorState;
+
         _remove = GetNodeOrNull<Button>("%Remove");
         _remove.Pressed += OnRemovePressed;
         _remove.Size = new Vector2(Mathf.Max(_remove.Size.X, _remove.Size.Y),
@@ -48,26 +55,26 @@ public partial class UiBehaviorState : PanelContainer
 
         _changeContainer = GetNodeOrNull<HBoxContainer>("%ChangeContainer");
         _changeContainer.Visible = false;
-        
+
         _nameLineEdit = GetNodeOrNull<LineEdit>("%NameLineEdit");
-        
+
         _accept = GetNodeOrNull<Button>("%Accept");
         _accept.Pressed += () => OnFinishChange(true);
-        
+
         _cancel = GetNodeOrNull<Button>("%Cancel");
         _cancel.Pressed += () => OnFinishChange(false);
 
         _nameContainer = GetNodeOrNull<HBoxContainer>("%NameContainer");
         _nameContainer.Visible = true;
-        
+
         _nameLabel = GetNodeOrNull<Label>("%NameLabel");
         _nameLabel.Text = BehaviorState?.Id ?? "Error";
-        
+
         _edit = GetNodeOrNull<Button>("%Edit");
         _edit.Pressed += OnEditPressed;
 
         foreach (var unit in BehaviorState?.Units ?? new Array<BehaviorUnit>()) NewBehaviorUnit(unit);
-        
+
         if (HasMeta("editName"))
         {
             OnEditPressed();

@@ -1,12 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using Game.addons.Behavior.Action;
+using Game.addons.Behavior.Define;
 using Game.addons.Behavior.Extensions;
 using Godot;
-using MonoCustomResourceRegistry;
 
 namespace Game.addons.Behavior.Editor;
 
@@ -26,6 +22,7 @@ public partial class MainUi : Control
     private string _path = "res://";
     private BehaviorDefine _currentBehaviorDefine;
     private readonly Dictionary<string, BehaviorDefine> _behaviorDefines = new();
+    private readonly Dictionary<string, TreeItem> _behaviorDefinePath2TreeItems = new();
 
     public override void _Ready()
     {
@@ -37,7 +34,17 @@ public partial class MainUi : Control
         _label = GetNodeOrNull<Label>("%Label");
         _label.Visible = true;
 
-        LoadBehaviorDefine();
+        var behaviorDefinePath = HasMeta("behaviorDefinePath") ? GetMeta("behaviorDefinePath").AsString() : null;
+        LoadBehaviorDefine(behaviorDefinePath);
+    }
+
+    public void SetSelected(string path)
+    {
+        var treeItem = _behaviorDefinePath2TreeItems[path];
+        if (treeItem != null && _tree.GetSelected() != treeItem)
+        {
+            _tree.SetSelected(treeItem, 0);
+        }
     }
 
     private void OnItemSelected()
@@ -50,10 +57,7 @@ public partial class MainUi : Control
         //先把之前的删掉
         var uiBehaviorDefine = _splitContainer.RemoveFirstChild<UiBehaviorDefine>();
         var behaviorDefine = uiBehaviorDefine?.BehaviorDefine;
-        if (behaviorDefine != null)
-        {
-            ResourceSaver.Save(behaviorDefine, behaviorDefine.ResourcePath);
-        }
+        behaviorDefine?.Save();
 
         uiBehaviorDefine = UiBehaviorDefinePackedScene.Instantiate<UiBehaviorDefine>();
         uiBehaviorDefine.BehaviorDefine = _behaviorDefines[path];
@@ -62,14 +66,10 @@ public partial class MainUi : Control
         _label.Visible = false;
     }
 
-    public override void _Process(double delta)
-    {
-    }
-
-    private void LoadBehaviorDefine()
+    private void LoadBehaviorDefine(string selectedBehaviorDefine = null)
     {
         var globalizePath = ProjectSettings.GlobalizePath(_path);
-        var paths = Directory.GetFiles(globalizePath).Where(path => path.EndsWith("tres"));
+        var paths = Directory.GetFiles(globalizePath, "*.tres", SearchOption.AllDirectories);
 
         _tree.Clear();
         _tree.CreateItem().SetText(0, "Root");
@@ -79,7 +79,6 @@ public partial class MainUi : Control
             if (_behaviorDefines.ContainsKey(path)) continue;
 
             var resource = ResourceLoader.Load(path);
-
             if (resource is not BehaviorDefine behaviorDefine) continue;
 
             var treeItem = _tree.CreateItem();
@@ -88,6 +87,12 @@ public partial class MainUi : Control
             treeItem.SetTooltipText(0, behaviorDefine.ResourcePath);
             treeItem.SetMeta("path", behaviorDefine.ResourcePath);
 
+            if (behaviorDefine.ResourcePath.Equals(selectedBehaviorDefine))
+            {
+                _tree.SetSelected(treeItem, 0);
+            }
+
+            _behaviorDefinePath2TreeItems[behaviorDefine.ResourcePath] = treeItem;
             _behaviorDefines[behaviorDefine.ResourcePath] = behaviorDefine;
         }
     }

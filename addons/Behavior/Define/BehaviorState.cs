@@ -1,14 +1,12 @@
 using Godot;
 using Godot.Collections;
-using MonoCustomResourceRegistry;
 
-namespace Game.addons.Behavior;
+namespace Game.addons.Behavior.Define;
 
-[RegisteredType(nameof(BehaviorState))]
 [Tool]
 public partial class BehaviorState : Resource
 {
     [Export] public string Id { get; set; } = "New Behavior State";
     [Export] public bool Active { get; set; } = true;
-    [Export] public Array<Define.BehaviorUnit> Units { get; private set; } = new();
+    [Export] public Array<BehaviorUnit> Units { get; private set; } = new();
 }

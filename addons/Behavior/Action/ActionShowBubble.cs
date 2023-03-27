@@ -1,12 +1,10 @@
 using Godot;
-using MonoCustomResourceRegistry;
 
 namespace Game.addons.Behavior.Action;
 
 /// <summary>
 /// 显示气泡
 /// </summary>
-[RegisteredType(nameof(ActionShowBubble))]
 [Tool]
 public partial class ActionShowBubble : BehaviorAction
 {

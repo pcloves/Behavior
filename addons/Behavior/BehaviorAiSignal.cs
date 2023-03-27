@@ -2,10 +2,12 @@
 using System.Linq;
 using Godot;
 
-namespace Game.Behavior;
+namespace Game.addons.Behavior;
 
-public partial class ComBehavior
+public partial class BehaviorAi
 {
+    private string _signal;
+    
     public new Error EmitSignal(StringName signal, params Variant[] args)
     {
         _signal = signal;
@@ -31,21 +33,22 @@ public partial class ComBehavior
     {
         if (CurrentSate == null)
         {
+            GD.PrintErr($"{nameof(CurrentSate)} is null!");
             return;
         }
 
-        var units = CurrentSate.Units.Where(unit => unit.Signal.Equals(this._signal));
+        var units = CurrentSate.Units.Where(unit => unit.Signal.Equals(_signal));
         foreach (var unit in units)
         {
             var checkers = unit.Checker;
             var actions = unit.Actions;
 
-            //TODO: 这里的GetOwnerOrNull极其不妥当！
-            if (!checkers.Check(GetOwnerOrNull<Node>(), args)) continue;
-            
+            var node = GetParentOrNull<Node>();
+            if (!checkers.Check(node, args)) continue;
+
             foreach (var action in actions)
             {
-                action.Execute(GetOwnerOrNull<Node>(), args);
+                action.Execute(node, args);
             }
         }
     }

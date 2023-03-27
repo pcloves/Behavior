@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Game.addons.Behavior.Action;
+using Game.addons.Behavior.Define;
 using Game.addons.Behavior.Editor;
 using Godot;
 
@@ -12,27 +12,25 @@ namespace Game.addons.Behavior;
 [Tool]
 public partial class BehaviorPlugin : EditorPlugin
 {
-    public static BehaviorPlugin Plugin;
+    private const string MainUiScene = "addons/Behavior/Editor/MainUi.tscn";
+    public static BehaviorPlugin Plugin { get; private set; }
+    
     private MainUi _mainUi;
     private BehaviorInspectorPlugin _inspectorPlugin = new();
 
     public override void _EnterTree()
     {
         Plugin = this;
-        // GD.Print(nameof(BehaviorPlugin), ":", nameof(_EnterTree));
-        _mainUi = ResourceLoader.Load<PackedScene>("addons/Behavior/Editor/MainUi.tscn").Instantiate<MainUi>();
+        _mainUi = ResourceLoader.Load<PackedScene>(MainUiScene).Instantiate<MainUi>();
         _mainUi.Plugin = this;
         _mainUi.Visible = false;
 
         GetEditorInterface().GetEditorMainScreen().AddChild(_mainUi);
-        // AddInspectorPlugin(_inspectorPlugin);
     }
 
     public override void _ExitTree()
     {
-        // GD.Print(nameof(BehaviorPlugin), ":", nameof(_ExitTree));
         GetEditorInterface().GetEditorMainScreen().RemoveChild(_mainUi);
-        // RemoveInspectorPlugin(_inspectorPlugin);
 
         _mainUi.Plugin = null;
         _mainUi.QueueFree();
@@ -41,38 +39,30 @@ public partial class BehaviorPlugin : EditorPlugin
     public override void _Edit(GodotObject @object)
     {
         _MakeVisible(true);
-        // GD.Print(nameof(BehaviorPlugin), ":", nameof(_Edit));
     }
 
     public override string _GetPluginName()
     {
-        // GD.Print(nameof(BehaviorPlugin), ":", nameof(_GetPluginName));
         return "Behavior";
     }
 
-    public override bool _Handles(GodotObject @object)
+    public override bool _Handles(GodotObject godotObject)
     {
-        // GD.Print(nameof(BehaviorPlugin), ":", nameof(_Handles), ":", @object?.GetType().Name ?? "null");
-
-        if (@object is ActionAwaitTime)
-        {
-            GD.Print("_Handles, type:", @object.GetType(), ", class:", @object.GetClass());
-
-            return true;
-        }
-
-        return false;
+        if (godotObject is not BehaviorDefine define) return false;
+        
+        _mainUi.SetSelected(define.ResourcePath);
+        
+        _MakeVisible(true);
+        return true;
     }
 
     public override bool _HasMainScreen()
     {
-        // GD.Print(nameof(BehaviorPlugin), ":", nameof(_HasMainScreen));
         return true;
     }
 
     public override void _MakeVisible(bool visible)
     {
-        // GD.Print(nameof(BehaviorPlugin), ":", nameof(_MakeVisible), ":", visible.ToString());
         _mainUi.Visible = visible;
     }
 

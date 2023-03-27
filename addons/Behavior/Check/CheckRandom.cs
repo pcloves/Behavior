@@ -1,11 +1,9 @@
 ﻿using System;
 using Godot;
 using Godot.Collections;
-using MonoCustomResourceRegistry;
 
 namespace Game.addons.Behavior.Check;
 
-[RegisteredType(nameof(CheckRandom))]
 [Tool]
 public partial class CheckRandom : BehaviorChecker 
 {

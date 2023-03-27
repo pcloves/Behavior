@@ -1,11 +1,9 @@
 ﻿using System.Linq;
 using Godot;
 using Godot.Collections;
-using MonoCustomResourceRegistry;
 
 namespace Game.addons.Behavior.Check;
 
-[RegisteredType(nameof(CheckAndOr))]
 [Tool]
 public partial class CheckAndOr : BehaviorChecker 
 {

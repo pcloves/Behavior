@@ -1,9 +1,7 @@
 ﻿using Godot;
-using MonoCustomResourceRegistry;
 
 namespace Game.addons.Behavior.Check;
 
-[RegisteredType(nameof(CheckSuccess))]
 [Tool]
 public partial class CheckSuccess : BehaviorChecker
 {

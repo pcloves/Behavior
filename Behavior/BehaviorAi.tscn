@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://doqx6d60p77w0"]
-
-[ext_resource type="Script" path="res://Behavior/ComBehavior.cs" id="1_hutvn"]
-
-[node name="BehaviorAi" type="Node"]
-script = ExtResource("1_hutvn")

@@ -1,12 +1,10 @@
 using Game.addons.Behavior.Check;
 using Godot;
 using Godot.Collections;
-using MonoCustomResourceRegistry;
 using BehaviorAction = Game.addons.Behavior.Action.BehaviorAction;
 
 namespace Game.addons.Behavior.Define;
 
-[RegisteredType(nameof(BehaviorUnit))]
 [Tool]
 public partial class BehaviorUnit : Resource
 {

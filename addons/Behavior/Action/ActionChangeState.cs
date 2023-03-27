@@ -1,22 +1,19 @@
-﻿using Game.addons.Behavior.Extensions;
-using Game.Behavior;
+﻿using Game.addons.Behavior;
+using Game.addons.Behavior.Action;
+using Game.addons.Behavior.Extensions;
 using Godot;
-using MonoCustomResourceRegistry;
 
-namespace Game.addons.Behavior.Action;
-
-[RegisteredType(nameof(ActionChangeState))]
 [Tool]
-public partial class ActionChangeState : BehaviorAction
+public partial class ActionChangeState : BehaviorAction 
 {
     [Export]
     public string NewStateId { get; set; }
 
     public override void Execute(Node entity, params Variant[] signalArgs)
     {
-        var comBehavior = entity.GetFirstChild<ComBehavior>();
+        var comBehavior = entity.GetFirstChild<BehaviorAi>();
         
-        if (!comBehavior.hasState(NewStateId))
+        if (!comBehavior.HasState(NewStateId))
         {
             GD.PrintErr($"The {nameof(NewStateId)} doesn't exist.");
             return;

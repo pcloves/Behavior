@@ -1,0 +1,76 @@
+[gd_resource type="Resource" load_steps=19 format=3 uid="uid://ceclynvyydfw8"]
+
+[ext_resource type="Script" path="res://addons/Behavior/Action/ActionShowBubble.cs" id="1_8a66c"]
+[ext_resource type="Script" path="res://addons/Behavior/Action/ActionCreateTimer.cs" id="2_7dhcv"]
+[ext_resource type="Script" path="res://addons/Behavior/Check/CheckAndOr.cs" id="4_l03in"]
+[ext_resource type="Script" path="res://addons/Behavior/Define/BehaviorUnit.cs" id="5_3inh2"]
+[ext_resource type="Script" path="res://addons/Behavior/Define/BehaviorState.cs" id="7_180hl"]
+[ext_resource type="Script" path="res://addons/Behavior/Define/BehaviorDefine.cs" id="8_8v508"]
+
+[sub_resource type="Resource" id="Resource_jqygy"]
+script = ExtResource("1_8a66c")
+_content = "Hello."
+
+[sub_resource type="Resource" id="Resource_pwmwx"]
+script = ExtResource("2_7dhcv")
+TimerName = "MyTimer"
+TimeSecondMin = 2.0
+TimeSecondMax = 5.0
+
+[sub_resource type="Resource" id="Resource_dshg1"]
+script = ExtResource("4_l03in")
+Checkers = []
+
+[sub_resource type="Resource" id="Resource_3d3sc"]
+script = ExtResource("5_3inh2")
+Signal = "StateEnter"
+Active = true
+Checker = SubResource("Resource_dshg1")
+Actions = [SubResource("Resource_jqygy"), SubResource("Resource_pwmwx")]
+
+[sub_resource type="Resource" id="Resource_8obk0"]
+script = ExtResource("1_8a66c")
+_content = "Hello, again"
+
+[sub_resource type="Resource" id="Resource_gy3lx"]
+script = ExtResource("2_7dhcv")
+TimerName = "MyTimer"
+TimeSecondMin = 2.0
+TimeSecondMax = 5.0
+
+[sub_resource type="Resource" id="Resource_7o7ng"]
+script = ExtResource("4_l03in")
+Checkers = []
+
+[sub_resource type="Resource" id="Resource_yr2c1"]
+script = ExtResource("5_3inh2")
+Signal = "Timeout"
+Active = true
+Checker = SubResource("Resource_7o7ng")
+Actions = [SubResource("Resource_8obk0"), SubResource("Resource_gy3lx")]
+
+[sub_resource type="Resource" id="Resource_yuq86"]
+script = ExtResource("1_8a66c")
+_content = "Bye~"
+
+[sub_resource type="Resource" id="Resource_us3ic"]
+script = ExtResource("4_l03in")
+Checkers = []
+
+[sub_resource type="Resource" id="Resource_5dnk2"]
+script = ExtResource("5_3inh2")
+Signal = "StateExit"
+Active = true
+Checker = SubResource("Resource_us3ic")
+Actions = [SubResource("Resource_yuq86")]
+
+[sub_resource type="Resource" id="Resource_juu82"]
+script = ExtResource("7_180hl")
+Id = "Idle"
+Active = true
+Units = [SubResource("Resource_3d3sc"), SubResource("Resource_yr2c1"), SubResource("Resource_5dnk2")]
+
+[resource]
+script = ExtResource("8_8v508")
+Name = "Black"
+BehaviorStates = [SubResource("Resource_juu82")]

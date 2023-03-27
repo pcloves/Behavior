@@ -41,6 +41,6 @@ hide_root = true
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
-text = "Select a Behavior"
+text = "Select a behavior define and edit."
 horizontal_alignment = 1
 vertical_alignment = 1

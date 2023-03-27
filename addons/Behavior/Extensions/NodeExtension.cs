@@ -27,7 +27,7 @@ public static class NodeExtension
         var node = parent.GetChildCount() > brotherIndex ? parent.GetChild(brotherIndex) : null;
         if (node != brother)
         {
-            GD.PrintErr($"the parent has not that brother node.");
+            GD.PrintErr($"the parent has not that brother node. parent:{parent}, child:{child}, brother:{brother}");
             return;
         }
 
