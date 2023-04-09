@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using Godot;
+﻿using Godot;
+using System.Linq;
 
 namespace Behavior.addons.Behavior.Extensions;
 

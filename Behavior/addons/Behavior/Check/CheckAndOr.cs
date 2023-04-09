@@ -1,11 +1,11 @@
-﻿using System.Linq;
-using Godot;
+﻿using Godot;
 using Godot.Collections;
+using System.Linq;
 
 namespace Behavior.addons.Behavior.Check;
 
 [Tool]
-public partial class CheckAndOr : BehaviorChecker 
+public partial class CheckAndOr : BehaviorChecker
 {
     public bool Or { get; set; } = true;
     [Export] public Array<BehaviorChecker> Checkers { get; set; } = new();

@@ -1,8 +1,8 @@
-using System.Collections.Generic;
-using System.IO;
 using Behavior.addons.Behavior.Define;
 using Behavior.addons.Behavior.Extensions;
 using Godot;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Behavior.addons.Behavior.Editor;
 

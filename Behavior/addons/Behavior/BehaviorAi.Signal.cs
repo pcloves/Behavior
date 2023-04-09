@@ -1,16 +1,13 @@
-﻿using System;
+﻿using Godot;
+using System;
 using System.Linq;
-using Godot;
 
 namespace Behavior.addons.Behavior;
 
 public partial class BehaviorAi
 {
-    private string _signal;
-    
     public new Error EmitSignal(StringName signal, params Variant[] args)
     {
-        _signal = signal;
         Error error;
         try
         {
@@ -20,10 +17,6 @@ public partial class BehaviorAi
         {
             GD.PrintErr("exception caught, message:", e.Message);
             error = Error.Failed;
-        }
-        finally
-        {
-            _signal = null;
         }
 
         return error;
@@ -37,7 +30,8 @@ public partial class BehaviorAi
             return;
         }
 
-        var units = CurrentSate.Units.Where(unit => unit.Signal.Equals(_signal));
+        var signal = args[0].AsString();
+        var units = CurrentSate.Units.Where(unit => unit.Signal.Equals(signal));
         foreach (var unit in units)
         {
             var checkers = unit.Checker;

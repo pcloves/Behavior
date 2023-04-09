@@ -4,7 +4,7 @@ using Godot;
 namespace Behavior.addons.Behavior.Action;
 
 [Tool]
-public partial class ActionChangeState : BehaviorAction 
+public partial class ActionChangeState : BehaviorAction
 {
     [Export]
     public string NewStateId { get; set; }
@@ -12,13 +12,13 @@ public partial class ActionChangeState : BehaviorAction
     public override void Execute(Node entity, params Variant[] signalArgs)
     {
         var comBehavior = entity.GetFirstChild<BehaviorAi>();
-        
+
         if (!comBehavior.HasState(NewStateId))
         {
             GD.PrintErr($"The {nameof(NewStateId)} doesn't exist.");
             return;
         }
-        
+
         comBehavior.ChangeState(NewStateId);
     }
 }

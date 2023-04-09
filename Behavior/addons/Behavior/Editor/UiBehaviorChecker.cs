@@ -1,7 +1,7 @@
-using System;
-using System.Linq;
 using Behavior.addons.Behavior.Check;
 using Godot;
+using System;
+using System.Linq;
 
 namespace Behavior.addons.Behavior.Editor;
 

@@ -32,6 +32,6 @@ public partial class ActionCreateTimer : BehaviorAction
 
         await comBehavior.ToSignal(entity.GetTree().CreateTimer(randomSecond), Timer.SignalName.Timeout);
 
-        comBehavior.EmitSignal("Timeout", TimerName);
+        comBehavior.EmitSignal(BehaviorAi.SignalName.Timeout, TimerName);
     }
 }

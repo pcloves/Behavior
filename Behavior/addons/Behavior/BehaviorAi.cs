@@ -1,25 +1,37 @@
-﻿using System.Linq;
-using Godot;
+﻿using Godot;
+using System.Linq;
 
 namespace Behavior.addons.Behavior;
 
 public partial class BehaviorAi : Node
 {
+    [Signal]
+    public delegate void TimeoutEventHandler(string timerName);
+    [Signal]
+    public delegate void StateEnterEventHandler(string stateId);
+
+    [Signal]
+    public delegate void StateExitEventHandler(string stateId);
+
     [Export(PropertyHint.ResourceType, hintString: nameof(BehaviorDefine))]
     public Define.BehaviorDefine BehaviorDefine { get; set; }
 
     private Define.BehaviorState CurrentSate { get; set; }
 
-    public override void _Ready()
+    public override void _EnterTree()
     {
         ChangeState(BehaviorDefine?.BehaviorStates[0].Id);
     }
-    
+
+    public override void _Ready()
+    {
+    }
+
     public void ChangeState(string stateId)
     {
         if (CurrentSate != null)
         {
-            var errorStateExit = EmitSignal("StateExit", CurrentSate.Id);
+            var errorStateExit = EmitSignal(SignalName.StateExit, CurrentSate.Id);
             if (errorStateExit != Error.Ok)
             {
                 GD.PrintErr($"{nameof(EmitSignal)} failed, signal:StateExit, {nameof(CurrentSate)}:{CurrentSate.Id}");
@@ -28,26 +40,21 @@ public partial class BehaviorAi : Node
             var signalsOld = CurrentSate.Units.Select(unit => unit.Signal).Distinct();
             foreach (var signal in signalsOld)
             {
-                Disconnect(signal, new Callable(this, nameof(OnSignal)));
+                DisconnectSignal(signal);
             }
         }
 
         CurrentSate = BehaviorDefine.BehaviorStates.First(state => state.Id.Equals(stateId));
 
         if (CurrentSate == null) return;
-        
+
         var signalsNew = CurrentSate.Units.Select(unit => unit.Signal).Distinct();
         foreach (var signal in signalsNew)
         {
-            if (!HasSignal(signal))
-            {
-                AddUserSignal(signal);
-            }
-
-            Connect(signal, new Callable(this, nameof(OnSignal)));
+            ConnectSignal(signal);
         }
 
-        var errorStateEnter = EmitSignal("StateEnter", CurrentSate.Id);
+        var errorStateEnter = EmitSignal(SignalName.StateEnter, CurrentSate.Id);
         if (errorStateEnter != Error.Ok)
         {
             GD.PrintErr($"{nameof(EmitSignal)} failed, signal:StateEnter, {nameof(CurrentSate)}:{CurrentSate.Id}");
@@ -59,5 +66,4 @@ public partial class BehaviorAi : Node
     {
         return BehaviorDefine?.BehaviorStates.Select(state => state.Id.Equals(stateId)).Any() ?? false;
     }
-
 }

@@ -38,7 +38,7 @@ public partial class UiBehaviorUnit : PanelContainer
     public override void _Ready()
     {
         _signal = GetNodeOrNull<LineEdit>("%Signal");
-        _signal.TextChanged +=  OnSignalTextChanged;
+        _signal.TextChanged += OnSignalTextChanged;
         _signal.Text = BehaviorUnit?.Signal;
 
         _hBoxContainer = GetNodeOrNull<HBoxContainer>("%HBoxContainer");

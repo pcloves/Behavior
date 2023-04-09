@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=19 format=3 uid="uid://ceclynvyydfw8"]
+[gd_resource type="Resource" load_steps=25 format=3 uid="uid://ceclynvyydfw8"]
 
 [ext_resource type="Script" path="res://addons/Behavior/Action/ActionShowBubble.cs" id="1_ggeh7"]
 [ext_resource type="Script" path="res://addons/Behavior/Action/ActionCreateTimer.cs" id="2_psoo4"]
@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Resource_jqygy"]
 script = ExtResource("1_ggeh7")
-Content = "Hello"
+Content = "StateEnter"
 
 [sub_resource type="Resource" id="Resource_pwmwx"]
 script = ExtResource("2_psoo4")
@@ -64,11 +64,41 @@ Active = true
 Checker = SubResource("Resource_us3ic")
 Actions = [SubResource("Resource_sxbh8")]
 
+[sub_resource type="Resource" id="Resource_tm4ye"]
+script = ExtResource("1_ggeh7")
+Content = "tree_entered"
+
+[sub_resource type="Resource" id="Resource_c46bj"]
+script = ExtResource("3_ieyo8")
+Checkers = []
+
+[sub_resource type="Resource" id="Resource_wtjw4"]
+script = ExtResource("4_u8g4n")
+Signal = "tree_entered"
+Active = true
+Checker = SubResource("Resource_c46bj")
+Actions = [SubResource("Resource_tm4ye")]
+
+[sub_resource type="Resource" id="Resource_ow18n"]
+script = ExtResource("1_ggeh7")
+Content = "ready"
+
+[sub_resource type="Resource" id="Resource_2uqlq"]
+script = ExtResource("3_ieyo8")
+Checkers = []
+
+[sub_resource type="Resource" id="Resource_xelux"]
+script = ExtResource("4_u8g4n")
+Signal = "ready"
+Active = true
+Checker = SubResource("Resource_2uqlq")
+Actions = [SubResource("Resource_ow18n")]
+
 [sub_resource type="Resource" id="Resource_juu82"]
 script = ExtResource("5_sabdg")
 Id = "Idle"
 Active = true
-Units = [SubResource("Resource_3d3sc"), SubResource("Resource_yr2c1"), SubResource("Resource_5dnk2")]
+Units = [SubResource("Resource_3d3sc"), SubResource("Resource_yr2c1"), SubResource("Resource_5dnk2"), SubResource("Resource_wtjw4"), SubResource("Resource_xelux")]
 
 [resource]
 script = ExtResource("6_dtqpo")

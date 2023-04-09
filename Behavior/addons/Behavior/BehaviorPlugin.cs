@@ -1,11 +1,11 @@
 #if TOOLS
+using Behavior.addons.Behavior.Define;
+using Behavior.addons.Behavior.Editor;
+using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Behavior.addons.Behavior.Define;
-using Behavior.addons.Behavior.Editor;
-using Godot;
 
 namespace Behavior.addons.Behavior;
 
@@ -14,9 +14,9 @@ public partial class BehaviorPlugin : EditorPlugin
 {
     private const string MainUiScene = "addons/Behavior/Editor/MainUi.tscn";
     public static BehaviorPlugin Plugin { get; private set; }
-    
+
     private MainUi _mainUi;
-    
+
     public override void _EnterTree()
     {
         Plugin = this;
@@ -48,9 +48,9 @@ public partial class BehaviorPlugin : EditorPlugin
     public override bool _Handles(GodotObject godotObject)
     {
         if (godotObject is not BehaviorDefine define) return false;
-        
+
         _mainUi.SetSelected(define.ResourcePath);
-        
+
         _MakeVisible(true);
         return true;
     }

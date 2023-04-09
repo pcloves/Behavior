@@ -62,7 +62,7 @@ public partial class UiBehaviorCheckers : PanelContainer
         }
 
         await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
-        
+
         QueueRedraw();
     }
 

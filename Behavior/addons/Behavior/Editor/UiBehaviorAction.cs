@@ -1,8 +1,8 @@
-using System;
-using System.Linq;
 using Behavior.addons.Behavior.Action;
 using Behavior.addons.Behavior.Define;
 using Godot;
+using System;
+using System.Linq;
 
 namespace Behavior.addons.Behavior.Editor;
 
@@ -27,7 +27,7 @@ public partial class UiBehaviorAction : HBoxContainer
 
         InitOptionButton();
     }
-    
+
     private void OnFocusEntered()
     {
         if (Action != null)
@@ -43,14 +43,14 @@ public partial class UiBehaviorAction : HBoxContainer
         {
             BehaviorUnitBelong.Actions.Remove(Action);
         }
-        
+
         QueueFree();
     }
 
     private void OnItemSelected(long index)
     {
         GD.Print($"{nameof(OnItemSelected)}");
-        
+
         var typeName = _optionButton.GetItemMetadata((int)index).AsString();
         var type = Type.GetType(typeName);
 
@@ -73,7 +73,7 @@ public partial class UiBehaviorAction : HBoxContainer
     private void InitOptionButton()
     {
         _optionButton.Clear();
-        
+
         var behaviorTypes = BehaviorPlugin.GetBehaviorTypes(typeof(BehaviorAction))
             .ToList();
 
