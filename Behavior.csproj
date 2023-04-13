@@ -4,6 +4,6 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="BehaviorGenerator" Version="1.0.1" />
+    <PackageReference Include="BehaviorGenerator" Version="1.0.5" />
   </ItemGroup>
 </Project>

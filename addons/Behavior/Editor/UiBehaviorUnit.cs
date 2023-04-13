@@ -18,8 +18,7 @@ public partial class UiBehaviorUnit : PanelContainer
     private static readonly PackedScene UiBehaviorActionPackedScene =
         ResourceLoader.Load<PackedScene>(UiBehaviorActionScenePath);
 
-
-    private LineEdit _signal;
+    private OptionButton _signalOption;
 
     private UiBehaviorCheckers _checkers;
     private HBoxContainer _hBoxContainer;
@@ -37,9 +36,19 @@ public partial class UiBehaviorUnit : PanelContainer
 
     public override void _Ready()
     {
-        _signal = GetNodeOrNull<LineEdit>("%Signal");
-        _signal.TextChanged += OnSignalTextChanged;
-        _signal.Text = BehaviorUnit?.Signal;
+        _signalOption = GetNodeOrNull<OptionButton>("%Signal");
+        _signalOption.ItemSelected += OnSignalOptionItemSelected;
+
+        _signalOption.Clear();
+        foreach (var (signal, id) in BehaviorAi.SignalName2Id)
+        {
+            _signalOption.AddItem(signal, id);
+        }
+        
+        if (BehaviorUnit?.Signal != null)
+        {
+            _signalOption.Select(_signalOption.GetItemIndex(BehaviorAi.SignalName2Id[BehaviorUnit.Signal]));
+        }
 
         _hBoxContainer = GetNodeOrNull<HBoxContainer>("%HBoxContainer");
         _checkersActionsSeparator = GetNodeOrNull<VSeparator>("%CheckersActionsSeparator");
@@ -62,9 +71,10 @@ public partial class UiBehaviorUnit : PanelContainer
         InitUiBehaviorCheckers();
     }
 
-    private void OnSignalTextChanged(string newText)
+    private void OnSignalOptionItemSelected(long index)
     {
-        BehaviorUnit.Signal = newText;
+        var id = _signalOption.GetItemId((int)index);
+        BehaviorUnit.Signal = BehaviorAi.SignalId2Name[id];
     }
 
     private void InitUiBehaviorAction()
