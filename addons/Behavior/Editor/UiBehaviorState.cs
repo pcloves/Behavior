@@ -51,12 +51,15 @@ public partial class UiBehaviorState : PanelContainer
         _show.Connect(BaseButton.SignalName.Pressed, Callable.From(Expand));
 
         _newBehaviorUnit = GetNodeOrNull<Button>("%NewBehaviorUnit");
-        _newBehaviorUnit.Connect(BaseButton.SignalName.Pressed, Callable.From(() => NewBehaviorUnit()));
+        _newBehaviorUnit.Connect(BaseButton.SignalName.Pressed,
+            Callable.From(() => AddUiBehaviorUnit(UiBehaviorUnitPackedScene.Instantiate<UiBehaviorUnit>())));
 
         _changeContainer = GetNodeOrNull<HBoxContainer>("%ChangeContainer");
         _changeContainer.Visible = false;
 
         _nameLineEdit = GetNodeOrNull<LineEdit>("%NameLineEdit");
+        _nameLineEdit.TextSubmitted += _ => OnFinishChange(true);
+        _nameLineEdit.FocusExited += () => OnFinishChange(true);
 
         _accept = GetNodeOrNull<Button>("%Accept");
         _accept.Pressed += () => OnFinishChange(true);
@@ -73,7 +76,13 @@ public partial class UiBehaviorState : PanelContainer
         _edit = GetNodeOrNull<Button>("%Edit");
         _edit.Pressed += OnEditPressed;
 
-        foreach (var unit in BehaviorState?.Units ?? new Array<BehaviorUnit>()) NewBehaviorUnit(unit);
+        foreach (var unit in BehaviorState?.Units ?? new Array<BehaviorUnit>())
+        {
+            var uiBehaviorUnit = UiBehaviorUnitPackedScene.Instantiate<UiBehaviorUnit>();
+            uiBehaviorUnit.BehaviorUnit = unit;
+
+            AddUiBehaviorUnit(uiBehaviorUnit);
+        }
 
         if (HasMeta("editName"))
         {
@@ -103,21 +112,57 @@ public partial class UiBehaviorState : PanelContainer
         }
     }
 
-    private void NewBehaviorUnit(BehaviorUnit behaviorUnit = default)
+    public void AddUiBehaviorUnit(UiBehaviorUnit uiBehaviorUnit)
     {
-        behaviorUnit ??= new BehaviorUnit();
+        uiBehaviorUnit.UiBehaviorStateBelong = this;
+        uiBehaviorUnit.BehaviorUnit ??= new BehaviorUnit();
 
-        var uiBehaviorUnit = UiBehaviorUnitPackedScene.Instantiate<UiBehaviorUnit>();
-
-        uiBehaviorUnit.BehaviorStateBelong = BehaviorState;
-        uiBehaviorUnit.BehaviorUnit = behaviorUnit;
-
-        if (!BehaviorState!.Units.Contains(behaviorUnit))
+        if (!BehaviorState!.Units.Contains(uiBehaviorUnit.BehaviorUnit))
         {
-            BehaviorState.Units.Add(behaviorUnit);
+            BehaviorState.Units.Add(uiBehaviorUnit.BehaviorUnit);
         }
 
         _vBoxContainer.AddChild(uiBehaviorUnit);
+    }
+
+    public void RemoveUiBehaviorUnit(UiBehaviorUnit uiBehaviorUnit, bool queueFree = true)
+    {
+        BehaviorState.Units.Remove(uiBehaviorUnit.BehaviorUnit);
+
+        _vBoxContainer.RemoveChild(uiBehaviorUnit);
+
+        if (queueFree)
+        {
+            uiBehaviorUnit.QueueFree();
+        }
+    }
+
+    public void MoveUiBehaviorUnit(UiBehaviorUnit uiBehaviorUnit, int toIndex)
+    {
+        if (uiBehaviorUnit.UiBehaviorStateBelong != this)
+        {
+            GD.PrintErr(
+                $"doesn't belong to the same {nameof(UiBehaviorState)}, this:{this}, target:{uiBehaviorUnit.UiBehaviorStateBelong}");
+            return;
+        }
+
+        var units = BehaviorState.Units;
+        if (!units.Contains(uiBehaviorUnit.BehaviorUnit))
+        {
+            GD.PrintErr($"{BehaviorState.Id} doesn't contains {nameof(BehaviorUnit)}:{uiBehaviorUnit.BehaviorUnit}");
+            return;
+        }
+
+        var fromIndex = units.IndexOf(uiBehaviorUnit.BehaviorUnit);
+
+        if (fromIndex == toIndex)
+        {
+            return;
+        }
+
+        (units[fromIndex], units[toIndex]) = (units[toIndex], units[fromIndex]);
+
+        _vBoxContainer.MoveChild(uiBehaviorUnit, toIndex);
     }
 
     private void OnRemovePressed()
@@ -140,5 +185,10 @@ public partial class UiBehaviorState : PanelContainer
         }
 
         _newBehaviorUnit.Visible = _isExpand;
+    }
+
+    public override string ToString()
+    {
+        return $"{nameof(UiBehaviorState)}:{BehaviorState}";
     }
 }

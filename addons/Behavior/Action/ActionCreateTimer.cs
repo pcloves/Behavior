@@ -1,4 +1,5 @@
-﻿using Behavior.addons.Behavior.Extensions;
+﻿using System.Threading.Tasks;
+using Behavior.addons.Behavior.Extensions;
 using Godot;
 
 namespace Behavior.addons.Behavior.Action;
@@ -24,13 +25,13 @@ public partial class ActionCreateTimer : BehaviorAction
     [Export(PropertyHint.Range, "0,10000")]
     public double TimeSecondMax { get; set; }
 
-    public override async void Execute(Node entity, params Variant[] signalArgs)
+    public override async Task Execute(Node parent, params Variant[] signalArgs)
     {
-        var comBehavior = entity.GetFirstChild<BehaviorAi>();
+        var comBehavior = parent.GetFirstChild<BehaviorAi>();
         var randomSecond =
             GD.RandRange(Mathf.Min(TimeSecondMin, TimeSecondMax), Mathf.Max(TimeSecondMin, TimeSecondMax));
 
-        await comBehavior.ToSignal(entity.GetTree().CreateTimer(randomSecond), Timer.SignalName.Timeout);
+        await comBehavior.ToSignal(parent.GetTree().CreateTimer(randomSecond), Timer.SignalName.Timeout);
 
         comBehavior.EmitSignal(BehaviorAi.SignalName.Timeout, TimerName);
     }

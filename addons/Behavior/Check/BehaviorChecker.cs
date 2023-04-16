@@ -11,11 +11,16 @@ public abstract partial class BehaviorChecker : Resource
     /// <summary>
     /// 对实体和信号进行检查
     /// </summary>
-    /// <param name="entity">要进行检查的实体</param>
+    /// <param name="parent">BehaviorAi的parent</param>
     /// <param name="signalArgs">Signal的参数</param>
     /// <returns></returns>
-    public virtual bool Check(Node entity, params Variant[] signalArgs)
+    public virtual bool Check(Node parent, params Variant[] signalArgs)
     {
         return false;
+    }
+
+    public override string ToString()
+    {
+        return $"Type:{GetType().Name}";
     }
 }

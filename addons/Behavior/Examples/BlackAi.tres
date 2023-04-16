@@ -1,11 +1,13 @@
-[gd_resource type="Resource" load_steps=22 format=3 uid="uid://ceclynvyydfw8"]
+[gd_resource type="Resource" load_steps=23 format=3 uid="uid://ceclynvyydfw8"]
 
 [ext_resource type="Script" path="res://addons/Behavior/Action/ActionShowBubble.cs" id="1_ggeh7"]
 [ext_resource type="Script" path="res://addons/Behavior/Action/ActionCreateTimer.cs" id="2_psoo4"]
 [ext_resource type="Script" path="res://addons/Behavior/Check/CheckAndOr.cs" id="3_ieyo8"]
 [ext_resource type="Script" path="res://addons/Behavior/Define/BehaviorUnit.cs" id="4_u8g4n"]
+[ext_resource type="Script" path="res://addons/Behavior/Action/ActionChangeState.cs" id="5_k6t7t"]
 [ext_resource type="Script" path="res://addons/Behavior/Define/BehaviorState.cs" id="5_sabdg"]
 [ext_resource type="Script" path="res://addons/Behavior/Define/BehaviorDefine.cs" id="6_dtqpo"]
+[ext_resource type="Script" path="res://addons/Behavior/Action/ActionAwaitTimer.cs" id="7_yujpj"]
 
 [sub_resource type="Resource" id="Resource_jqygy"]
 script = ExtResource("1_ggeh7")
@@ -32,11 +34,9 @@ Actions = [SubResource("Resource_jqygy"), SubResource("Resource_pwmwx")]
 script = ExtResource("1_ggeh7")
 Content = "Hello, again"
 
-[sub_resource type="Resource" id="Resource_gy3lx"]
-script = ExtResource("2_psoo4")
-TimerName = "MyTimer"
-TimeSecondMin = 2.0
-TimeSecondMax = 5.0
+[sub_resource type="Resource" id="Resource_d2cmw"]
+script = ExtResource("5_k6t7t")
+NewStateId = "Battle"
 
 [sub_resource type="Resource" id="Resource_7o7ng"]
 script = ExtResource("3_ieyo8")
@@ -47,45 +47,41 @@ script = ExtResource("4_u8g4n")
 Signal = "Timeout"
 Active = true
 Checker = SubResource("Resource_7o7ng")
-Actions = [SubResource("Resource_8obk0"), SubResource("Resource_gy3lx")]
-
-[sub_resource type="Resource" id="Resource_tm4ye"]
-script = ExtResource("1_ggeh7")
-Content = "tree_entered"
-
-[sub_resource type="Resource" id="Resource_c46bj"]
-script = ExtResource("3_ieyo8")
-Checkers = []
-
-[sub_resource type="Resource" id="Resource_wtjw4"]
-script = ExtResource("4_u8g4n")
-Signal = "tree_entered"
-Active = true
-Checker = SubResource("Resource_c46bj")
-Actions = [SubResource("Resource_tm4ye")]
-
-[sub_resource type="Resource" id="Resource_ow18n"]
-script = ExtResource("1_ggeh7")
-Content = "ready"
-
-[sub_resource type="Resource" id="Resource_2uqlq"]
-script = ExtResource("3_ieyo8")
-Checkers = []
-
-[sub_resource type="Resource" id="Resource_xelux"]
-script = ExtResource("4_u8g4n")
-Signal = "ready"
-Active = true
-Checker = SubResource("Resource_2uqlq")
-Actions = [SubResource("Resource_ow18n")]
+Actions = [SubResource("Resource_8obk0"), SubResource("Resource_d2cmw")]
 
 [sub_resource type="Resource" id="Resource_juu82"]
 script = ExtResource("5_sabdg")
 Id = "Idle"
 Active = true
-Units = [SubResource("Resource_3d3sc"), SubResource("Resource_yr2c1"), SubResource("Resource_wtjw4"), SubResource("Resource_xelux")]
+Units = [SubResource("Resource_3d3sc"), SubResource("Resource_yr2c1")]
+
+[sub_resource type="Resource" id="Resource_608o7"]
+script = ExtResource("7_yujpj")
+TimeSecondMin = 2.0
+TimeSecondMax = 2.0
+
+[sub_resource type="Resource" id="Resource_jhru7"]
+script = ExtResource("1_ggeh7")
+Content = "Battle"
+
+[sub_resource type="Resource" id="Resource_lxlbf"]
+script = ExtResource("3_ieyo8")
+Checkers = []
+
+[sub_resource type="Resource" id="Resource_6krhq"]
+script = ExtResource("4_u8g4n")
+Signal = "StateEnter"
+Active = true
+Checker = SubResource("Resource_lxlbf")
+Actions = [SubResource("Resource_608o7"), SubResource("Resource_jhru7")]
+
+[sub_resource type="Resource" id="Resource_pdp6g"]
+script = ExtResource("5_sabdg")
+Id = "Battle"
+Active = true
+Units = [SubResource("Resource_6krhq")]
 
 [resource]
 script = ExtResource("6_dtqpo")
 Name = "Black"
-BehaviorStates = [SubResource("Resource_juu82")]
+BehaviorStates = [SubResource("Resource_juu82"), SubResource("Resource_pdp6g")]

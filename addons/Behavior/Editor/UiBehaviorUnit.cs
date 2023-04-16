@@ -18,6 +18,8 @@ public partial class UiBehaviorUnit : PanelContainer
     private static readonly PackedScene UiBehaviorActionPackedScene =
         ResourceLoader.Load<PackedScene>(UiBehaviorActionScenePath);
 
+    private Button _reorder;
+
     private OptionButton _signalOption;
 
     private UiBehaviorCheckers _checkers;
@@ -31,11 +33,13 @@ public partial class UiBehaviorUnit : PanelContainer
 
     private Button _remove;
 
-    public BehaviorState BehaviorStateBelong { get; set; }
+    public UiBehaviorState UiBehaviorStateBelong { get; set; }
     public BehaviorUnit BehaviorUnit { get; set; }
 
     public override void _Ready()
     {
+        _reorder = GetNodeOrNull<Button>("%Reorder");
+
         _signalOption = GetNodeOrNull<OptionButton>("%Signal");
         _signalOption.ItemSelected += OnSignalOptionItemSelected;
 
@@ -44,11 +48,8 @@ public partial class UiBehaviorUnit : PanelContainer
         {
             _signalOption.AddItem(signal, id);
         }
-        
-        if (BehaviorUnit?.Signal != null)
-        {
-            _signalOption.Select(_signalOption.GetItemIndex(BehaviorAi.SignalName2Id[BehaviorUnit.Signal]));
-        }
+
+        _signalOption.Select(string.IsNullOrEmpty(BehaviorUnit?.Signal) ? -1 : _signalOption.GetItemIndex(BehaviorAi.SignalName2Id[BehaviorUnit.Signal]));
 
         _hBoxContainer = GetNodeOrNull<HBoxContainer>("%HBoxContainer");
         _checkersActionsSeparator = GetNodeOrNull<VSeparator>("%CheckersActionsSeparator");
@@ -102,7 +103,7 @@ public partial class UiBehaviorUnit : PanelContainer
 
     private void OnRemovePressed()
     {
-        BehaviorStateBelong?.Units.Remove(BehaviorUnit);
+        UiBehaviorStateBelong.BehaviorState?.Units.Remove(BehaviorUnit);
 
         QueueFree();
     }
@@ -115,5 +116,10 @@ public partial class UiBehaviorUnit : PanelContainer
         uiBehaviorAction.Action = behaviorAction;
 
         _actions.AddChildBefore(uiBehaviorAction, _addAction);
+    }
+
+    public override string ToString()
+    {
+        return $"{nameof(UiBehaviorUnit)}:{BehaviorUnit}";
     }
 }

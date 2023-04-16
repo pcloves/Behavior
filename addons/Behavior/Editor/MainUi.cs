@@ -3,6 +3,7 @@ using Behavior.addons.Behavior.Extensions;
 using Godot;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Behavior.addons.Behavior.Editor;
 
@@ -74,6 +75,8 @@ public partial class MainUi : Control
 
         _tree.Clear();
         _tree.CreateItem().SetText(0, "Root");
+        _behaviorDefines.Clear();
+        _behaviorDefinePath2TreeItems.Clear();
 
         foreach (var path in paths)
         {
@@ -96,5 +99,9 @@ public partial class MainUi : Control
             _behaviorDefinePath2TreeItems[behaviorDefine.ResourcePath] = treeItem;
             _behaviorDefines[behaviorDefine.ResourcePath] = behaviorDefine;
         }
+        
+#if DEBUG
+        GD.Print($"{nameof(LoadBehaviorDefine)}:{string.Join(",", _behaviorDefines.Keys.ToArray())}");
+#endif
     }
 }

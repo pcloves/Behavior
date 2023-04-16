@@ -1,55 +1,37 @@
 ﻿using Godot;
-using System;
-using System.Linq;
 
 namespace Behavior.addons.Behavior;
 
 public partial class BehaviorAi
 {
-    public new Error EmitSignal(StringName signal, params Variant[] args)
+    private async void OnSignal(params Variant[] args)
     {
-        Error error;
-        try
+        var signal = args[0].AsString();
+        if (!_signal2Units.ContainsKey(signal))
         {
-            error = base.EmitSignal(signal, args);
-        }
-        catch (Exception e)
-        {
-            GD.PrintErr("exception caught, message:", e.Message);
-            error = Error.Failed;
-        }
-
-        return error;
-    }
-
-    private void OnSignal(params Variant[] args)
-    {
-        if (CurrentSate == null)
-        {
-            GD.PrintErr($"{nameof(CurrentSate)} is null!");
+            GD.PrintErr($"the signal:{signal} is not connected!");
             return;
         }
 
-        var signal = args[0].AsString();
-        var units = CurrentSate.Units.Where(unit => unit.Signal.Equals(signal));
+        var parent = GetParentOrNull<Node>();
+        var units = _signal2Units[signal];
         foreach (var unit in units)
         {
             var checkers = unit.Checker;
             var actions = unit.Actions;
 
-            var node = GetParentOrNull<Node>();
-            if (!checkers.Check(node, args)) continue;
+            if (!checkers.Check(parent, args)) continue;
 
-            foreach (var action in actions)
+            foreach (var action in actions) 
             {
-                action.Execute(node, args);
+                 await action.Execute(parent, args);
             }
         }
     }
 
     private void OnSignal()
     {
-        OnSignal(new Variant[] { });
+        OnSignal(System.Array.Empty<Variant>());
     }
 
     private void OnSignal(Variant arg1)
