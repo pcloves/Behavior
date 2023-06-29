@@ -3,6 +3,7 @@
 namespace Behavior.addons.Behavior.Check;
 
 [Tool]
+[GlobalClass]
 public partial class CheckSuccess : BehaviorChecker
 {
     public override bool Check(Node parent, params Variant[] signalArgs)

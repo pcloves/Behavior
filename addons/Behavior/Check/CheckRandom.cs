@@ -5,6 +5,7 @@ using System;
 namespace Behavior.addons.Behavior.Check;
 
 [Tool]
+[GlobalClass]
 public partial class CheckRandom : BehaviorChecker
 {
     private static readonly Random Random = new();

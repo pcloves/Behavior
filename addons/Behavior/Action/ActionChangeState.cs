@@ -5,6 +5,7 @@ using Godot;
 namespace Behavior.addons.Behavior.Action;
 
 [Tool]
+[GlobalClass]
 public partial class ActionChangeState : BehaviorAction
 {
     [Export] public string NewStateId { get; set; }

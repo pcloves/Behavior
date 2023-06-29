@@ -1,13 +1,17 @@
-[gd_resource type="Resource" load_steps=23 format=3 uid="uid://ceclynvyydfw8"]
+[gd_resource type="Resource" load_steps=31 format=3 uid="uid://ceclynvyydfw8"]
 
 [ext_resource type="Script" path="res://addons/Behavior/Action/ActionShowBubble.cs" id="1_ggeh7"]
 [ext_resource type="Script" path="res://addons/Behavior/Action/ActionCreateTimer.cs" id="2_psoo4"]
+[ext_resource type="Script" path="res://addons/Behavior/Check/CheckSuccess.cs" id="3_a83ix"]
 [ext_resource type="Script" path="res://addons/Behavior/Check/CheckAndOr.cs" id="3_ieyo8"]
 [ext_resource type="Script" path="res://addons/Behavior/Define/BehaviorUnit.cs" id="4_u8g4n"]
+[ext_resource type="Script" path="res://addons/Behavior/Check/CheckRandom.cs" id="5_4ku7w"]
 [ext_resource type="Script" path="res://addons/Behavior/Action/ActionChangeState.cs" id="5_k6t7t"]
 [ext_resource type="Script" path="res://addons/Behavior/Define/BehaviorState.cs" id="5_sabdg"]
 [ext_resource type="Script" path="res://addons/Behavior/Define/BehaviorDefine.cs" id="6_dtqpo"]
+[ext_resource type="Script" path="res://addons/Behavior/Check/CheckInvert.cs" id="6_urpb6"]
 [ext_resource type="Script" path="res://addons/Behavior/Action/ActionAwaitTimer.cs" id="7_yujpj"]
+[ext_resource type="Script" path="res://addons/Behavior/Check/CheckFail.cs" id="8_mfwdf"]
 
 [sub_resource type="Resource" id="Resource_jqygy"]
 script = ExtResource("1_ggeh7")
@@ -19,9 +23,16 @@ TimerName = "MyTimer"
 TimeSecondMin = 2.0
 TimeSecondMax = 5.0
 
+[sub_resource type="Resource" id="Resource_710so"]
+script = ExtResource("3_a83ix")
+
+[sub_resource type="Resource" id="Resource_7uiqw"]
+script = ExtResource("5_4ku7w")
+Checkers = [SubResource("Resource_710so")]
+
 [sub_resource type="Resource" id="Resource_dshg1"]
 script = ExtResource("3_ieyo8")
-Checkers = []
+Checkers = [SubResource("Resource_7uiqw")]
 
 [sub_resource type="Resource" id="Resource_3d3sc"]
 script = ExtResource("4_u8g4n")
@@ -38,9 +49,16 @@ Content = "Hello, again"
 script = ExtResource("5_k6t7t")
 NewStateId = "Battle"
 
+[sub_resource type="Resource" id="Resource_7gl7b"]
+script = ExtResource("8_mfwdf")
+
+[sub_resource type="Resource" id="Resource_i5asd"]
+script = ExtResource("6_urpb6")
+Checker = SubResource("Resource_7gl7b")
+
 [sub_resource type="Resource" id="Resource_7o7ng"]
 script = ExtResource("3_ieyo8")
-Checkers = []
+Checkers = [SubResource("Resource_i5asd")]
 
 [sub_resource type="Resource" id="Resource_yr2c1"]
 script = ExtResource("4_u8g4n")

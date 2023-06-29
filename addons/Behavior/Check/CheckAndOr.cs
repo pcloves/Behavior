@@ -5,6 +5,7 @@ using System.Linq;
 namespace Behavior.addons.Behavior.Check;
 
 [Tool]
+[GlobalClass]
 public partial class CheckAndOr : BehaviorChecker
 {
     public bool Or { get; set; } = true;

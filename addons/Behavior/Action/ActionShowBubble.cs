@@ -7,6 +7,7 @@ namespace Behavior.addons.Behavior.Action;
 /// 显示气泡
 /// </summary>
 [Tool]
+[GlobalClass]
 public partial class ActionShowBubble : BehaviorAction
 {
     [Export] public string Content { get; set; }

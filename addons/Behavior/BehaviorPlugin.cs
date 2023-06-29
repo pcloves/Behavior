@@ -20,9 +20,11 @@ public partial class BehaviorPlugin : EditorPlugin
     public override void _EnterTree()
     {
         Plugin = this;
+        
         _mainUi = ResourceLoader.Load<PackedScene>(MainUiScene).Instantiate<MainUi>();
         _mainUi.Plugin = this;
         _mainUi.Visible = false;
+
 
         GetEditorInterface().GetEditorMainScreen().AddChild(_mainUi);
     }

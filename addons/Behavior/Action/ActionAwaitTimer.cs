@@ -1,11 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Behavior.addons.Behavior.Extensions;
 using Godot;
 
 namespace Behavior.addons.Behavior.Action;
 
 [Tool]
+[GlobalClass]
 public partial class ActionAwaitTimer : BehaviorAction
 {
 

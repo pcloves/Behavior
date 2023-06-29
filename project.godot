@@ -18,7 +18,7 @@ ResourceScriptDirectories=["res://"]
 
 config/name="Behavior"
 run/main_scene="res://addons/Behavior/Examples/Black.tscn"
-config/features=PackedStringArray("4.0", "C#", "GL Compatibility")
+config/features=PackedStringArray("4.1", "C#", "GL Compatibility")
 
 [display]
 
