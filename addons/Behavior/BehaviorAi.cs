@@ -12,20 +12,18 @@ public partial class BehaviorAi : Node, IStateMachine
     [Export(PropertyHint.ResourceType, hintString: nameof(BehaviorDefine))]
     public BehaviorDefine BehaviorDefine { get; set; }
 
-    public Node Parent { get; private set; }
-
     private BehaviorState _stateCurrent;
 
     public override void _EnterTree()
     {
-        Parent = GetParent<Node>();
         ChangeState(BehaviorDefine?.BehaviorStates[0].Id);
     }
 
     [SuppressMessage("ReSharper", "InvertIf")]
     public void ChangeState(string stateId)
     {
-        var stateNew = BehaviorDefine?.BehaviorStates.FirstOrDefault(state => state.Id.Equals(stateId), null);
+        var stateNew =
+            BehaviorDefine?.BehaviorStates.FirstOrDefault(state => state.Id.Equals(stateId) && state.Active, null);
 
         if (_stateCurrent != null)
         {
