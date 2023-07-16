@@ -11,10 +11,10 @@ public abstract partial class ActionResource : Resource
     /// <summary>
     /// 行为执行操作
     /// </summary>
-    /// <param name="behaviorAi"></param>
+    /// <param name="behavior"></param>
     /// <param name="signal"></param>
     /// <param name="signalArgs">Signal附带的参数</param>
-    public virtual void Execute(BehaviorAi behaviorAi, StringName signal, params Variant[] signalArgs)
+    public virtual void Execute(Behavior behavior, StringName signal, params Variant[] signalArgs)
     {
     }
 

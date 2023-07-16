@@ -13,11 +13,11 @@ public abstract partial class CheckerResource : Resource
     /// <summary>
     /// 对实体和信号进行检查
     /// </summary>
-    /// <param name="behaviorAi"></param>
+    /// <param name="behavior"></param>
     /// <param name="signal"></param>
     /// <param name="signalArgs">Signal的参数</param>
     /// <returns></returns>
-    public virtual bool Check(BehaviorAi behaviorAi, StringName signal, params Variant[] signalArgs)
+    public virtual bool Check(Behavior behavior, StringName signal, params Variant[] signalArgs)
     {
         return false;
     }

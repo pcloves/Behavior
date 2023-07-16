@@ -7,7 +7,7 @@ namespace Behavior.Check;
 [GlobalClass]
 public partial class CheckSuccess : CheckerResource
 {
-    public override bool Check(BehaviorAi behaviorAi, StringName signal, params Variant[] signalArgs)
+    public override bool Check(Behavior behavior, StringName signal, params Variant[] signalArgs)
     {
         return true;
     }

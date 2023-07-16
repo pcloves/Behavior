@@ -9,8 +9,8 @@ public partial class CheckInvert : CheckerResource
 {
     [Export] public CheckerResource CheckerResource { get; set; }
 
-    public override bool Check(BehaviorAi behaviorAi, StringName signal, params Variant[] signalArgs)
+    public override bool Check(Behavior behavior, StringName signal, params Variant[] signalArgs)
     {
-        return CheckerResource?.Check(behaviorAi, signal, signalArgs) ?? false;
+        return CheckerResource?.Check(behavior, signal, signalArgs) ?? false;
     }
 }

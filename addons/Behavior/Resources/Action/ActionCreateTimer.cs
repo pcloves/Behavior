@@ -25,14 +25,14 @@ public partial class ActionCreateTimer : ActionResource
     [Export(PropertyHint.Range, "0,10000")]
     public double TimeSecondMax { get; set; }
 
-    public override void Execute(BehaviorAi behaviorAi, StringName signal, params Variant[] signalArgs)
+    public override void Execute(Behavior behavior, StringName signal, params Variant[] signalArgs)
     {
         var min = Mathf.Min(TimeSecondMin, TimeSecondMax);
         var max = Mathf.Max(TimeSecondMin, TimeSecondMax);
         var randomSecond = GD.RandRange(min, max);
 
-        var timer = behaviorAi.GetTree().CreateTimer(randomSecond);
+        var timer = behavior.GetTree().CreateTimer(randomSecond);
 
-        timer.Timeout += () => behaviorAi.EmitSignal(BehaviorAi.SignalName.Timeout, TimerName);
+        timer.Timeout += () => behavior.EmitSignal(Behavior.SignalName.Timeout, TimerName);
     }
 }

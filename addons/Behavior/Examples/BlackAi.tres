@@ -1,14 +1,14 @@
 [gd_resource type="Resource" load_steps=26 format=3 uid="uid://ceclynvyydfw8"]
 
-[ext_resource type="Script" path="res://addons/Behavior/Action/ActionShowBubble.cs" id="1_ggeh7"]
-[ext_resource type="Script" path="res://addons/Behavior/Action/ActionCreateTimer.cs" id="2_psoo4"]
-[ext_resource type="Script" path="res://addons/Behavior/Check/CheckSuccess.cs" id="3_a83ix"]
-[ext_resource type="Script" path="res://addons/Behavior/Check/CheckAndOr.cs" id="3_ieyo8"]
-[ext_resource type="Script" path="res://addons/Behavior/Define/BehaviorUnit.cs" id="4_u8g4n"]
-[ext_resource type="Script" path="res://addons/Behavior/Check/CheckRandom.cs" id="5_4ku7w"]
-[ext_resource type="Script" path="res://addons/Behavior/Action/ActionChangeState.cs" id="5_k6t7t"]
-[ext_resource type="Script" path="res://addons/Behavior/Define/BehaviorState.cs" id="5_sabdg"]
-[ext_resource type="Script" path="res://addons/Behavior/Define/BehaviorDefine.cs" id="6_dtqpo"]
+[ext_resource type="Script" path="res://addons/Behavior/Resources/Action/ActionShowBubble.cs" id="1_ggeh7"]
+[ext_resource type="Script" path="res://addons/Behavior/Resources/Action/ActionCreateTimer.cs" id="2_psoo4"]
+[ext_resource type="Script" path="res://addons/Behavior/Resources/Check/CheckSuccess.cs" id="3_a83ix"]
+[ext_resource type="Script" path="res://addons/Behavior/Resources/Check/CheckAndOr.cs" id="3_ieyo8"]
+[ext_resource type="Script" path="res://addons/Behavior/Resources/Define/BehaviorUnit.cs" id="4_u8g4n"]
+[ext_resource type="Script" path="res://addons/Behavior/Resources/Check/CheckRandom.cs" id="5_4ku7w"]
+[ext_resource type="Script" path="res://addons/Behavior/Resources/Action/ActionChangeState.cs" id="5_k6t7t"]
+[ext_resource type="Script" path="res://addons/Behavior/Resources/Define/BehaviorState.cs" id="5_sabdg"]
+[ext_resource type="Script" path="res://addons/Behavior/Resources/Define/BehaviorDefine.cs" id="6_dtqpo"]
 
 [sub_resource type="Resource" id="Resource_jqygy"]
 script = ExtResource("1_ggeh7")

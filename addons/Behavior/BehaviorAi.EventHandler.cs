@@ -2,7 +2,7 @@
 
 namespace Behavior;
 
-public partial class BehaviorAi
+public partial class Behavior
 {
     [Signal]
     public delegate void TimeoutEventHandler(string timerName);

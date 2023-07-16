@@ -2,6 +2,7 @@ using System.Linq;
 using Behavior.Define;
 using Godot;
 using Godot.Collections;
+using BehaviorState = Behavior.addons.Behavior.Define.BehaviorState;
 
 namespace Behavior.UI;
 

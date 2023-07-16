@@ -13,10 +13,10 @@ public partial class CheckRandom : CheckerResource
 
     [Export] public Array<CheckerResource> Checkers { get; set; } = new();
 
-    public override bool Check(BehaviorAi behaviorAi, StringName signal, params Variant[] signalArgs)
+    public override bool Check(Behavior behavior, StringName signal, params Variant[] signalArgs)
     {
         if (Checkers.Count == 0) return false;
 
-        return Checkers[Random.Next(Checkers.Count)].Check(behaviorAi, signal, signalArgs);
+        return Checkers[Random.Next(Checkers.Count)].Check(behavior, signal, signalArgs);
     }
 }

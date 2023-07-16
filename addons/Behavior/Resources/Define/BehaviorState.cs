@@ -1,9 +1,10 @@
 using System.Linq;
+using Behavior.Define;
 using Behavior.StateMachine;
 using Godot;
 using Godot.Collections;
 
-namespace Behavior.Define;
+namespace Behavior.addons.Behavior.Define;
 
 [Tool]
 public partial class BehaviorState : Resource, IState
@@ -17,17 +18,17 @@ public partial class BehaviorState : Resource, IState
         return $"{nameof(Id)}:{Id}, {nameof(Active)}:{Active}, {nameof(Units)}:{Units.Count}";
     }
 
-    public void OnStateEnter(BehaviorAi behaviorAi)
+    public void OnStateEnter(global::Behavior.Behavior behavior)
     {
-        behaviorAi.EmitSignal(BehaviorAi.SignalName.StateEnter, Id);
+        behavior.EmitSignal(global::Behavior.Behavior.SignalName.StateEnter, Id);
     }
 
-    public void OnStateExit(BehaviorAi behaviorAi)
+    public void OnStateExit(global::Behavior.Behavior behavior)
     {
-        behaviorAi.EmitSignal(BehaviorAi.SignalName.StateExit, Id);
+        behavior.EmitSignal(global::Behavior.Behavior.SignalName.StateExit, Id);
     }
 
-    public void OnSignal(BehaviorAi behaviorAi, StringName signal, params Variant[] args)
+    public void OnSignal(global::Behavior.Behavior behavior, StringName signal, params Variant[] args)
     {
         var units = Units.Where(unit => unit.Signal.Equals(signal));
         
@@ -36,11 +37,11 @@ public partial class BehaviorState : Resource, IState
             var checkers = unit.Checker;
             var actions = unit.Actions;
 
-            if (!checkers.Check(behaviorAi, signal, args)) continue;
+            if (!checkers.Check(behavior, signal, args)) continue;
 
             foreach (var action in actions)
             {
-                action.Execute(behaviorAi, signal, args);
+                action.Execute(behavior, signal, args);
             }
         }
     }

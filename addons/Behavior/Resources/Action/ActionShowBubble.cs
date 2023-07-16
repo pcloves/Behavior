@@ -14,7 +14,7 @@ public partial class ActionShowBubble : ActionResource
 
     [Export] public Control BubbleUi { get; set; }
 
-    public override void Execute(BehaviorAi behaviorAi, StringName signal, params Variant[] signalArgs)
+    public override void Execute(Behavior behavior, StringName signal, params Variant[] signalArgs)
     {
         GD.Print("content:", Content);
     }

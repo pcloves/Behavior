@@ -3,11 +3,12 @@ using System.Linq;
 using Behavior.Define;
 using Behavior.StateMachine;
 using Godot;
+using BehaviorState = Behavior.addons.Behavior.Define.BehaviorState;
 
 namespace Behavior;
 
 [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
-public partial class BehaviorAi : Node, IStateMachine
+public partial class Behavior : Node, IStateMachine
 {
     [Export(PropertyHint.ResourceType, hintString: nameof(BehaviorDefine))]
     public BehaviorDefine BehaviorDefine { get; set; }

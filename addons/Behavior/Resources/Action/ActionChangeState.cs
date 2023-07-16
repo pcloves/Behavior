@@ -9,8 +9,8 @@ public partial class ActionChangeState : ActionResource
 {
     [Export] public string NewStateId { get; set; }
 
-    public override void Execute(BehaviorAi behaviorAi, StringName signal, params Variant[] signalArgs)
+    public override void Execute(Behavior behavior, StringName signal, params Variant[] signalArgs)
     {
-        behaviorAi.ChangeState(NewStateId);
+        behavior.ChangeState(NewStateId);
     }
 }

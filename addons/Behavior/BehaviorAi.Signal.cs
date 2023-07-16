@@ -5,7 +5,7 @@ using Godot;
 namespace Behavior;
 
 [SuppressMessage("ReSharper", "UnusedMember.Local")]
-public partial class BehaviorAi
+public partial class Behavior
 {
     private void OnSignal(params Variant[] args)
     {

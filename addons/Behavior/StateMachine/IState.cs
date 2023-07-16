@@ -4,7 +4,7 @@ namespace Behavior.StateMachine;
 
 public interface IState
 {
-    public void OnStateEnter(BehaviorAi behaviorAi);
-    public void OnStateExit(BehaviorAi behaviorAi);
-    public void OnSignal(BehaviorAi behaviorAi, StringName signal, params Variant[] args);
+    public void OnStateEnter(Behavior behavior);
+    public void OnStateExit(Behavior behavior);
+    public void OnSignal(Behavior behavior, StringName signal, params Variant[] args);
 }
