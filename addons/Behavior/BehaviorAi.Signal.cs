@@ -1,7 +1,9 @@
-﻿using Godot;
+﻿using System.Diagnostics.CodeAnalysis;
+using Godot;
 
 namespace Behavior.addons.Behavior;
 
+[SuppressMessage("ReSharper", "UnusedMember.Local")]
 public partial class BehaviorAi
 {
     private async void OnSignal(params Variant[] args)
