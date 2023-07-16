@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Godot;
 
 namespace Behavior.addons.Behavior;
@@ -8,26 +9,7 @@ public partial class BehaviorAi
 {
     private void OnSignal(params Variant[] args)
     {
-        var signal = args[0].AsString();
-        if (!_signal2Units.ContainsKey(signal))
-        {
-            GD.PrintErr($"the signal:{signal} is not connected!");
-            return;
-        }
-
-        var units = _signal2Units[signal];
-        foreach (var unit in units)
-        {
-            var checkers = unit.Checker;
-            var actions = unit.Actions;
-
-            if (!checkers.Check(this, signal, args)) continue;
-
-            foreach (var action in actions)
-            {
-                action.Execute(this, signal, args);
-            }
-        }
+        _stateCurrent.OnSignal(this, args[0].AsString(), args.Skip(1).ToArray());
     }
 
     private void OnSignal()

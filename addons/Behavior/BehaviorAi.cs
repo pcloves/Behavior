@@ -1,21 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Behavior.addons.Behavior.Define;
+using Behavior.addons.Behavior.StateMachine;
 using Godot;
 
 namespace Behavior.addons.Behavior;
 
-public partial class BehaviorAi : Node
+[SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+public partial class BehaviorAi : Node, IStateMachine
 {
     [Export(PropertyHint.ResourceType, hintString: nameof(BehaviorDefine))]
     public BehaviorDefine BehaviorDefine { get; set; }
 
     public Node Parent { get; private set; }
 
-    private BehaviorState _state;
-
-    private readonly IDictionary<string, IEnumerable<BehaviorUnit>> _signal2Units =
-        new Dictionary<string, IEnumerable<BehaviorUnit>>();
+    private BehaviorState _stateCurrent;
 
     public override void _EnterTree()
     {
@@ -23,46 +22,35 @@ public partial class BehaviorAi : Node
         ChangeState(BehaviorDefine?.BehaviorStates[0].Id);
     }
 
+    [SuppressMessage("ReSharper", "InvertIf")]
     public void ChangeState(string stateId)
     {
-        var state = BehaviorDefine?.BehaviorStates.First(state => state.Id.Equals(stateId));
-        if (state == null)
-        {
-            GD.PrintErr($"{nameof(ChangeState)} failed due to null stateId:{stateId}");
-            return;
-        }
+        var stateNew = BehaviorDefine?.BehaviorStates.FirstOrDefault(state => state.Id.Equals(stateId), null);
 
-        if (_state != null)
+        if (_stateCurrent != null)
         {
-            EmitSignal(SignalName.StateExit, _state.Id);
+            _stateCurrent.OnStateExit(this);
 
-            var signalsOld = _state.Units.Select(unit => unit.Signal).Distinct();
+            var signalsOld = _stateCurrent.Units.Select(unit => unit.Signal).Distinct();
             foreach (var signal in signalsOld)
             {
                 DisconnectSignal(signal);
-                _signal2Units.Remove(signal);
             }
         }
 
-#if DEBUG
-        if (_signal2Units.Count != 0)
+        GD.Print($"{nameof(ChangeState)} from {_stateCurrent?.Id ?? "null"} to {stateNew?.Id ?? "null"}");
+
+        _stateCurrent = stateNew;
+
+        if (_stateCurrent != null)
         {
-            GD.PrintErr(
-                $"signal remains while {nameof(ChangeState)} from {_state?.Id ?? "null"} to {stateId}, remain signal:{_signal2Units.Keys}");
+            var signalsNew = _stateCurrent.Units.Select(unit => unit.Signal).Distinct();
+            foreach (var signal in signalsNew)
+            {
+                ConnectSignal(signal);
+            }
+
+            _stateCurrent.OnStateEnter(this);
         }
-#endif
-
-        GD.Print($"{nameof(ChangeState)} from {_state?.Id ?? "null"} to {state.Id}");
-
-        _state = state;
-
-        var signalsNew = _state.Units.Select(unit => unit.Signal).Distinct();
-        foreach (var signal in signalsNew)
-        {
-            ConnectSignal(signal);
-            _signal2Units.Add(signal, _state.Units.Where(unit => unit.Signal.Equals(signal)));
-        }
-
-        EmitSignal(SignalName.StateEnter, _state.Id);
     }
 }
