@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjmqh46gjd0tv"
-path="res://.godot/imported/icons8-drag-reorder-32.png-747e9817a860f62c24c13cf015fe9186.ctex"
+uid="uid://ddfh0vl1dg71b"
+path="res://.godot/imported/layer-plus.png-699c926341d57e814cba0636da0c2797.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/Behavior/Image/icons8-drag-reorder-32.png"
-dest_files=["res://.godot/imported/icons8-drag-reorder-32.png-747e9817a860f62c24c13cf015fe9186.ctex"]
+source_file="res://addons/Behavior/UI/Image/layer-plus.png"
+dest_files=["res://.godot/imported/layer-plus.png-699c926341d57e814cba0636da0c2797.ctex"]
 
 [params]
 

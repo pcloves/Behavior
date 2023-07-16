@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://758ccwqeid61"
-path="res://.godot/imported/edit.png-3fa9e4a3ec5a5f88470e5426bfb36b91.ctex"
+uid="uid://hc73y4q7db4r"
+path="res://.godot/imported/angle-small-down.png-6e70dc300cd2c44b9d757fa3a189cc67.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/Behavior/Image/edit.png"
-dest_files=["res://.godot/imported/edit.png-3fa9e4a3ec5a5f88470e5426bfb36b91.ctex"]
+source_file="res://addons/Behavior/UI/Image/angle-small-down.png"
+dest_files=["res://.godot/imported/angle-small-down.png-6e70dc300cd2c44b9d757fa3a189cc67.ctex"]
 
 [params]
 

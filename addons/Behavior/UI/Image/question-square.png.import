@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccbvkgcoxebvb"
-path="res://.godot/imported/plus.png-73eb0708d14404f1954c284e40bfaa7f.ctex"
+uid="uid://ck6jru2kit8lw"
+path="res://.godot/imported/question-square.png-13af16efd21e80a285cfe3aef397cb80.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/Behavior/Image/plus.png"
-dest_files=["res://.godot/imported/plus.png-73eb0708d14404f1954c284e40bfaa7f.ctex"]
+source_file="res://addons/Behavior/UI/Image/question-square.png"
+dest_files=["res://.godot/imported/question-square.png-13af16efd21e80a285cfe3aef397cb80.ctex"]
 
 [params]
 
