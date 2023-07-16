@@ -1,26 +1,11 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using Behavior.Core;
 using Godot;
 
-namespace Behavior.Define;
+namespace Behavior.Resources.Define;
 
-/// <summary>
-/// Signal检查器
-/// </summary>
-[Tool]
-[SuppressMessage("ReSharper", "UnusedParameter.Global")]
-public abstract partial class CheckerResource : Resource
+public abstract partial class CheckerResource : Resource, IChecker
 {
-    /// <summary>
-    /// 对实体和信号进行检查
-    /// </summary>
-    /// <param name="behavior"></param>
-    /// <param name="signal"></param>
-    /// <param name="signalArgs">Signal的参数</param>
-    /// <returns></returns>
-    public virtual bool Check(Behavior behavior, StringName signal, params Variant[] signalArgs)
-    {
-        return false;
-    }
+    public abstract bool Check(Core.Behavior behavior, StringName signal, params Variant[] signalArgs);
 
     public override string ToString()
     {

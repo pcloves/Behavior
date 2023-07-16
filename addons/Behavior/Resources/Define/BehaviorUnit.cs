@@ -1,8 +1,8 @@
-using Behavior.Check;
+using Behavior.Resources.Check;
 using Godot;
 using Godot.Collections;
 
-namespace Behavior.Define;
+namespace Behavior.Resources.Define;
 
 [Tool]
 public partial class BehaviorUnit : Resource

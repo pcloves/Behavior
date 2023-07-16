@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using Behavior.Resources.Define;
+using Godot;
 
 namespace Behavior.Extensions;
 
@@ -8,5 +9,11 @@ public static class ResourceExtension
     {
         GD.Print($"resource save, path:{resource.ResourcePath}");
         ResourceSaver.Save(resource, resource.ResourcePath, flags);
+    }
+
+
+    public static Node ToNode(this StateResource behaviorState)
+    {
+        return null;
     }
 }

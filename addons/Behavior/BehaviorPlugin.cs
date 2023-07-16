@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Godot;
-using BehaviorDefine = Behavior.Define.BehaviorDefine;
+using BehaviorDefine = Behavior.Resources.Define.BehaviorDefine;
 using MainUi = Behavior.UI.MainUi;
 
 namespace Behavior;

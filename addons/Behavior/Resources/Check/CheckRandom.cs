@@ -1,9 +1,9 @@
 ﻿using System;
 using Godot;
 using Godot.Collections;
-using CheckerResource = Behavior.Define.CheckerResource;
+using CheckerResource = Behavior.Resources.Define.CheckerResource;
 
-namespace Behavior.Check;
+namespace Behavior.Resources.Check;
 
 [Tool]
 [GlobalClass]
@@ -13,7 +13,7 @@ public partial class CheckRandom : CheckerResource
 
     [Export] public Array<CheckerResource> Checkers { get; set; } = new();
 
-    public override bool Check(Behavior behavior, StringName signal, params Variant[] signalArgs)
+    public override bool Check(Core.Behavior behavior, StringName signal, params Variant[] signalArgs)
     {
         if (Checkers.Count == 0) return false;
 

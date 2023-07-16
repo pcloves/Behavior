@@ -1,22 +1,11 @@
-﻿using Godot;
+﻿using Behavior.Core;
+using Godot;
 
-namespace Behavior.Define;
+namespace Behavior.Resources.Define;
 
-/// <summary>
-/// 行为执行器
-/// </summary>
-[Tool]
-public abstract partial class ActionResource : Resource
+public abstract partial class ActionResource : Resource, IAction
 {
-    /// <summary>
-    /// 行为执行操作
-    /// </summary>
-    /// <param name="behavior"></param>
-    /// <param name="signal"></param>
-    /// <param name="signalArgs">Signal附带的参数</param>
-    public virtual void Execute(Behavior behavior, StringName signal, params Variant[] signalArgs)
-    {
-    }
+    public abstract void Execute(Core.Behavior behavior, StringName signal, params Variant[] signalArgs);
 
     public override string ToString()
     {

@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://addons/Behavior/Resources/Define/BehaviorUnit.cs" id="4_u8g4n"]
 [ext_resource type="Script" path="res://addons/Behavior/Resources/Check/CheckRandom.cs" id="5_4ku7w"]
 [ext_resource type="Script" path="res://addons/Behavior/Resources/Action/ActionChangeState.cs" id="5_k6t7t"]
-[ext_resource type="Script" path="res://addons/Behavior/Resources/Define/BehaviorState.cs" id="5_sabdg"]
+[ext_resource type="Script" path="res://addons/Behavior/Resources/Define/StateResource.cs" id="5_sabdg"]
 [ext_resource type="Script" path="res://addons/Behavior/Resources/Define/BehaviorDefine.cs" id="6_dtqpo"]
 
 [sub_resource type="Resource" id="Resource_jqygy"]

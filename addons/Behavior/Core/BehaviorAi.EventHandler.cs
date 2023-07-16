@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-namespace Behavior;
+namespace Behavior.Core;
 
 public partial class Behavior
 {

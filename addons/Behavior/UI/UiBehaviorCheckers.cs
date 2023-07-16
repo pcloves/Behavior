@@ -1,7 +1,7 @@
-using Behavior.Check;
-using Behavior.Define;
 using Godot;
 using Godot.Collections;
+using CheckAndOr = Behavior.Resources.Check.CheckAndOr;
+using CheckerResource = Behavior.Resources.Define.CheckerResource;
 
 namespace Behavior.UI;
 

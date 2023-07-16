@@ -1,7 +1,7 @@
 ﻿using Godot;
-using ActionResource = Behavior.Define.ActionResource;
+using ActionResource = Behavior.Resources.Define.ActionResource;
 
-namespace Behavior.Action;
+namespace Behavior.Resources.Action;
 
 [Tool]
 [GlobalClass]
@@ -25,7 +25,7 @@ public partial class ActionCreateTimer : ActionResource
     [Export(PropertyHint.Range, "0,10000")]
     public double TimeSecondMax { get; set; }
 
-    public override void Execute(Behavior behavior, StringName signal, params Variant[] signalArgs)
+    public override void Execute(Core.Behavior behavior, StringName signal, params Variant[] signalArgs)
     {
         var min = Mathf.Min(TimeSecondMin, TimeSecondMax);
         var max = Mathf.Max(TimeSecondMin, TimeSecondMax);
@@ -33,6 +33,6 @@ public partial class ActionCreateTimer : ActionResource
 
         var timer = behavior.GetTree().CreateTimer(randomSecond);
 
-        timer.Timeout += () => behavior.EmitSignal(Behavior.SignalName.Timeout, TimerName);
+        timer.Timeout += () => behavior.EmitSignal(Core.Behavior.SignalName.Timeout, TimerName);
     }
 }

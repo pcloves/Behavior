@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
-using Behavior.Check;
-using Behavior.Define;
 using Godot;
+using CheckAndOr = Behavior.Resources.Check.CheckAndOr;
+using CheckerResource = Behavior.Resources.Define.CheckerResource;
 
 namespace Behavior.UI;
 

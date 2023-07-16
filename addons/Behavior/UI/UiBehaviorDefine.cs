@@ -1,8 +1,8 @@
-using Behavior.Define;
 using Behavior.Extensions;
+using Behavior.Resources.Define;
 using Godot;
 using Godot.Collections;
-using BehaviorState = Behavior.addons.Behavior.Define.BehaviorState;
+using BehaviorDefine = Behavior.Resources.Define.BehaviorDefine;
 
 namespace Behavior.UI;
 
@@ -29,7 +29,7 @@ public partial class UiBehaviorDefine : ScrollContainer
         _new.Pressed += OnNewPressed;
         _new.Disabled = false;
 
-        foreach (var behaviorState in BehaviorDefine?.BehaviorStates ?? new Array<BehaviorState>())
+        foreach (var behaviorState in BehaviorDefine?.BehaviorStates ?? new Array<StateResource>())
         {
             AddNewBehaviorState(behaviorState);
         }
@@ -42,7 +42,7 @@ public partial class UiBehaviorDefine : ScrollContainer
         BehaviorDefine = null;
     }
 
-    private void AddNewBehaviorState(BehaviorState state, bool editName = false)
+    private void AddNewBehaviorState(StateResource state, bool editName = false)
     {
         var uiBehaviorState = UiBehaviorStatePackedScene.Instantiate<UiBehaviorState>();
         uiBehaviorState.BehaviorDefine = BehaviorDefine;
@@ -57,7 +57,7 @@ public partial class UiBehaviorDefine : ScrollContainer
 
     private void OnNewPressed()
     {
-        var behaviorState = new BehaviorState();
+        var behaviorState = new StateResource();
         BehaviorDefine.BehaviorStates.Add(behaviorState);
 
         AddNewBehaviorState(behaviorState, true);

@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-namespace Behavior.StateMachine;
+namespace Behavior.Core;
 
 public interface IState
 {

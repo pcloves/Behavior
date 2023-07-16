@@ -1,11 +1,10 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Behavior.Define;
-using Behavior.StateMachine;
+using Behavior.Resources.Define;
 using Godot;
-using BehaviorState = Behavior.addons.Behavior.Define.BehaviorState;
+using BehaviorDefine = Behavior.Resources.Define.BehaviorDefine;
 
-namespace Behavior;
+namespace Behavior.Core;
 
 [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
 public partial class Behavior : Node, IStateMachine
@@ -13,7 +12,7 @@ public partial class Behavior : Node, IStateMachine
     [Export(PropertyHint.ResourceType, hintString: nameof(BehaviorDefine))]
     public BehaviorDefine BehaviorDefine { get; set; }
 
-    private BehaviorState _stateCurrent;
+    private StateResource _stateCurrent;
 
     public override void _EnterTree()
     {
@@ -37,7 +36,7 @@ public partial class Behavior : Node, IStateMachine
             }
         }
 
-        GD.Print($"{nameof(ChangeState)} from {_stateCurrent?.Id ?? "null"} to {stateNew?.Id ?? "null"}");
+        GD.Print($"{nameof(ChangeState)}: {_stateCurrent?.Id ?? "null"} -> {stateNew?.Id ?? "null"}");
 
         _stateCurrent = stateNew;
 

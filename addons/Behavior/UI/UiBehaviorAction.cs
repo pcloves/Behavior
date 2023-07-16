@@ -1,7 +1,8 @@
 using System;
 using System.Linq;
-using Behavior.Define;
 using Godot;
+using ActionResource = Behavior.Resources.Define.ActionResource;
+using BehaviorUnit = Behavior.Resources.Define.BehaviorUnit;
 
 namespace Behavior.UI;
 

@@ -1,13 +1,12 @@
 using System.Linq;
-using Behavior.Define;
-using Behavior.StateMachine;
+using Behavior.Core;
 using Godot;
 using Godot.Collections;
 
-namespace Behavior.addons.Behavior.Define;
+namespace Behavior.Resources.Define;
 
 [Tool]
-public partial class BehaviorState : Resource, IState
+public partial class StateResource : Resource, IState
 {
     [Export] public string Id { get; set; } = "New Behavior State";
     [Export] public bool Active { get; set; } = true;
@@ -18,17 +17,17 @@ public partial class BehaviorState : Resource, IState
         return $"{nameof(Id)}:{Id}, {nameof(Active)}:{Active}, {nameof(Units)}:{Units.Count}";
     }
 
-    public void OnStateEnter(global::Behavior.Behavior behavior)
+    public void OnStateEnter(Core.Behavior behavior)
     {
-        behavior.EmitSignal(global::Behavior.Behavior.SignalName.StateEnter, Id);
+        behavior.EmitSignal(Core.Behavior.SignalName.StateEnter, Id);
     }
 
-    public void OnStateExit(global::Behavior.Behavior behavior)
+    public void OnStateExit(Core.Behavior behavior)
     {
-        behavior.EmitSignal(global::Behavior.Behavior.SignalName.StateExit, Id);
+        behavior.EmitSignal(Core.Behavior.SignalName.StateExit, Id);
     }
 
-    public void OnSignal(global::Behavior.Behavior behavior, StringName signal, params Variant[] args)
+    public void OnSignal(Core.Behavior behavior, StringName signal, params Variant[] args)
     {
         var units = Units.Where(unit => unit.Signal.Equals(signal));
         

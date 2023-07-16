@@ -1,4 +1,4 @@
-﻿namespace Behavior.StateMachine;
+﻿namespace Behavior.Core;
 
 public interface IStateMachine
 {

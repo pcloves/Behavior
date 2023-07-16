@@ -1,7 +1,7 @@
 using Godot;
-using ActionResource = Behavior.Define.ActionResource;
+using ActionResource = Behavior.Resources.Define.ActionResource;
 
-namespace Behavior.Action;
+namespace Behavior.Resources.Action;
 
 /// <summary>
 /// 显示气泡
@@ -14,7 +14,7 @@ public partial class ActionShowBubble : ActionResource
 
     [Export] public Control BubbleUi { get; set; }
 
-    public override void Execute(Behavior behavior, StringName signal, params Variant[] signalArgs)
+    public override void Execute(Core.Behavior behavior, StringName signal, params Variant[] signalArgs)
     {
         GD.Print("content:", Content);
     }
