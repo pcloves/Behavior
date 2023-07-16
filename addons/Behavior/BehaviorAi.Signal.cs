@@ -6,7 +6,7 @@ namespace Behavior.addons.Behavior;
 [SuppressMessage("ReSharper", "UnusedMember.Local")]
 public partial class BehaviorAi
 {
-    private async void OnSignal(params Variant[] args)
+    private void OnSignal(params Variant[] args)
     {
         var signal = args[0].AsString();
         if (!_signal2Units.ContainsKey(signal))
@@ -15,18 +15,17 @@ public partial class BehaviorAi
             return;
         }
 
-        var parent = GetParentOrNull<Node>();
         var units = _signal2Units[signal];
         foreach (var unit in units)
         {
             var checkers = unit.Checker;
             var actions = unit.Actions;
 
-            if (!checkers.Check(parent, args)) continue;
+            if (!checkers.Check(this, signal, args)) continue;
 
-            foreach (var action in actions) 
+            foreach (var action in actions)
             {
-                 await action.Execute(parent, args);
+                action.Execute(this, signal, args);
             }
         }
     }

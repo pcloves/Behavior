@@ -10,6 +10,8 @@ public partial class BehaviorAi : Node
     [Export(PropertyHint.ResourceType, hintString: nameof(BehaviorDefine))]
     public BehaviorDefine BehaviorDefine { get; set; }
 
+    public Node Parent { get; private set; }
+
     private BehaviorState _state;
 
     private readonly IDictionary<string, IEnumerable<BehaviorUnit>> _signal2Units =
@@ -17,6 +19,7 @@ public partial class BehaviorAi : Node
 
     public override void _EnterTree()
     {
+        Parent = GetParent<Node>();
         ChangeState(BehaviorDefine?.BehaviorStates[0].Id);
     }
 

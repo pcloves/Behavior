@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Godot;
+﻿using Godot;
 
 namespace Behavior.addons.Behavior.Action;
 
@@ -13,9 +11,10 @@ public abstract partial class BehaviorAction : Resource
     /// <summary>
     /// 行为执行操作
     /// </summary>
-    /// <param name="parent">BehaviorAi的parent</param>
+    /// <param name="behaviorAi"></param>
+    /// <param name="signal"></param>
     /// <param name="signalArgs">Signal附带的参数</param>
-    public virtual async Task Execute(Node parent, params Variant[] signalArgs)
+    public virtual void Execute(BehaviorAi behaviorAi, StringName signal, params Variant[] signalArgs)
     {
     }
 

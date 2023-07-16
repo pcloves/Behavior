@@ -6,7 +6,7 @@ namespace Behavior.addons.Behavior.Check;
 [GlobalClass]
 public partial class CheckSuccess : BehaviorChecker
 {
-    public override bool Check(Node parent, params Variant[] signalArgs)
+    public override bool Check(BehaviorAi behaviorAi, StringName signal, params Variant[] signalArgs)
     {
         return true;
     }

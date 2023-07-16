@@ -12,10 +12,10 @@ public partial class CheckRandom : BehaviorChecker
 
     [Export] public Array<BehaviorChecker> Checkers { get; set; } = new();
 
-    public override bool Check(Node parent, params Variant[] signalArgs)
+    public override bool Check(BehaviorAi behaviorAi, StringName signal, params Variant[] signalArgs)
     {
         if (Checkers.Count == 0) return false;
 
-        return Checkers[Random.Next(Checkers.Count)].Check(parent, signalArgs);
+        return Checkers[Random.Next(Checkers.Count)].Check(behaviorAi, signal, signalArgs);
     }
 }

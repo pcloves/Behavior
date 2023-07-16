@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Godot;
 
 namespace Behavior.addons.Behavior.Action;
@@ -14,7 +13,7 @@ public partial class ActionShowBubble : BehaviorAction
 
     [Export] public Control BubbleUi { get; set; }
 
-    public override async Task Execute(Node parent, params Variant[] signalArgs)
+    public override void Execute(BehaviorAi behaviorAi, StringName signal, params Variant[] signalArgs)
     {
         GD.Print("content:", Content);
     }

@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Diagnostics.CodeAnalysis;
+using Godot;
 
 namespace Behavior.addons.Behavior.Check;
 
@@ -6,15 +7,17 @@ namespace Behavior.addons.Behavior.Check;
 /// Signal检查器
 /// </summary>
 [Tool]
+[SuppressMessage("ReSharper", "UnusedParameter.Global")]
 public abstract partial class BehaviorChecker : Resource
 {
     /// <summary>
     /// 对实体和信号进行检查
     /// </summary>
-    /// <param name="parent">BehaviorAi的parent</param>
+    /// <param name="behaviorAi"></param>
+    /// <param name="signal"></param>
     /// <param name="signalArgs">Signal的参数</param>
     /// <returns></returns>
-    public virtual bool Check(Node parent, params Variant[] signalArgs)
+    public virtual bool Check(BehaviorAi behaviorAi, StringName signal, params Variant[] signalArgs)
     {
         return false;
     }

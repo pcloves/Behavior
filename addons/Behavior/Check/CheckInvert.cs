@@ -8,8 +8,8 @@ public partial class CheckInvert : BehaviorChecker
 {
     [Export] public BehaviorChecker Checker { get; set; }
 
-    public override bool Check(Node parent, params Variant[] signalArgs)
+    public override bool Check(BehaviorAi behaviorAi, StringName signal, params Variant[] signalArgs)
     {
-        return !Checker.Check(parent, signalArgs);
+        return !Checker.Check(behaviorAi, signal, signalArgs);
     }
 }

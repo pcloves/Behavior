@@ -39,7 +39,7 @@ text = "Signal"
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
-item_count = 13
+item_count = 12
 popup/item_0/text = "script_changed"
 popup/item_0/id = 1
 popup/item_1/text = "property_list_changed"
@@ -64,8 +64,6 @@ popup/item_10/text = "StateEnter"
 popup/item_10/id = 11
 popup/item_11/text = "StateExit"
 popup/item_11/id = 12
-popup/item_12/text = "StateExits"
-popup/item_12/id = 13
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
 layout_mode = 2

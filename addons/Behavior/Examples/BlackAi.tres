@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=31 format=3 uid="uid://ceclynvyydfw8"]
+[gd_resource type="Resource" load_steps=29 format=3 uid="uid://ceclynvyydfw8"]
 
 [ext_resource type="Script" path="res://addons/Behavior/Action/ActionShowBubble.cs" id="1_ggeh7"]
 [ext_resource type="Script" path="res://addons/Behavior/Action/ActionCreateTimer.cs" id="2_psoo4"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" path="res://addons/Behavior/Define/BehaviorState.cs" id="5_sabdg"]
 [ext_resource type="Script" path="res://addons/Behavior/Define/BehaviorDefine.cs" id="6_dtqpo"]
 [ext_resource type="Script" path="res://addons/Behavior/Check/CheckInvert.cs" id="6_urpb6"]
-[ext_resource type="Script" path="res://addons/Behavior/Action/ActionAwaitTimer.cs" id="7_yujpj"]
 [ext_resource type="Script" path="res://addons/Behavior/Check/CheckFail.cs" id="8_mfwdf"]
 
 [sub_resource type="Resource" id="Resource_jqygy"]
@@ -73,11 +72,6 @@ Id = "Idle"
 Active = true
 Units = [SubResource("Resource_3d3sc"), SubResource("Resource_yr2c1")]
 
-[sub_resource type="Resource" id="Resource_608o7"]
-script = ExtResource("7_yujpj")
-TimeSecondMin = 2.0
-TimeSecondMax = 2.0
-
 [sub_resource type="Resource" id="Resource_jhru7"]
 script = ExtResource("1_ggeh7")
 Content = "Battle"
@@ -91,7 +85,7 @@ script = ExtResource("4_u8g4n")
 Signal = "StateEnter"
 Active = true
 Checker = SubResource("Resource_lxlbf")
-Actions = [SubResource("Resource_608o7"), SubResource("Resource_jhru7")]
+Actions = [SubResource("Resource_jhru7")]
 
 [sub_resource type="Resource" id="Resource_pdp6g"]
 script = ExtResource("5_sabdg")
