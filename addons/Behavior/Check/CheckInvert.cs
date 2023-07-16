@@ -1,15 +1,16 @@
 ﻿using Godot;
+using CheckerResource = Behavior.Define.CheckerResource;
 
-namespace Behavior.addons.Behavior.Check;
+namespace Behavior.Check;
 
 [Tool]
 [GlobalClass]
-public partial class CheckInvert : BehaviorChecker
+public partial class CheckInvert : CheckerResource
 {
-    [Export] public BehaviorChecker Checker { get; set; }
+    [Export] public CheckerResource CheckerResource { get; set; }
 
     public override bool Check(BehaviorAi behaviorAi, StringName signal, params Variant[] signalArgs)
     {
-        return !Checker.Check(behaviorAi, signal, signalArgs);
+        return CheckerResource?.Check(behaviorAi, signal, signalArgs) ?? false;
     }
 }

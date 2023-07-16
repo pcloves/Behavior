@@ -1,10 +1,11 @@
 ﻿using Godot;
+using CheckerResource = Behavior.Define.CheckerResource;
 
-namespace Behavior.addons.Behavior.Check;
+namespace Behavior.Check;
 
 [Tool]
 [GlobalClass]
-public partial class CheckFail : BehaviorChecker
+public partial class CheckFail : CheckerResource
 {
     public override bool Check(BehaviorAi behaviorAi, StringName signal, params Variant[] signalArgs)
     {

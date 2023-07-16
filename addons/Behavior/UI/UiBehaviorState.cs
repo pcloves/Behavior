@@ -1,14 +1,16 @@
-using Behavior.addons.Behavior.Define;
+using System.Linq;
 using Godot;
 using Godot.Collections;
-using System.Linq;
+using BehaviorDefine = Behavior.Define.BehaviorDefine;
+using BehaviorState = Behavior.Define.BehaviorState;
+using BehaviorUnit = Behavior.Define.BehaviorUnit;
 
-namespace Behavior.addons.Behavior.Editor;
+namespace Behavior.UI;
 
 [Tool]
 public partial class UiBehaviorState : PanelContainer
 {
-    private const string UiBehaviorUnitPath = "res://addons/Behavior/Editor/UiBehaviorUnit.tscn";
+    private const string UiBehaviorUnitPath = "res://addons/Behavior/UI/UiBehaviorUnit.tscn";
 
     private static readonly PackedScene
         UiBehaviorUnitPackedScene = ResourceLoader.Load<PackedScene>(UiBehaviorUnitPath);

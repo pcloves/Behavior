@@ -2,7 +2,7 @@
 using System.Linq;
 using Godot;
 
-namespace Behavior.addons.Behavior;
+namespace Behavior;
 
 [SuppressMessage("ReSharper", "UnusedMember.Local")]
 public partial class BehaviorAi

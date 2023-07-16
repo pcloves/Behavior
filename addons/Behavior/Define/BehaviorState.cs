@@ -1,10 +1,9 @@
 using System.Linq;
-using Behavior.addons.Behavior.Action;
-using Behavior.addons.Behavior.StateMachine;
+using Behavior.StateMachine;
 using Godot;
 using Godot.Collections;
 
-namespace Behavior.addons.Behavior.Define;
+namespace Behavior.Define;
 
 [Tool]
 public partial class BehaviorState : Resource, IState
@@ -18,17 +17,17 @@ public partial class BehaviorState : Resource, IState
         return $"{nameof(Id)}:{Id}, {nameof(Active)}:{Active}, {nameof(Units)}:{Units.Count}";
     }
 
-    public void OnStateEnter(BehaviorAi behaviorAi)
+    public void OnStateEnter(global::Behavior.BehaviorAi behaviorAi)
     {
-        behaviorAi.EmitSignal(BehaviorAi.SignalName.StateEnter, Id);
+        behaviorAi.EmitSignal(global::Behavior.BehaviorAi.SignalName.StateEnter, Id);
     }
 
-    public void OnStateExit(BehaviorAi behaviorAi)
+    public void OnStateExit(global::Behavior.BehaviorAi behaviorAi)
     {
-        behaviorAi.EmitSignal(BehaviorAi.SignalName.StateExit, Id);
+        behaviorAi.EmitSignal(global::Behavior.BehaviorAi.SignalName.StateExit, Id);
     }
 
-    public void OnSignal(BehaviorAi behaviorAi, StringName signal, params Variant[] args)
+    public void OnSignal(global::Behavior.BehaviorAi behaviorAi, StringName signal, params Variant[] args)
     {
         var units = Units.Where(unit => unit.Signal.Equals(signal));
         

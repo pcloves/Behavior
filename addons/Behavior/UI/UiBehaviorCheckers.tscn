@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://d3m7dd205y4a0"]
 
-[ext_resource type="StyleBox" uid="uid://d1nnkasdi3mot" path="res://addons/Behavior/Editor/Themes/PanelContainerStyles.tres" id="1_wei1d"]
-[ext_resource type="Script" path="res://addons/Behavior/Editor/UiBehaviorCheckers.cs" id="1_wtmdp"]
-[ext_resource type="Theme" uid="uid://b6f12mmg7ircu" path="res://addons/Behavior/Editor/Themes/AndOrButton.tres" id="2_kv7bs"]
-[ext_resource type="Theme" uid="uid://blpde8jj8enqp" path="res://addons/Behavior/Editor/Themes/DeleteButton.tres" id="3_66tkq"]
+[ext_resource type="StyleBox" uid="uid://d1nnkasdi3mot" path="res://addons/Behavior/UI/Themes/PanelContainerStyles.tres" id="1_wei1d"]
+[ext_resource type="Script" path="res://addons/Behavior/UI/UiBehaviorCheckers.cs" id="1_wtmdp"]
+[ext_resource type="Theme" uid="uid://b6f12mmg7ircu" path="res://addons/Behavior/UI/Themes/AndOrButton.tres" id="2_kv7bs"]
+[ext_resource type="Theme" uid="uid://blpde8jj8enqp" path="res://addons/Behavior/UI/Themes/DeleteButton.tres" id="3_66tkq"]
 [ext_resource type="Texture2D" uid="uid://tgn0bgv7ylal" path="res://addons/Behavior/Image/plus-small.png" id="3_s183w"]
 [ext_resource type="Texture2D" uid="uid://ddfh0vl1dg71b" path="res://addons/Behavior/Image/layer-plus.png" id="4_byj0e"]
 

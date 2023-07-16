@@ -1,10 +1,10 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Behavior.addons.Behavior.Define;
-using Behavior.addons.Behavior.StateMachine;
+using Behavior.Define;
+using Behavior.StateMachine;
 using Godot;
 
-namespace Behavior.addons.Behavior;
+namespace Behavior;
 
 [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
 public partial class BehaviorAi : Node, IStateMachine

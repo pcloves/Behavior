@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=29 format=3 uid="uid://ceclynvyydfw8"]
+[gd_resource type="Resource" load_steps=26 format=3 uid="uid://ceclynvyydfw8"]
 
 [ext_resource type="Script" path="res://addons/Behavior/Action/ActionShowBubble.cs" id="1_ggeh7"]
 [ext_resource type="Script" path="res://addons/Behavior/Action/ActionCreateTimer.cs" id="2_psoo4"]
@@ -9,8 +9,6 @@
 [ext_resource type="Script" path="res://addons/Behavior/Action/ActionChangeState.cs" id="5_k6t7t"]
 [ext_resource type="Script" path="res://addons/Behavior/Define/BehaviorState.cs" id="5_sabdg"]
 [ext_resource type="Script" path="res://addons/Behavior/Define/BehaviorDefine.cs" id="6_dtqpo"]
-[ext_resource type="Script" path="res://addons/Behavior/Check/CheckInvert.cs" id="6_urpb6"]
-[ext_resource type="Script" path="res://addons/Behavior/Check/CheckFail.cs" id="8_mfwdf"]
 
 [sub_resource type="Resource" id="Resource_jqygy"]
 script = ExtResource("1_ggeh7")
@@ -48,16 +46,12 @@ Content = "Hello, again"
 script = ExtResource("5_k6t7t")
 NewStateId = "Battle"
 
-[sub_resource type="Resource" id="Resource_7gl7b"]
-script = ExtResource("8_mfwdf")
-
-[sub_resource type="Resource" id="Resource_i5asd"]
-script = ExtResource("6_urpb6")
-Checker = SubResource("Resource_7gl7b")
+[sub_resource type="Resource" id="Resource_tdu1h"]
+script = ExtResource("3_a83ix")
 
 [sub_resource type="Resource" id="Resource_7o7ng"]
 script = ExtResource("3_ieyo8")
-Checkers = [SubResource("Resource_i5asd")]
+Checkers = [SubResource("Resource_tdu1h")]
 
 [sub_resource type="Resource" id="Resource_yr2c1"]
 script = ExtResource("4_u8g4n")

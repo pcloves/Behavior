@@ -1,7 +1,7 @@
 ﻿using Godot;
 using Godot.Collections;
 
-namespace Behavior.addons.Behavior.Define;
+namespace Behavior.Define;
 
 [Tool]
 public partial class BehaviorDefine : Resource

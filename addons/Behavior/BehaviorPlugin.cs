@@ -1,18 +1,18 @@
 #if TOOLS
-using Behavior.addons.Behavior.Define;
-using Behavior.addons.Behavior.Editor;
-using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Godot;
+using BehaviorDefine = Behavior.Define.BehaviorDefine;
+using MainUi = Behavior.UI.MainUi;
 
-namespace Behavior.addons.Behavior;
+namespace Behavior;
 
 [Tool]
 public partial class BehaviorPlugin : EditorPlugin
 {
-    private const string MainUiScene = "addons/Behavior/Editor/MainUi.tscn";
+    private const string MainUiScene = "addons/Behavior/UI/MainUi.tscn";
     public static BehaviorPlugin Plugin { get; private set; }
 
     private MainUi _mainUi;

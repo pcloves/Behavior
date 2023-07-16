@@ -1,12 +1,12 @@
 ﻿using Godot;
 
-namespace Behavior.addons.Behavior.Action;
+namespace Behavior.Define;
 
 /// <summary>
 /// 行为执行器
 /// </summary>
 [Tool]
-public abstract partial class BehaviorAction : Resource
+public abstract partial class ActionResource : Resource
 {
     /// <summary>
     /// 行为执行操作

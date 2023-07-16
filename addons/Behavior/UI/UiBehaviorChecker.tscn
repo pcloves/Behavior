@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://i3usii4fgo3v"]
 
-[ext_resource type="Script" path="res://addons/Behavior/Editor/UiBehaviorChecker.cs" id="1_434t8"]
-[ext_resource type="Theme" uid="uid://blpde8jj8enqp" path="res://addons/Behavior/Editor/Themes/DeleteButton.tres" id="3_xc5xm"]
+[ext_resource type="Script" path="res://addons/Behavior/UI/UiBehaviorChecker.cs" id="1_434t8"]
+[ext_resource type="Theme" uid="uid://blpde8jj8enqp" path="res://addons/Behavior/UI/Themes/DeleteButton.tres" id="3_xc5xm"]
 
 [node name="Rule" type="HBoxContainer"]
 anchors_preset = 10

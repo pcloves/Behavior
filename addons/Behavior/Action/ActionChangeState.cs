@@ -1,10 +1,11 @@
 ﻿using Godot;
+using ActionResource = Behavior.Define.ActionResource;
 
-namespace Behavior.addons.Behavior.Action;
+namespace Behavior.Action;
 
 [Tool]
 [GlobalClass]
-public partial class ActionChangeState : BehaviorAction
+public partial class ActionChangeState : ActionResource
 {
     [Export] public string NewStateId { get; set; }
 

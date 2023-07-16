@@ -1,10 +1,11 @@
 ﻿using Godot;
+using ActionResource = Behavior.Define.ActionResource;
 
-namespace Behavior.addons.Behavior.Action;
+namespace Behavior.Action;
 
 [Tool]
 [GlobalClass]
-public partial class ActionCreateTimer : BehaviorAction
+public partial class ActionCreateTimer : ActionResource
 {
     /// <summary>
     /// 计算器的名称
@@ -32,6 +33,6 @@ public partial class ActionCreateTimer : BehaviorAction
 
         var timer = behaviorAi.GetTree().CreateTimer(randomSecond);
 
-        timer.Timeout += () => behaviorAi.EmitSignal(BehaviorAi.SignalName.Timeout, TimerName);
+        timer.Timeout += () => behaviorAi.EmitSignal(global::Behavior.BehaviorAi.SignalName.Timeout, TimerName);
     }
 }

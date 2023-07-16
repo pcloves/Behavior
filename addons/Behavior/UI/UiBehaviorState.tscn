@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://cjqfpx4q6fre4"]
 
-[ext_resource type="StyleBox" uid="uid://d1nnkasdi3mot" path="res://addons/Behavior/Editor/Themes/PanelContainerStyles.tres" id="1_j84l0"]
-[ext_resource type="Script" path="res://addons/Behavior/Editor/UiBehaviorState.cs" id="1_xd25k"]
+[ext_resource type="StyleBox" uid="uid://d1nnkasdi3mot" path="res://addons/Behavior/UI/Themes/PanelContainerStyles.tres" id="1_j84l0"]
+[ext_resource type="Script" path="res://addons/Behavior/UI/UiBehaviorState.cs" id="1_xd25k"]
 [ext_resource type="Texture2D" uid="uid://hc73y4q7db4r" path="res://addons/Behavior/Image/angle-small-down.png" id="2_asd1n"]
 [ext_resource type="Texture2D" uid="uid://ck6jru2kit8lw" path="res://addons/Behavior/Image/question-square.png" id="3_8ypdq"]
 [ext_resource type="Texture2D" uid="uid://758ccwqeid61" path="res://addons/Behavior/Image/edit.png" id="3_a4w72"]
 [ext_resource type="Texture2D" uid="uid://cs3mb71pi0t28" path="res://addons/Behavior/Image/angle-small-right.png" id="3_sgh7g"]
-[ext_resource type="Theme" uid="uid://blpde8jj8enqp" path="res://addons/Behavior/Editor/Themes/DeleteButton.tres" id="4_dlgpo"]
+[ext_resource type="Theme" uid="uid://blpde8jj8enqp" path="res://addons/Behavior/UI/Themes/DeleteButton.tres" id="4_dlgpo"]
 
 [node name="UiBehaviorState" type="PanelContainer"]
 anchors_preset = 10

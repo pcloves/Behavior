@@ -1,7 +1,7 @@
-﻿using Godot;
-using System.Linq;
+﻿using System.Linq;
+using Godot;
 
-namespace Behavior.addons.Behavior.Extensions;
+namespace Behavior.Extensions;
 
 public static class NodeExtension
 {

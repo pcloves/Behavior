@@ -1,14 +1,14 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Godot;
 
-namespace Behavior.addons.Behavior.Check;
+namespace Behavior.Define;
 
 /// <summary>
 /// Signal检查器
 /// </summary>
 [Tool]
 [SuppressMessage("ReSharper", "UnusedParameter.Global")]
-public abstract partial class BehaviorChecker : Resource
+public abstract partial class CheckerResource : Resource
 {
     /// <summary>
     /// 对实体和信号进行检查

@@ -1,10 +1,10 @@
-using Behavior.addons.Behavior.Action;
-using Behavior.addons.Behavior.Define;
-using Godot;
 using System;
 using System.Linq;
+using Godot;
+using ActionResource = Behavior.Define.ActionResource;
+using BehaviorUnit = Behavior.Define.BehaviorUnit;
 
-namespace Behavior.addons.Behavior.Editor;
+namespace Behavior.UI;
 
 [Tool]
 public partial class UiBehaviorAction : HBoxContainer
@@ -13,7 +13,7 @@ public partial class UiBehaviorAction : HBoxContainer
     private Button _remove;
 
     public BehaviorUnit BehaviorUnitBelong { get; set; }
-    public BehaviorAction Action { get; set; }
+    public ActionResource ActionResource { get; set; }
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -30,18 +30,18 @@ public partial class UiBehaviorAction : HBoxContainer
 
     private void OnFocusEntered()
     {
-        if (Action != null)
+        if (ActionResource != null)
         {
-            BehaviorPlugin.Plugin.GetEditorInterface().EditResource(Action);
+            BehaviorPlugin.Plugin.GetEditorInterface().EditResource(ActionResource);
         }
     }
 
 
     private void OnRemovePressed()
     {
-        if (Action != null)
+        if (ActionResource != null)
         {
-            BehaviorUnitBelong.Actions.Remove(Action);
+            BehaviorUnitBelong.Actions.Remove(ActionResource);
         }
 
         QueueFree();
@@ -54,9 +54,9 @@ public partial class UiBehaviorAction : HBoxContainer
         var typeName = _optionButton.GetItemMetadata((int)index).AsString();
         var type = Type.GetType(typeName);
 
-        var behaviorAction = (BehaviorAction)Activator.CreateInstance(type);
+        var behaviorAction = (ActionResource)Activator.CreateInstance(type);
 
-        var indexOld = BehaviorUnitBelong.Actions.IndexOf(Action);
+        var indexOld = BehaviorUnitBelong.Actions.IndexOf(ActionResource);
         if (indexOld != -1)
         {
             BehaviorUnitBelong.Actions[indexOld] = behaviorAction;
@@ -66,7 +66,7 @@ public partial class UiBehaviorAction : HBoxContainer
             BehaviorUnitBelong.Actions.Add(behaviorAction);
         }
 
-        Action = behaviorAction;
+        ActionResource = behaviorAction;
         BehaviorPlugin.Plugin.GetEditorInterface().EditResource(behaviorAction);
     }
 
@@ -74,7 +74,7 @@ public partial class UiBehaviorAction : HBoxContainer
     {
         _optionButton.Clear();
 
-        var behaviorTypes = BehaviorPlugin.GetBehaviorTypes(typeof(BehaviorAction))
+        var behaviorTypes = BehaviorPlugin.GetBehaviorTypes(typeof(ActionResource))
             .ToList();
 
         for (var index = 0; index < behaviorTypes.Count; index++)
@@ -84,13 +84,13 @@ public partial class UiBehaviorAction : HBoxContainer
             _optionButton.SetItemMetadata(index, actionType.FullName);
         }
 
-        if (Action == null)
+        if (ActionResource == null)
         {
             _optionButton.Selected = -1;
         }
         else
         {
-            _optionButton.Selected = behaviorTypes.IndexOf(Action.GetType());
+            _optionButton.Selected = behaviorTypes.IndexOf(ActionResource.GetType());
         }
     }
 }

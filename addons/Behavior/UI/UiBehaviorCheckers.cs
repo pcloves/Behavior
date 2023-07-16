@@ -1,14 +1,15 @@
-using Behavior.addons.Behavior.Check;
 using Godot;
 using Godot.Collections;
+using CheckAndOr = Behavior.Check.CheckAndOr;
+using CheckerResource = Behavior.Define.CheckerResource;
 
-namespace Behavior.addons.Behavior.Editor;
+namespace Behavior.UI;
 
 [Tool]
 public partial class UiBehaviorCheckers : PanelContainer
 {
-    private const string UiBehaviorCheckersScenePath = "res://addons/Behavior/Editor/UiBehaviorCheckers.tscn";
-    private const string UiBehaviorCheckerScenePath = "res://addons/Behavior/Editor/UiBehaviorChecker.tscn";
+    private const string UiBehaviorCheckersScenePath = "res://addons/Behavior/UI/UiBehaviorCheckers.tscn";
+    private const string UiBehaviorCheckerScenePath = "res://addons/Behavior/UI/UiBehaviorChecker.tscn";
 
     private static readonly PackedScene UiBehaviorCheckersPackedScene =
         ResourceLoader.Load<PackedScene>(UiBehaviorCheckersScenePath);
@@ -49,7 +50,7 @@ public partial class UiBehaviorCheckers : PanelContainer
         _remove.Pressed += OnRemovePressed;
         _remove.Visible = HasMeta("deleteVisible") && GetMeta("deleteVisible").AsBool();
 
-        foreach (var checker in CheckerAndOr?.Checkers ?? new Array<BehaviorChecker>())
+        foreach (var checker in CheckerAndOr?.Checkers ?? new Array<CheckerResource>())
         {
             if (checker is CheckAndOr checkAndOr)
             {
@@ -82,11 +83,11 @@ public partial class UiBehaviorCheckers : PanelContainer
         QueueFree();
     }
 
-    private void OnAddRulePressed(BehaviorChecker behaviorChecker = null)
+    private void OnAddRulePressed(CheckerResource checkerResource = null)
     {
-        var uiBehaviorChecker = UiBehaviorCheckerPackedScene.Instantiate<UiBehaviorChecker>();
+        var uiBehaviorChecker = UiBehaviorCheckerPackedScene.Instantiate<UI.UiBehaviorChecker>();
 
-        uiBehaviorChecker.Checker = behaviorChecker;
+        uiBehaviorChecker.CheckerResource = checkerResource;
         uiBehaviorChecker.CheckerBelong = CheckerAndOr;
 
         _childContainer.AddChild(uiBehaviorChecker);

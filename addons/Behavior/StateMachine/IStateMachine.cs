@@ -1,6 +1,4 @@
-﻿using Godot;
-
-namespace Behavior.addons.Behavior.StateMachine;
+﻿namespace Behavior.StateMachine;
 
 public interface IStateMachine
 {

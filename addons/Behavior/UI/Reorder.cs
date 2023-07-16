@@ -1,6 +1,6 @@
 using Godot;
 
-namespace Behavior.addons.Behavior.Editor;
+namespace Behavior.UI;
 
 [Tool]
 public partial class Reorder : Button

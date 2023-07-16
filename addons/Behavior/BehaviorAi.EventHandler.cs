@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-namespace Behavior.addons.Behavior;
+namespace Behavior;
 
 public partial class BehaviorAi
 {

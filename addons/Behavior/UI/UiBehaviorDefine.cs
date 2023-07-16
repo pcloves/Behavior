@@ -1,18 +1,19 @@
-using Behavior.addons.Behavior.Extensions;
+using Behavior.Define;
+using Behavior.Extensions;
 using Godot;
 using Godot.Collections;
 
-namespace Behavior.addons.Behavior.Editor;
+namespace Behavior.UI;
 
 [Tool]
 public partial class UiBehaviorDefine : ScrollContainer
 {
-    private const string UiBehaviorStateScenePath = "res://addons/Behavior/Editor/UiBehaviorState.tscn";
+    private const string UiBehaviorStateScenePath = "res://addons/Behavior/UI/UiBehaviorState.tscn";
 
     private static readonly PackedScene UiBehaviorStatePackedScene =
         ResourceLoader.Load<PackedScene>(UiBehaviorStateScenePath);
 
-    public Define.BehaviorDefine BehaviorDefine { get; set; }
+    public BehaviorDefine BehaviorDefine { get; set; }
 
     private VBoxContainer _vBoxContainer;
     private Button _new;
@@ -27,7 +28,7 @@ public partial class UiBehaviorDefine : ScrollContainer
         _new.Pressed += OnNewPressed;
         _new.Disabled = false;
 
-        foreach (var behaviorState in BehaviorDefine?.BehaviorStates ?? new Array<Define.BehaviorState>())
+        foreach (var behaviorState in BehaviorDefine?.BehaviorStates ?? new Array<BehaviorState>())
         {
             AddNewBehaviorState(behaviorState);
         }
@@ -40,7 +41,7 @@ public partial class UiBehaviorDefine : ScrollContainer
         BehaviorDefine = null;
     }
 
-    private void AddNewBehaviorState(Define.BehaviorState state, bool editName = false)
+    private void AddNewBehaviorState(BehaviorState state, bool editName = false)
     {
         var uiBehaviorState = UiBehaviorStatePackedScene.Instantiate<UiBehaviorState>();
         uiBehaviorState.BehaviorDefine = BehaviorDefine;
@@ -55,7 +56,7 @@ public partial class UiBehaviorDefine : ScrollContainer
 
     private void OnNewPressed()
     {
-        var behaviorState = new Define.BehaviorState();
+        var behaviorState = new BehaviorState();
         BehaviorDefine.BehaviorStates.Add(behaviorState);
 
         AddNewBehaviorState(behaviorState, true);

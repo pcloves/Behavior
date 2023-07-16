@@ -1,16 +1,16 @@
-using Behavior.addons.Behavior.Action;
-using Behavior.addons.Behavior.Define;
-using Behavior.addons.Behavior.Extensions;
+using Behavior.Extensions;
 using Godot;
 using Godot.Collections;
+using ActionResource = Behavior.Define.ActionResource;
+using BehaviorUnit = Behavior.Define.BehaviorUnit;
 
-namespace Behavior.addons.Behavior.Editor;
+namespace Behavior.UI;
 
 [Tool]
 public partial class UiBehaviorUnit : PanelContainer
 {
-    private const string UiBehaviorCheckersScenePath = "res://addons/Behavior/Editor/UiBehaviorCheckers.tscn";
-    private const string UiBehaviorActionScenePath = "res://addons/Behavior/Editor/UiBehaviorAction.tscn";
+    private const string UiBehaviorCheckersScenePath = "res://addons/Behavior/UI/UiBehaviorCheckers.tscn";
+    private const string UiBehaviorActionScenePath = "res://addons/Behavior/UI/UiBehaviorAction.tscn";
 
     private static readonly PackedScene UiBehaviorCheckersPackedScene =
         ResourceLoader.Load<PackedScene>(UiBehaviorCheckersScenePath);
@@ -22,7 +22,7 @@ public partial class UiBehaviorUnit : PanelContainer
 
     private OptionButton _signalOption;
 
-    private UiBehaviorCheckers _checkers;
+    private UI.UiBehaviorCheckers _checkers;
     private HBoxContainer _hBoxContainer;
     private VSeparator _checkersActionsSeparator;
 
@@ -33,7 +33,7 @@ public partial class UiBehaviorUnit : PanelContainer
 
     private Button _remove;
 
-    public UiBehaviorState UiBehaviorStateBelong { get; set; }
+    public UI.UiBehaviorState UiBehaviorStateBelong { get; set; }
     public BehaviorUnit BehaviorUnit { get; set; }
 
     public override void _Ready()
@@ -44,12 +44,12 @@ public partial class UiBehaviorUnit : PanelContainer
         _signalOption.ItemSelected += OnSignalOptionItemSelected;
 
         _signalOption.Clear();
-        foreach (var (signal, id) in BehaviorAi.SignalName2Id)
+        foreach (var (signal, id) in global::Behavior.BehaviorAi.SignalName2Id)
         {
             _signalOption.AddItem(signal, id);
         }
 
-        _signalOption.Select(string.IsNullOrEmpty(BehaviorUnit?.Signal) ? -1 : _signalOption.GetItemIndex(BehaviorAi.SignalName2Id[BehaviorUnit.Signal]));
+        _signalOption.Select(string.IsNullOrEmpty(BehaviorUnit?.Signal) ? -1 : _signalOption.GetItemIndex(global::Behavior.BehaviorAi.SignalName2Id[BehaviorUnit.Signal]));
 
         _hBoxContainer = GetNodeOrNull<HBoxContainer>("%HBoxContainer");
         _checkersActionsSeparator = GetNodeOrNull<VSeparator>("%CheckersActionsSeparator");
@@ -75,12 +75,12 @@ public partial class UiBehaviorUnit : PanelContainer
     private void OnSignalOptionItemSelected(long index)
     {
         var id = _signalOption.GetItemId((int)index);
-        BehaviorUnit.Signal = BehaviorAi.SignalId2Name[id];
+        BehaviorUnit.Signal = global::Behavior.BehaviorAi.SignalId2Name[id];
     }
 
     private void InitUiBehaviorAction()
     {
-        foreach (var action in BehaviorUnit?.Actions ?? new Array<BehaviorAction>())
+        foreach (var action in BehaviorUnit?.Actions ?? new Array<ActionResource>())
         {
             OnAddActionPressed(action);
         }
@@ -93,7 +93,7 @@ public partial class UiBehaviorUnit : PanelContainer
 
     private void InitUiBehaviorCheckers()
     {
-        _checkers = UiBehaviorCheckersPackedScene.Instantiate<UiBehaviorCheckers>();
+        _checkers = UiBehaviorCheckersPackedScene.Instantiate<UI.UiBehaviorCheckers>();
         _checkers.CheckerAndOr = BehaviorUnit?.Checker;
         _checkers.CheckerAndOrBelong = null;
         _checkers.SizeFlagsHorizontal = SizeFlags.Fill | SizeFlags.Expand;
@@ -108,12 +108,12 @@ public partial class UiBehaviorUnit : PanelContainer
         QueueFree();
     }
 
-    private void OnAddActionPressed(BehaviorAction behaviorAction = null)
+    private void OnAddActionPressed(ActionResource actionResource = null)
     {
         var uiBehaviorAction = UiBehaviorActionPackedScene.Instantiate<UiBehaviorAction>();
 
         uiBehaviorAction.BehaviorUnitBelong = BehaviorUnit;
-        uiBehaviorAction.Action = behaviorAction;
+        uiBehaviorAction.ActionResource = actionResource;
 
         _actions.AddChildBefore(uiBehaviorAction, _addAction);
     }

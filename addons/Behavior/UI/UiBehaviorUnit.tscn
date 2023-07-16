@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://ed8s1xkq38yb"]
 
-[ext_resource type="Script" path="res://addons/Behavior/Editor/UiBehaviorUnit.cs" id="1_0kk22"]
-[ext_resource type="StyleBox" uid="uid://d1nnkasdi3mot" path="res://addons/Behavior/Editor/Themes/PanelContainerStyles.tres" id="1_bs3cq"]
+[ext_resource type="Script" path="res://addons/Behavior/UI/UiBehaviorUnit.cs" id="1_0kk22"]
+[ext_resource type="StyleBox" uid="uid://d1nnkasdi3mot" path="res://addons/Behavior/UI/Themes/PanelContainerStyles.tres" id="1_bs3cq"]
 [ext_resource type="Texture2D" uid="uid://ccbvkgcoxebvb" path="res://addons/Behavior/Image/plus.png" id="1_wxqpx"]
 [ext_resource type="Texture2D" uid="uid://bjmqh46gjd0tv" path="res://addons/Behavior/Image/icons8-drag-reorder-32.png" id="3_1u3iw"]
-[ext_resource type="Script" path="res://addons/Behavior/Editor/Reorder.cs" id="4_buug1"]
-[ext_resource type="Theme" uid="uid://blpde8jj8enqp" path="res://addons/Behavior/Editor/Themes/DeleteButton.tres" id="4_rfo5t"]
+[ext_resource type="Script" path="res://addons/Behavior/UI/Reorder.cs" id="4_buug1"]
+[ext_resource type="Theme" uid="uid://blpde8jj8enqp" path="res://addons/Behavior/UI/Themes/DeleteButton.tres" id="4_rfo5t"]
 
 [node name="UiBehaviorUnit" type="PanelContainer"]
 anchors_preset = 10

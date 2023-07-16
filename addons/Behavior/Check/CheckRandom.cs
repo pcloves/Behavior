@@ -1,16 +1,17 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 using Godot.Collections;
-using System;
+using CheckerResource = Behavior.Define.CheckerResource;
 
-namespace Behavior.addons.Behavior.Check;
+namespace Behavior.Check;
 
 [Tool]
 [GlobalClass]
-public partial class CheckRandom : BehaviorChecker
+public partial class CheckRandom : CheckerResource
 {
     private static readonly Random Random = new();
 
-    [Export] public Array<BehaviorChecker> Checkers { get; set; } = new();
+    [Export] public Array<CheckerResource> Checkers { get; set; } = new();
 
     public override bool Check(BehaviorAi behaviorAi, StringName signal, params Variant[] signalArgs)
     {
