@@ -33,6 +33,6 @@ public partial class ActionCreateTimer : ActionResource
 
         var timer = behaviorAi.GetTree().CreateTimer(randomSecond);
 
-        timer.Timeout += () => behaviorAi.EmitSignal(global::Behavior.BehaviorAi.SignalName.Timeout, TimerName);
+        timer.Timeout += () => behaviorAi.EmitSignal(BehaviorAi.SignalName.Timeout, TimerName);
     }
 }

@@ -1,8 +1,7 @@
 using System;
 using System.Linq;
+using Behavior.Define;
 using Godot;
-using ActionResource = Behavior.Define.ActionResource;
-using BehaviorUnit = Behavior.Define.BehaviorUnit;
 
 namespace Behavior.UI;
 
@@ -54,7 +53,7 @@ public partial class UiBehaviorAction : HBoxContainer
         var typeName = _optionButton.GetItemMetadata((int)index).AsString();
         var type = Type.GetType(typeName);
 
-        var behaviorAction = (ActionResource)Activator.CreateInstance(type);
+        var behaviorAction = (ActionResource)Activator.CreateInstance(type!);
 
         var indexOld = BehaviorUnitBelong.Actions.IndexOf(ActionResource);
         if (indexOld != -1)

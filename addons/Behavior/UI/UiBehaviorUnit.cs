@@ -1,8 +1,7 @@
+using Behavior.Define;
 using Behavior.Extensions;
 using Godot;
 using Godot.Collections;
-using ActionResource = Behavior.Define.ActionResource;
-using BehaviorUnit = Behavior.Define.BehaviorUnit;
 
 namespace Behavior.UI;
 
@@ -22,7 +21,7 @@ public partial class UiBehaviorUnit : PanelContainer
 
     private OptionButton _signalOption;
 
-    private UI.UiBehaviorCheckers _checkers;
+    private UiBehaviorCheckers _checkers;
     private HBoxContainer _hBoxContainer;
     private VSeparator _checkersActionsSeparator;
 
@@ -33,7 +32,7 @@ public partial class UiBehaviorUnit : PanelContainer
 
     private Button _remove;
 
-    public UI.UiBehaviorState UiBehaviorStateBelong { get; set; }
+    public UiBehaviorState UiBehaviorStateBelong { get; set; }
     public BehaviorUnit BehaviorUnit { get; set; }
 
     public override void _Ready()
@@ -44,12 +43,12 @@ public partial class UiBehaviorUnit : PanelContainer
         _signalOption.ItemSelected += OnSignalOptionItemSelected;
 
         _signalOption.Clear();
-        foreach (var (signal, id) in global::Behavior.BehaviorAi.SignalName2Id)
+        foreach (var (signal, id) in BehaviorAi.SignalName2Id)
         {
             _signalOption.AddItem(signal, id);
         }
 
-        _signalOption.Select(string.IsNullOrEmpty(BehaviorUnit?.Signal) ? -1 : _signalOption.GetItemIndex(global::Behavior.BehaviorAi.SignalName2Id[BehaviorUnit.Signal]));
+        _signalOption.Select(string.IsNullOrEmpty(BehaviorUnit?.Signal) ? -1 : _signalOption.GetItemIndex(BehaviorAi.SignalName2Id[BehaviorUnit.Signal]));
 
         _hBoxContainer = GetNodeOrNull<HBoxContainer>("%HBoxContainer");
         _checkersActionsSeparator = GetNodeOrNull<VSeparator>("%CheckersActionsSeparator");
@@ -75,7 +74,7 @@ public partial class UiBehaviorUnit : PanelContainer
     private void OnSignalOptionItemSelected(long index)
     {
         var id = _signalOption.GetItemId((int)index);
-        BehaviorUnit.Signal = global::Behavior.BehaviorAi.SignalId2Name[id];
+        BehaviorUnit.Signal = BehaviorAi.SignalId2Name[id];
     }
 
     private void InitUiBehaviorAction()
@@ -93,7 +92,7 @@ public partial class UiBehaviorUnit : PanelContainer
 
     private void InitUiBehaviorCheckers()
     {
-        _checkers = UiBehaviorCheckersPackedScene.Instantiate<UI.UiBehaviorCheckers>();
+        _checkers = UiBehaviorCheckersPackedScene.Instantiate<UiBehaviorCheckers>();
         _checkers.CheckerAndOr = BehaviorUnit?.Checker;
         _checkers.CheckerAndOrBelong = null;
         _checkers.SizeFlagsHorizontal = SizeFlags.Fill | SizeFlags.Expand;

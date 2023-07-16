@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
+using Behavior.Check;
+using Behavior.Define;
 using Godot;
-using CheckAndOr = Behavior.Check.CheckAndOr;
-using CheckerResource = Behavior.Define.CheckerResource;
 
 namespace Behavior.UI;
 
@@ -52,7 +52,7 @@ public partial class UiBehaviorChecker : HBoxContainer
         var typeName = _optionButton.GetItemMetadata((int)index).AsString();
         var type = Type.GetType(typeName);
 
-        var behaviorChecker = (CheckerResource)Activator.CreateInstance(type);
+        var behaviorChecker = (CheckerResource)Activator.CreateInstance(type!);
 
         var indexOld = CheckerBelong.Checkers.IndexOf(CheckerResource);
         if (indexOld != -1)

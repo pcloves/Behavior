@@ -1,7 +1,7 @@
+using Behavior.Check;
+using Behavior.Define;
 using Godot;
 using Godot.Collections;
-using CheckAndOr = Behavior.Check.CheckAndOr;
-using CheckerResource = Behavior.Define.CheckerResource;
 
 namespace Behavior.UI;
 
@@ -85,7 +85,7 @@ public partial class UiBehaviorCheckers : PanelContainer
 
     private void OnAddRulePressed(CheckerResource checkerResource = null)
     {
-        var uiBehaviorChecker = UiBehaviorCheckerPackedScene.Instantiate<UI.UiBehaviorChecker>();
+        var uiBehaviorChecker = UiBehaviorCheckerPackedScene.Instantiate<UiBehaviorChecker>();
 
         uiBehaviorChecker.CheckerResource = checkerResource;
         uiBehaviorChecker.CheckerBelong = CheckerAndOr;

@@ -1,9 +1,7 @@
 using System.Linq;
+using Behavior.Define;
 using Godot;
 using Godot.Collections;
-using BehaviorDefine = Behavior.Define.BehaviorDefine;
-using BehaviorState = Behavior.Define.BehaviorState;
-using BehaviorUnit = Behavior.Define.BehaviorUnit;
 
 namespace Behavior.UI;
 
