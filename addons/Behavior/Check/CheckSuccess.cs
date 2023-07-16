@@ -1,5 +1,5 @@
-﻿using Godot;
-using CheckerResource = Behavior.Define.CheckerResource;
+﻿using Behavior.Define;
+using Godot;
 
 namespace Behavior.Check;
 

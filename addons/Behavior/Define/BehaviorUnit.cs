@@ -1,6 +1,6 @@
+using Behavior.Check;
 using Godot;
 using Godot.Collections;
-using CheckAndOr = Behavior.Check.CheckAndOr;
 
 namespace Behavior.Define;
 

@@ -17,17 +17,17 @@ public partial class BehaviorState : Resource, IState
         return $"{nameof(Id)}:{Id}, {nameof(Active)}:{Active}, {nameof(Units)}:{Units.Count}";
     }
 
-    public void OnStateEnter(global::Behavior.BehaviorAi behaviorAi)
+    public void OnStateEnter(BehaviorAi behaviorAi)
     {
-        behaviorAi.EmitSignal(global::Behavior.BehaviorAi.SignalName.StateEnter, Id);
+        behaviorAi.EmitSignal(BehaviorAi.SignalName.StateEnter, Id);
     }
 
-    public void OnStateExit(global::Behavior.BehaviorAi behaviorAi)
+    public void OnStateExit(BehaviorAi behaviorAi)
     {
-        behaviorAi.EmitSignal(global::Behavior.BehaviorAi.SignalName.StateExit, Id);
+        behaviorAi.EmitSignal(BehaviorAi.SignalName.StateExit, Id);
     }
 
-    public void OnSignal(global::Behavior.BehaviorAi behaviorAi, StringName signal, params Variant[] args)
+    public void OnSignal(BehaviorAi behaviorAi, StringName signal, params Variant[] args)
     {
         var units = Units.Where(unit => unit.Signal.Equals(signal));
         
