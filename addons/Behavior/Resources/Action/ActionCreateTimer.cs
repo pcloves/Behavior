@@ -4,7 +4,7 @@ namespace Behavior.Resources.Action;
 
 [Tool]
 [GlobalClass]
-public partial class ActionCreateTimer : Define.Action
+public partial class ActionCreateTimer : Define.BehaviorAction
 {
     /// <summary>
     /// 计算器的名称

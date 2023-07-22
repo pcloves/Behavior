@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Behavior.Extensions;
+using Behavior.Resources.Define;
 using Godot;
-using BehaviorDefine = Behavior.Resources.Define.BehaviorDefine;
 
 namespace Behavior.UI;
 

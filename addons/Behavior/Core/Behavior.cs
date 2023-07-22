@@ -12,7 +12,7 @@ public partial class Behavior : Node
     [Export(PropertyHint.ResourceType, hintString: nameof(BehaviorDefine))]
     public BehaviorDefine BehaviorDefine { get; set; }
 
-    private State _stateCurrent;
+    private BehaviorState _stateCurrent;
 
     private readonly Blackboard _blackboard = new();
 

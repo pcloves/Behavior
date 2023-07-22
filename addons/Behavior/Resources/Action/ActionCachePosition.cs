@@ -7,7 +7,7 @@ namespace Behavior.Resources.Action;
 
 [GlobalClass]
 [Tool]
-public partial class ActionCachePosition : Define.Action
+public partial class ActionCachePosition : Define.BehaviorAction
 {
     [Export] public string Key;
     [Export] public Type PositionType;

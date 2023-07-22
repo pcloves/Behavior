@@ -7,7 +7,7 @@ namespace Behavior.Resources.Action;
 
 [GlobalClass]
 [Tool]
-public partial class ActionBlackboardRemove : Define.Action
+public partial class ActionBlackboardRemove : Define.BehaviorAction
 {
     [Export] public string Key;
 

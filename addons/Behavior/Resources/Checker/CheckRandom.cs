@@ -3,15 +3,15 @@ using Behavior.Resources.Define;
 using Godot;
 using Godot.Collections;
 
-namespace Behavior.Resources.Check;
+namespace Behavior.Resources.Checker;
 
 [Tool]
 [GlobalClass]
-public partial class CheckRandom : Checker
+public partial class CheckRandom : BehaviorChecker
 {
     private static readonly Random Random = new();
 
-    [Export] public Array<Checker> Checkers { get; set; } = new();
+    [Export] public Array<BehaviorChecker> Checkers { get; set; } = new();
 
     public override bool Check(Core.Behavior behavior, StringName signal, params Variant[] signalArgs)
     {

@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
+using Behavior.Resources.Checker;
 using Behavior.Resources.Define;
 using Godot;
-using CheckAndOr = Behavior.Resources.Check.CheckAndOr;
 
 namespace Behavior.UI;
 
@@ -13,7 +13,7 @@ public partial class UiBehaviorChecker : HBoxContainer
     private Button _remove;
 
     public CheckAndOr CheckerBelong { get; set; }
-    public Checker Checker { get; set; }
+    public BehaviorChecker Checker { get; set; }
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -52,7 +52,7 @@ public partial class UiBehaviorChecker : HBoxContainer
         var typeName = _optionButton.GetItemMetadata((int)index).AsString();
         var type = Type.GetType(typeName);
 
-        var behaviorChecker = (Checker)Activator.CreateInstance(type!);
+        var behaviorChecker = (BehaviorChecker)Activator.CreateInstance(type!);
 
         var indexOld = CheckerBelong.Checkers.IndexOf(Checker);
         if (indexOld != -1)
@@ -72,7 +72,7 @@ public partial class UiBehaviorChecker : HBoxContainer
     {
         _optionButton.Clear();
 
-        var behaviorTypes = BehaviorPlugin.GetBehaviorTypes(typeof(Checker))
+        var behaviorTypes = BehaviorPlugin.GetBehaviorTypes(typeof(BehaviorChecker))
             .Where(type => type != typeof(CheckAndOr))
             .ToList();
 

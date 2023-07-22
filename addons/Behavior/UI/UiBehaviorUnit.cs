@@ -79,7 +79,7 @@ public partial class UiBehaviorUnit : PanelContainer
 
     private void InitUiBehaviorAction()
     {
-        foreach (var action in BehaviorUnit?.Actions ?? new Array<Action>())
+        foreach (var action in BehaviorUnit?.Actions ?? new Array<BehaviorAction>())
         {
             OnAddActionPressed(action);
         }
@@ -107,7 +107,7 @@ public partial class UiBehaviorUnit : PanelContainer
         QueueFree();
     }
 
-    private void OnAddActionPressed(Action action = null)
+    private void OnAddActionPressed(BehaviorAction action = null)
     {
         var uiBehaviorAction = UiBehaviorActionPackedScene.Instantiate<UiBehaviorAction>();
 

@@ -1,12 +1,11 @@
 using System.Linq;
-using Behavior.Core;
 using Godot;
 using Godot.Collections;
 
 namespace Behavior.Resources.Define;
 
 [Tool]
-public partial class State : Resource
+public partial class BehaviorState : Resource
 {
     [Export] public string Id { get; set; } = "New Behavior State";
     [Export] public bool Active { get; set; } = true;

@@ -1,7 +1,7 @@
+using Behavior.Resources.Checker;
 using Behavior.Resources.Define;
 using Godot;
 using Godot.Collections;
-using CheckAndOr = Behavior.Resources.Check.CheckAndOr;
 
 namespace Behavior.UI;
 
@@ -50,7 +50,7 @@ public partial class UiBehaviorCheckers : PanelContainer
         _remove.Pressed += OnRemovePressed;
         _remove.Visible = HasMeta("deleteVisible") && GetMeta("deleteVisible").AsBool();
 
-        foreach (var checker in CheckerAndOr?.Checkers ?? new Array<Checker>())
+        foreach (var checker in CheckerAndOr?.Checkers ?? new Array<BehaviorChecker>())
         {
             if (checker is CheckAndOr checkAndOr)
             {
@@ -83,7 +83,7 @@ public partial class UiBehaviorCheckers : PanelContainer
         QueueFree();
     }
 
-    private void OnAddRulePressed(Checker checker = null)
+    private void OnAddRulePressed(BehaviorChecker checker = null)
     {
         var uiBehaviorChecker = UiBehaviorCheckerPackedScene.Instantiate<UiBehaviorChecker>();
 

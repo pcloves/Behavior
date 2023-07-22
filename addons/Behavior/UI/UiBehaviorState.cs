@@ -2,8 +2,6 @@ using System.Linq;
 using Behavior.Resources.Define;
 using Godot;
 using Godot.Collections;
-using BehaviorDefine = Behavior.Resources.Define.BehaviorDefine;
-using BehaviorUnit = Behavior.Resources.Define.BehaviorUnit;
 
 namespace Behavior.UI;
 
@@ -16,7 +14,7 @@ public partial class UiBehaviorState : PanelContainer
         UiBehaviorUnitPackedScene = ResourceLoader.Load<PackedScene>(UiBehaviorUnitPath);
 
     public BehaviorDefine BehaviorDefine { get; set; }
-    public State BehaviorState { get; set; }
+    public BehaviorState BehaviorState { get; set; }
 
     private VBoxContainer _vBoxContainer;
 

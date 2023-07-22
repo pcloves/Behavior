@@ -7,7 +7,7 @@ namespace Behavior.Resources.Action;
 /// </summary>
 [Tool]
 [GlobalClass]
-public partial class ActionShowBubble : Define.Action
+public partial class ActionShowBubble : Define.BehaviorAction
 {
     [Export] public string Content { get; set; }
 

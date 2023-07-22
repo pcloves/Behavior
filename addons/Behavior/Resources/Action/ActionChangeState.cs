@@ -4,7 +4,7 @@ namespace Behavior.Resources.Action;
 
 [Tool]
 [GlobalClass]
-public partial class ActionChangeState : Define.Action
+public partial class ActionChangeState : Define.BehaviorAction
 {
     [Export] public string NewStateId { get; set; }
 

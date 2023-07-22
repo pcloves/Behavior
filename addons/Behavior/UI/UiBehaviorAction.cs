@@ -1,8 +1,7 @@
 using System;
 using System.Linq;
+using Behavior.Resources.Define;
 using Godot;
-using Action = Behavior.Resources.Define.Action;
-using BehaviorUnit = Behavior.Resources.Define.BehaviorUnit;
 
 namespace Behavior.UI;
 
@@ -13,7 +12,7 @@ public partial class UiBehaviorAction : HBoxContainer
     private Button _remove;
 
     public BehaviorUnit BehaviorUnitBelong { get; set; }
-    public Action Action { get; set; }
+    public BehaviorAction Action { get; set; }
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -54,7 +53,7 @@ public partial class UiBehaviorAction : HBoxContainer
         var typeName = _optionButton.GetItemMetadata((int)index).AsString();
         var type = Type.GetType(typeName);
 
-        var behaviorAction = (Action)Activator.CreateInstance(type!);
+        var behaviorAction = (BehaviorAction)Activator.CreateInstance(type!);
 
         var indexOld = BehaviorUnitBelong.Actions.IndexOf(Action);
         if (indexOld != -1)
@@ -74,7 +73,7 @@ public partial class UiBehaviorAction : HBoxContainer
     {
         _optionButton.Clear();
 
-        var behaviorTypes = BehaviorPlugin.GetBehaviorTypes(typeof(Action))
+        var behaviorTypes = BehaviorPlugin.GetBehaviorTypes(typeof(BehaviorAction))
             .ToList();
 
         for (var index = 0; index < behaviorTypes.Count; index++)
