@@ -28,8 +28,11 @@ public partial class BehaviorState : Resource
 
     public void OnSignal(Core.Behavior behavior, StringName signal, params Variant[] args)
     {
-        var units = Units.Where(unit => unit.Signal.Equals(signal));
-        
+        var units = Units.Where(unit => unit.Signal.Equals(signal)).ToArray();
+
+        if (units.Length == 0) return;
+
+        GD.Print($" signal:{signal}");
         foreach (var unit in units)
         {
             var checkers = unit.Checker;
@@ -39,6 +42,7 @@ public partial class BehaviorState : Resource
 
             foreach (var action in actions)
             {
+                GD.Print($"  action:{action}");
                 action.Execute(behavior, signal, args);
             }
         }
