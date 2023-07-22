@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
+using Behavior.Resources.Define;
 using Godot;
 using CheckAndOr = Behavior.Resources.Check.CheckAndOr;
-using CheckerResource = Behavior.Resources.Define.CheckerResource;
 
 namespace Behavior.UI;
 
@@ -13,7 +13,7 @@ public partial class UiBehaviorChecker : HBoxContainer
     private Button _remove;
 
     public CheckAndOr CheckerBelong { get; set; }
-    public CheckerResource CheckerResource { get; set; }
+    public Checker Checker { get; set; }
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -30,17 +30,17 @@ public partial class UiBehaviorChecker : HBoxContainer
 
     private void OnFocusEntered()
     {
-        if (CheckerResource != null)
+        if (Checker != null)
         {
-            BehaviorPlugin.Plugin.GetEditorInterface().EditResource(CheckerResource);
+            BehaviorPlugin.Plugin.GetEditorInterface().EditResource(Checker);
         }
     }
 
     private void OnRemovePressed()
     {
-        if (CheckerResource != null)
+        if (Checker != null)
         {
-            CheckerBelong.Checkers.Remove(CheckerResource);
+            CheckerBelong.Checkers.Remove(Checker);
         }
 
         QueueFree();
@@ -52,9 +52,9 @@ public partial class UiBehaviorChecker : HBoxContainer
         var typeName = _optionButton.GetItemMetadata((int)index).AsString();
         var type = Type.GetType(typeName);
 
-        var behaviorChecker = (CheckerResource)Activator.CreateInstance(type!);
+        var behaviorChecker = (Checker)Activator.CreateInstance(type!);
 
-        var indexOld = CheckerBelong.Checkers.IndexOf(CheckerResource);
+        var indexOld = CheckerBelong.Checkers.IndexOf(Checker);
         if (indexOld != -1)
         {
             CheckerBelong.Checkers[indexOld] = behaviorChecker;
@@ -64,15 +64,15 @@ public partial class UiBehaviorChecker : HBoxContainer
             CheckerBelong.Checkers.Add(behaviorChecker);
         }
 
-        CheckerResource = behaviorChecker;
-        BehaviorPlugin.Plugin.GetEditorInterface().EditResource(CheckerResource);
+        Checker = behaviorChecker;
+        BehaviorPlugin.Plugin.GetEditorInterface().EditResource(Checker);
     }
 
     private void InitOptionButton()
     {
         _optionButton.Clear();
 
-        var behaviorTypes = BehaviorPlugin.GetBehaviorTypes(typeof(CheckerResource))
+        var behaviorTypes = BehaviorPlugin.GetBehaviorTypes(typeof(Checker))
             .Where(type => type != typeof(CheckAndOr))
             .ToList();
 
@@ -83,13 +83,13 @@ public partial class UiBehaviorChecker : HBoxContainer
             _optionButton.SetItemMetadata(index, checkerType.FullName);
         }
 
-        if (CheckerResource == null)
+        if (Checker == null)
         {
             _optionButton.Selected = -1;
         }
         else
         {
-            _optionButton.Selected = behaviorTypes.IndexOf(CheckerResource.GetType());
+            _optionButton.Selected = behaviorTypes.IndexOf(Checker.GetType());
         }
     }
 }

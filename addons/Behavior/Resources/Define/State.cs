@@ -6,7 +6,7 @@ using Godot.Collections;
 namespace Behavior.Resources.Define;
 
 [Tool]
-public partial class StateResource : Resource, IState
+public partial class State : Resource
 {
     [Export] public string Id { get; set; } = "New Behavior State";
     [Export] public bool Active { get; set; } = true;

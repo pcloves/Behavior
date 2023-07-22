@@ -7,7 +7,7 @@ namespace Behavior.Resources.Define;
 public partial class BehaviorDefine : Resource
 {
     [Export] public string Name;
-    [Export] public Array<StateResource> BehaviorStates { get; set; } = new();
+    [Export] public Array<State> BehaviorStates { get; set; } = new();
 
     public override string ToString()
     {

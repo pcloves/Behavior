@@ -16,7 +16,7 @@ public partial class UiBehaviorState : PanelContainer
         UiBehaviorUnitPackedScene = ResourceLoader.Load<PackedScene>(UiBehaviorUnitPath);
 
     public BehaviorDefine BehaviorDefine { get; set; }
-    public StateResource BehaviorState { get; set; }
+    public State BehaviorState { get; set; }
 
     private VBoxContainer _vBoxContainer;
 

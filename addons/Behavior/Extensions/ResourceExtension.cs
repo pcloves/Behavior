@@ -12,7 +12,7 @@ public static class ResourceExtension
     }
 
 
-    public static Node ToNode(this StateResource behaviorState)
+    public static Node ToNode(this State behaviorState)
     {
         return null;
     }

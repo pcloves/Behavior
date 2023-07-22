@@ -1,11 +1,10 @@
 ﻿using Godot;
-using ActionResource = Behavior.Resources.Define.ActionResource;
 
 namespace Behavior.Resources.Action;
 
 [Tool]
 [GlobalClass]
-public partial class ActionCreateTimer : ActionResource
+public partial class ActionCreateTimer : Define.Action
 {
     /// <summary>
     /// 计算器的名称

@@ -1,9 +1,8 @@
-﻿using Behavior.Core;
-using Godot;
+﻿using Godot;
 
 namespace Behavior.Resources.Define;
 
-public abstract partial class CheckerResource : Resource, IChecker
+public abstract partial class Checker : Resource
 {
     public abstract bool Check(Core.Behavior behavior, StringName signal, params Variant[] signalArgs);
 

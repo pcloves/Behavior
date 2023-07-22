@@ -7,16 +7,25 @@ using BehaviorDefine = Behavior.Resources.Define.BehaviorDefine;
 namespace Behavior.Core;
 
 [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
-public partial class Behavior : Node, IStateMachine
+public partial class Behavior : Node
 {
     [Export(PropertyHint.ResourceType, hintString: nameof(BehaviorDefine))]
     public BehaviorDefine BehaviorDefine { get; set; }
 
-    private StateResource _stateCurrent;
+    private State _stateCurrent;
+
+    private readonly Blackboard _blackboard = new();
 
     public override void _EnterTree()
     {
+        AddChild(_blackboard);
         ChangeState(BehaviorDefine?.BehaviorStates[0].Id);
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        _blackboard.ClearData();
     }
 
     [SuppressMessage("ReSharper", "InvertIf")]

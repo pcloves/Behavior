@@ -1,5 +1,4 @@
 using Godot;
-using ActionResource = Behavior.Resources.Define.ActionResource;
 
 namespace Behavior.Resources.Action;
 
@@ -8,7 +7,7 @@ namespace Behavior.Resources.Action;
 /// </summary>
 [Tool]
 [GlobalClass]
-public partial class ActionShowBubble : ActionResource
+public partial class ActionShowBubble : Define.Action
 {
     [Export] public string Content { get; set; }
 

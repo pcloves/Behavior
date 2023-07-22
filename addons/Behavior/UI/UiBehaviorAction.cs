@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using Godot;
-using ActionResource = Behavior.Resources.Define.ActionResource;
+using Action = Behavior.Resources.Define.Action;
 using BehaviorUnit = Behavior.Resources.Define.BehaviorUnit;
 
 namespace Behavior.UI;
@@ -13,7 +13,7 @@ public partial class UiBehaviorAction : HBoxContainer
     private Button _remove;
 
     public BehaviorUnit BehaviorUnitBelong { get; set; }
-    public ActionResource ActionResource { get; set; }
+    public Action Action { get; set; }
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -30,18 +30,18 @@ public partial class UiBehaviorAction : HBoxContainer
 
     private void OnFocusEntered()
     {
-        if (ActionResource != null)
+        if (Action != null)
         {
-            BehaviorPlugin.Plugin.GetEditorInterface().EditResource(ActionResource);
+            BehaviorPlugin.Plugin.GetEditorInterface().EditResource(Action);
         }
     }
 
 
     private void OnRemovePressed()
     {
-        if (ActionResource != null)
+        if (Action != null)
         {
-            BehaviorUnitBelong.Actions.Remove(ActionResource);
+            BehaviorUnitBelong.Actions.Remove(Action);
         }
 
         QueueFree();
@@ -54,9 +54,9 @@ public partial class UiBehaviorAction : HBoxContainer
         var typeName = _optionButton.GetItemMetadata((int)index).AsString();
         var type = Type.GetType(typeName);
 
-        var behaviorAction = (ActionResource)Activator.CreateInstance(type!);
+        var behaviorAction = (Action)Activator.CreateInstance(type!);
 
-        var indexOld = BehaviorUnitBelong.Actions.IndexOf(ActionResource);
+        var indexOld = BehaviorUnitBelong.Actions.IndexOf(Action);
         if (indexOld != -1)
         {
             BehaviorUnitBelong.Actions[indexOld] = behaviorAction;
@@ -66,7 +66,7 @@ public partial class UiBehaviorAction : HBoxContainer
             BehaviorUnitBelong.Actions.Add(behaviorAction);
         }
 
-        ActionResource = behaviorAction;
+        Action = behaviorAction;
         BehaviorPlugin.Plugin.GetEditorInterface().EditResource(behaviorAction);
     }
 
@@ -74,7 +74,7 @@ public partial class UiBehaviorAction : HBoxContainer
     {
         _optionButton.Clear();
 
-        var behaviorTypes = BehaviorPlugin.GetBehaviorTypes(typeof(ActionResource))
+        var behaviorTypes = BehaviorPlugin.GetBehaviorTypes(typeof(Action))
             .ToList();
 
         for (var index = 0; index < behaviorTypes.Count; index++)
@@ -84,13 +84,13 @@ public partial class UiBehaviorAction : HBoxContainer
             _optionButton.SetItemMetadata(index, actionType.FullName);
         }
 
-        if (ActionResource == null)
+        if (Action == null)
         {
             _optionButton.Selected = -1;
         }
         else
         {
-            _optionButton.Selected = behaviorTypes.IndexOf(ActionResource.GetType());
+            _optionButton.Selected = behaviorTypes.IndexOf(Action.GetType());
         }
     }
 }

@@ -3,7 +3,7 @@ using Godot;
 
 namespace Behavior.Resources.Define;
 
-public abstract partial class ActionResource : Resource, IAction
+public abstract partial class Action : Resource
 {
     public abstract void Execute(Core.Behavior behavior, StringName signal, params Variant[] signalArgs);
 

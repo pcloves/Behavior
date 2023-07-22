@@ -29,7 +29,7 @@ public partial class UiBehaviorDefine : ScrollContainer
         _new.Pressed += OnNewPressed;
         _new.Disabled = false;
 
-        foreach (var behaviorState in BehaviorDefine?.BehaviorStates ?? new Array<StateResource>())
+        foreach (var behaviorState in BehaviorDefine?.BehaviorStates ?? new Array<State>())
         {
             AddNewBehaviorState(behaviorState);
         }
@@ -42,7 +42,7 @@ public partial class UiBehaviorDefine : ScrollContainer
         BehaviorDefine = null;
     }
 
-    private void AddNewBehaviorState(StateResource state, bool editName = false)
+    private void AddNewBehaviorState(State state, bool editName = false)
     {
         var uiBehaviorState = UiBehaviorStatePackedScene.Instantiate<UiBehaviorState>();
         uiBehaviorState.BehaviorDefine = BehaviorDefine;
@@ -57,7 +57,7 @@ public partial class UiBehaviorDefine : ScrollContainer
 
     private void OnNewPressed()
     {
-        var behaviorState = new StateResource();
+        var behaviorState = new State();
         BehaviorDefine.BehaviorStates.Add(behaviorState);
 
         AddNewBehaviorState(behaviorState, true);
