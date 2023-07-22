@@ -1,6 +1,5 @@
 ﻿using Behavior.Core;
 using Behavior.Extensions;
-using Behavior.Resources.Define;
 using Godot;
 
 namespace Behavior.Resources.Action;

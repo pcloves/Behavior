@@ -1,6 +1,5 @@
-[gd_resource type="Resource" load_steps=23 format=3 uid="uid://ceclynvyydfw8"]
+[gd_resource type="Resource" script_class="BehaviorDefine" load_steps=19 format=3 uid="uid://ceclynvyydfw8"]
 
-[ext_resource type="Script" path="res://addons/Behavior/Resources/Action/ActionShowBubble.cs" id="1_ggeh7"]
 [ext_resource type="Script" path="res://addons/Behavior/Resources/Action/ActionCreateTimer.cs" id="2_psoo4"]
 [ext_resource type="Script" path="res://addons/Behavior/Resources/Checker/CheckAndOr.cs" id="3_ieyo8"]
 [ext_resource type="Script" path="res://addons/Behavior/Resources/Define/BehaviorUnit.cs" id="4_u8g4n"]
@@ -8,10 +7,6 @@
 [ext_resource type="Script" path="res://addons/Behavior/Resources/Define/BehaviorState.cs" id="5_sabdg"]
 [ext_resource type="Script" path="res://addons/Behavior/Resources/Define/BehaviorDefine.cs" id="6_dtqpo"]
 [ext_resource type="Script" path="res://addons/Behavior/Resources/Action/ActionCachePosition.cs" id="9_krnpc"]
-
-[sub_resource type="Resource" id="Resource_jqygy"]
-script = ExtResource("1_ggeh7")
-Content = "StateEnter"
 
 [sub_resource type="Resource" id="Resource_pwmwx"]
 script = ExtResource("2_psoo4")
@@ -28,11 +23,7 @@ script = ExtResource("4_u8g4n")
 Signal = "StateEnter"
 Active = true
 Checker = SubResource("Resource_uofb2")
-Actions = [SubResource("Resource_jqygy"), SubResource("Resource_pwmwx")]
-
-[sub_resource type="Resource" id="Resource_8obk0"]
-script = ExtResource("1_ggeh7")
-Content = "Hello, again"
+Actions = [SubResource("Resource_pwmwx")]
 
 [sub_resource type="Resource" id="Resource_d2cmw"]
 script = ExtResource("5_k6t7t")
@@ -47,7 +38,7 @@ script = ExtResource("4_u8g4n")
 Signal = "Timeout"
 Active = true
 Checker = SubResource("Resource_trl6w")
-Actions = [SubResource("Resource_8obk0"), SubResource("Resource_d2cmw")]
+Actions = [SubResource("Resource_d2cmw")]
 
 [sub_resource type="Resource" id="Resource_juu82"]
 script = ExtResource("5_sabdg")
@@ -55,16 +46,11 @@ Id = "Idle"
 Active = true
 Units = [SubResource("Resource_3d3sc"), SubResource("Resource_yr2c1")]
 
-[sub_resource type="Resource" id="Resource_jhru7"]
-script = ExtResource("1_ggeh7")
-Content = "Battle"
-
 [sub_resource type="Resource" id="Resource_7vf53"]
 script = ExtResource("9_krnpc")
 Key = "BattlePosition"
-PositionType = 0
-PositionNode = Object(CharacterBody2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(300, 300),"rotation":0.0,"scale":Vector2(5, 5),"skew":0.0,"disable_mode":0,"collision_layer":1,"collision_mask":1,"collision_priority":1.0,"input_pickable":false,"motion_mode":0,"up_direction":Vector2(0, -1),"velocity":Vector2(0, 0),"slide_on_ceiling":true,"max_slides":4,"wall_min_slide_angle":0.261799,"floor_stop_on_slope":true,"floor_constant_speed":false,"floor_block_on_wall":true,"floor_max_angle":0.785398,"floor_snap_length":1.0,"platform_on_leave":0,"platform_floor_layers":4294967295,"platform_wall_layers":0,"safe_margin":0.08,"script":null)
-
+PositionType = 1
+PositionNodePath = NodePath(".")
 
 [sub_resource type="Resource" id="Resource_djvex"]
 script = ExtResource("3_ieyo8")
@@ -75,7 +61,7 @@ script = ExtResource("4_u8g4n")
 Signal = "StateEnter"
 Active = true
 Checker = SubResource("Resource_djvex")
-Actions = [SubResource("Resource_jhru7"), SubResource("Resource_7vf53")]
+Actions = [SubResource("Resource_7vf53")]
 
 [sub_resource type="Resource" id="Resource_pdp6g"]
 script = ExtResource("5_sabdg")
