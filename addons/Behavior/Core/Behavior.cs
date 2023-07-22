@@ -7,6 +7,7 @@ using BehaviorDefine = Behavior.Resources.Define.BehaviorDefine;
 namespace Behavior.Core;
 
 [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+[GlobalClass]
 public partial class Behavior : Node
 {
     [Export(PropertyHint.ResourceType, hintString: nameof(BehaviorDefine))]

@@ -11,6 +11,18 @@ public static class NodeExtension
 
         return first;
     }
+    
+    public static T GetFirstSibling<T>(this Node node) where T : Node
+    {
+        if (node.GetParent() == null)
+        {
+            return null;
+        }
+        
+        var first = node.GetParent().GetChildren().OfType<T>().FirstOrDefault();
+
+        return first;
+    }
 
     public static T RemoveFirstChild<T>(this Node parent) where T : Node
     {

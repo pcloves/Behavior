@@ -11,7 +11,7 @@ public partial class ActionCachePosition : Define.BehaviorAction
 {
     [Export] public string Key;
     [Export] public Type PositionType;
-    [Export] public Node2D PositionNode;
+    [Export] public NodePath PositionNodePath;
 
     public enum Type
     {
@@ -23,8 +23,8 @@ public partial class ActionCachePosition : Define.BehaviorAction
     {
         var position = PositionType switch
         {
-            Type.Global => PositionNode.GlobalPosition,
-            Type.Local => PositionNode.Position,
+            Type.Global => behavior.Owner.GetNode<Node2D>(PositionNodePath).GlobalPosition,
+            Type.Local => behavior.Owner.GetNode<Node2D>(PositionNodePath).Position,
             _ => throw new ArgumentOutOfRangeException()
         };
 
