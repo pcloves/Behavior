@@ -72,7 +72,7 @@ public partial class UiBehaviorAction : HBoxContainer
     {
         _optionButton.Clear();
 
-        var behaviorTypes = BehaviorPlugin.GetBehaviorTypes(typeof(BehaviorAction))
+        var behaviorTypes = BehaviorAiPlugin.GetBehaviorTypes(typeof(BehaviorAction))
             .ToList();
 
         for (var index = 0; index < behaviorTypes.Count; index++)

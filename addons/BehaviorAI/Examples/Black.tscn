@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://yrk3s144eccp"]
 
 [ext_resource type="Texture2D" uid="uid://cua0n23rn5moc" path="res://addons/BehaviorAI/Examples/Black.png" id="1_mmes1"]
-[ext_resource type="PackedScene" uid="uid://ckydtwnb124wv" path="res://addons/BehaviorAI/Core/BehaviorAi.tscn" id="2_sfxxa"]
+[ext_resource type="PackedScene" uid="uid://ckydtwnb124wv" path="res://addons/BehaviorAI/Core/Behavior.tscn" id="2_sfxxa"]
 [ext_resource type="Resource" uid="uid://ceclynvyydfw8" path="res://addons/BehaviorAI/Examples/BlackAi.tres" id="3_pisxv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_spxyh"]

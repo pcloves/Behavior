@@ -70,7 +70,7 @@ public partial class UiBehaviorChecker : HBoxContainer
     {
         _optionButton.Clear();
 
-        var behaviorTypes = BehaviorPlugin.GetBehaviorTypes(typeof(BehaviorChecker))
+        var behaviorTypes = BehaviorAiPlugin.GetBehaviorTypes(typeof(BehaviorChecker))
             .Where(type => type != typeof(CheckAndOr))
             .ToList();
 

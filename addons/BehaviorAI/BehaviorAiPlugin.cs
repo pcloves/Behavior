@@ -8,57 +8,54 @@ using Godot;
 namespace BehaviorAI;
 
 [Tool]
-public partial class BehaviorPlugin : EditorPlugin
+public partial class BehaviorAiPlugin : EditorPlugin
 {
     private const string MainUiScene = "res://addons/BehaviorAI/UI/MainUi.tscn";
-    public static BehaviorPlugin Plugin { get; private set; }
 
     private MainUi _mainUi;
-
+    
     public override void _EnterTree()
     {
-        Plugin = this;
-        
         _mainUi = ResourceLoader.Load<PackedScene>(MainUiScene).Instantiate<MainUi>();
         _mainUi.Plugin = this;
         _mainUi.Visible = false;
-
+        
         EditorInterface.Singleton.GetEditorMainScreen().AddChild(_mainUi);
     }
-
+    
     public override void _ExitTree()
     {
         EditorInterface.Singleton.GetEditorMainScreen().RemoveChild(_mainUi);
-
+        
         _mainUi.Plugin = null;
         _mainUi.QueueFree();
     }
-
+    
     public override void _Edit(GodotObject @object)
     {
         _MakeVisible(true);
     }
-
+    
     public override string _GetPluginName()
     {
         return "BehaviorAI";
     }
-
+    
     public override bool _Handles(GodotObject godotObject)
     {
         if (godotObject is not BehaviorDefine define) return false;
-
+        
         _mainUi.SetSelected(define.ResourcePath);
-
+        
         _MakeVisible(true);
         return true;
     }
-
+    
     public override bool _HasMainScreen()
     {
         return true;
     }
-
+    
     public override void _MakeVisible(bool visible)
     {
         _mainUi.Visible = visible;
@@ -66,8 +63,8 @@ public partial class BehaviorPlugin : EditorPlugin
 
     public static IEnumerable<Type> GetBehaviorTypes(Type type)
     {
-        var assembly = Assembly.GetAssembly(typeof(BehaviorPlugin));
-
+        var assembly = Assembly.GetAssembly(typeof(BehaviorAiPlugin));
+        
         return assembly?.GetTypes().Where(t => t.IsSubclassOf(type) && !t.IsAbstract).ToList();
     }
 }

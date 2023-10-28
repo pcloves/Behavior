@@ -31,7 +31,7 @@ project/assembly_name="BehaviorAI"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/BehaviorAI/plugin.cfg")
 
 [rendering]
 

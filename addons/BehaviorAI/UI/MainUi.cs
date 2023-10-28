@@ -13,7 +13,7 @@ public partial class MainUi : Control
     private static readonly PackedScene UiBehaviorDefinePackedScene =
         ResourceLoader.Load<PackedScene>(UiBehaviorDefineScenePath);
 
-    public BehaviorPlugin Plugin { get; set; }
+    public BehaviorAiPlugin Plugin { get; set; }
 
     private HSplitContainer _splitContainer;
     private Tree _tree;

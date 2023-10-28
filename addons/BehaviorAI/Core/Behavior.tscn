@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://addons/BehaviorAI/Core/Behavior.cs" id="1_tmobp"]
 
-[node name="BehaviorAi" type="Node"]
+[node name="Behavior" type="Node"]
 script = ExtResource("1_tmobp")
