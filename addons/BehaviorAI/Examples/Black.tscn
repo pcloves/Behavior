@@ -59,4 +59,4 @@ libraries = {
 autoplay = "run"
 
 [node name="Behavior" parent="." instance=ExtResource("2_sfxxa")]
-BehaviorDefine = ExtResource("3_pisxv")
+BehaviorConfig = ExtResource("3_pisxv")

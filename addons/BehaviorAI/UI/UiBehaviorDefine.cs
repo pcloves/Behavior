@@ -11,7 +11,7 @@ public partial class UiBehaviorDefine : ScrollContainer
     private static readonly PackedScene UiBehaviorStatePackedScene =
         ResourceLoader.Load<PackedScene>(UiBehaviorStateScenePath);
 
-    public BehaviorDefine BehaviorDefine { get; set; }
+    public BehaviorConfig BehaviorConfig { get; set; }
 
     private VBoxContainer _vBoxContainer;
     private Button _new;
@@ -26,7 +26,7 @@ public partial class UiBehaviorDefine : ScrollContainer
         _new.Pressed += OnNewPressed;
         _new.Disabled = false;
 
-        foreach (var behaviorState in BehaviorDefine?.BehaviorStates ?? new Array<BehaviorState>())
+        foreach (var behaviorState in BehaviorConfig?.BehaviorStates ?? new Array<BehaviorState>())
         {
             AddNewBehaviorState(behaviorState);
         }
@@ -36,13 +36,13 @@ public partial class UiBehaviorDefine : ScrollContainer
     {
         base._ExitTree();
 
-        BehaviorDefine = null;
+        BehaviorConfig = null;
     }
 
     private void AddNewBehaviorState(BehaviorState state, bool editName = false)
     {
         var uiBehaviorState = UiBehaviorStatePackedScene.Instantiate<UiBehaviorState>();
-        uiBehaviorState.BehaviorDefine = BehaviorDefine;
+        uiBehaviorState.BehaviorConfig = BehaviorConfig;
         uiBehaviorState.BehaviorState = state;
         if (editName)
         {
@@ -55,7 +55,7 @@ public partial class UiBehaviorDefine : ScrollContainer
     private void OnNewPressed()
     {
         var behaviorState = new BehaviorState();
-        BehaviorDefine.BehaviorStates.Add(behaviorState);
+        BehaviorConfig.BehaviorStates.Add(behaviorState);
 
         AddNewBehaviorState(behaviorState, true);
     }

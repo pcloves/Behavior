@@ -19,8 +19,8 @@ public partial class MainUi : Control
     private Tree _tree;
     private Label _label;
     private string _path = "res://";
-    private BehaviorDefine _currentBehaviorDefine;
-    private readonly Dictionary<string, BehaviorDefine> _behaviorDefines = new();
+    private BehaviorConfig _currentBehavior;
+    private readonly Dictionary<string, BehaviorConfig> _behaviorDefines = new();
     private readonly Dictionary<string, TreeItem> _behaviorDefinePath2TreeItems = new();
 
     public override void _Ready()
@@ -56,11 +56,11 @@ public partial class MainUi : Control
 
         //先把之前的删掉
         _splitContainer.RemoveFirstChild<UiBehaviorDefine>();
-        _currentBehaviorDefine?.Save();
-        _currentBehaviorDefine = newBehaviorDefine;
+        _currentBehavior?.Save();
+        _currentBehavior = newBehaviorDefine;
 
         var uiBehaviorDefine = UiBehaviorDefinePackedScene.Instantiate<UiBehaviorDefine>();
-        uiBehaviorDefine.BehaviorDefine = newBehaviorDefine;
+        uiBehaviorDefine.BehaviorConfig = newBehaviorDefine;
 
         _splitContainer.AddChild(uiBehaviorDefine);
         _label.Visible = false;
@@ -81,7 +81,7 @@ public partial class MainUi : Control
             if (_behaviorDefines.ContainsKey(path)) continue;
 
             var resource = ResourceLoader.Load(path);
-            if (resource is not BehaviorDefine behaviorDefine) continue;
+            if (resource is not BehaviorConfig behaviorDefine) continue;
 
             var treeItem = _tree.CreateItem();
 

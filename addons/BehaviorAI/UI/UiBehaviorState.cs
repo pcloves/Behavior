@@ -12,7 +12,7 @@ public partial class UiBehaviorState : PanelContainer
     private static readonly PackedScene
         UiBehaviorUnitPackedScene = ResourceLoader.Load<PackedScene>(UiBehaviorUnitPath);
 
-    public BehaviorDefine BehaviorDefine { get; set; }
+    public BehaviorConfig BehaviorConfig { get; set; }
     public BehaviorState BehaviorState { get; set; }
 
     private VBoxContainer _vBoxContainer;
@@ -39,7 +39,7 @@ public partial class UiBehaviorState : PanelContainer
         _vBoxContainer = GetNodeOrNull<VBoxContainer>("%VBoxContainer");
 
         _isInitState = GetNodeOrNull<Button>("%IsInitState");
-        _isInitState.Visible = BehaviorDefine?.BehaviorStates.FirstOrDefault() == BehaviorState;
+        _isInitState.Visible = BehaviorConfig?.BehaviorStates.FirstOrDefault() == BehaviorState;
 
         _remove = GetNodeOrNull<Button>("%Remove");
         _remove.Pressed += OnRemovePressed;
@@ -166,7 +166,7 @@ public partial class UiBehaviorState : PanelContainer
 
     private void OnRemovePressed()
     {
-        BehaviorDefine?.BehaviorStates.Remove(BehaviorState);
+        BehaviorConfig?.BehaviorStates.Remove(BehaviorState);
 
         QueueFree();
     }

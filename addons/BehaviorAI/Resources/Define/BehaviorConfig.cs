@@ -5,7 +5,7 @@ namespace BehaviorAI;
 
 [Tool]
 [GlobalClass]
-public partial class BehaviorDefine : Resource
+public partial class BehaviorConfig : Resource
 {
     [Export] public string Name;
     [Export] public Array<BehaviorState> BehaviorStates { get; set; } = new();

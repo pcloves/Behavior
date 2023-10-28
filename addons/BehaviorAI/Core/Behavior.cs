@@ -8,8 +8,8 @@ namespace BehaviorAI;
 [GlobalClass]
 public partial class Behavior : Node
 {
-    [Export(PropertyHint.ResourceType, hintString: nameof(BehaviorDefine))]
-    public BehaviorDefine BehaviorDefine { get; set; }
+    [Export(PropertyHint.ResourceType, hintString: nameof(BehaviorConfig))]
+    public BehaviorConfig BehaviorConfig { get; set; }
 
     private BehaviorState _stateCurrent;
 
@@ -18,7 +18,7 @@ public partial class Behavior : Node
     public override void _EnterTree()
     {
         AddChild(_blackboard);
-        ChangeState(BehaviorDefine?.BehaviorStates[0].Id);
+        ChangeState(BehaviorConfig?.BehaviorStates[0].Id);
     }
 
     public override void _ExitTree()
@@ -31,7 +31,7 @@ public partial class Behavior : Node
     public void ChangeState(string stateId)
     {
         var stateNew =
-            BehaviorDefine?.BehaviorStates.FirstOrDefault(state => state.Id.Equals(stateId) && state.Active, null);
+            BehaviorConfig?.BehaviorStates.FirstOrDefault(state => state.Id.Equals(stateId) && state.Active, null);
 
         if (_stateCurrent != null)
         {
