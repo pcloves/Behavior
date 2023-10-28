@@ -1,0 +1,75 @@
+[gd_resource type="Resource" script_class="BehaviorDefine" load_steps=19 format=3 uid="uid://ceclynvyydfw8"]
+
+[ext_resource type="Script" path="res://addons/BehaviorAI/Resources/Action/ActionCreateTimer.cs" id="2_psoo4"]
+[ext_resource type="Script" path="res://addons/BehaviorAI/Resources/Checker/CheckAndOr.cs" id="3_ieyo8"]
+[ext_resource type="Script" path="res://addons/BehaviorAI/Resources/Define/BehaviorUnit.cs" id="4_u8g4n"]
+[ext_resource type="Script" path="res://addons/BehaviorAI/Resources/Action/ActionChangeState.cs" id="5_k6t7t"]
+[ext_resource type="Script" path="res://addons/BehaviorAI/Resources/Define/BehaviorState.cs" id="5_sabdg"]
+[ext_resource type="Script" path="res://addons/BehaviorAI/Resources/Define/BehaviorDefine.cs" id="6_dtqpo"]
+[ext_resource type="Script" path="res://addons/BehaviorAI/Resources/Action/ActionCachePosition.cs" id="9_krnpc"]
+
+[sub_resource type="Resource" id="Resource_pwmwx"]
+script = ExtResource("2_psoo4")
+TimerName = "MyTimer"
+TimeSecondMin = 2.0
+TimeSecondMax = 5.0
+
+[sub_resource type="Resource" id="Resource_uofb2"]
+script = ExtResource("3_ieyo8")
+Checkers = []
+
+[sub_resource type="Resource" id="Resource_3d3sc"]
+script = ExtResource("4_u8g4n")
+Signal = "StateEnter"
+Active = true
+Checker = SubResource("Resource_uofb2")
+Actions = [SubResource("Resource_pwmwx")]
+
+[sub_resource type="Resource" id="Resource_d2cmw"]
+script = ExtResource("5_k6t7t")
+NewStateId = "Battle"
+
+[sub_resource type="Resource" id="Resource_trl6w"]
+script = ExtResource("3_ieyo8")
+Checkers = []
+
+[sub_resource type="Resource" id="Resource_yr2c1"]
+script = ExtResource("4_u8g4n")
+Signal = "Timeout"
+Active = true
+Checker = SubResource("Resource_trl6w")
+Actions = [SubResource("Resource_d2cmw")]
+
+[sub_resource type="Resource" id="Resource_juu82"]
+script = ExtResource("5_sabdg")
+Id = "Idle"
+Active = true
+Units = [SubResource("Resource_3d3sc"), SubResource("Resource_yr2c1")]
+
+[sub_resource type="Resource" id="Resource_7vf53"]
+script = ExtResource("9_krnpc")
+Key = "BattlePosition"
+PositionType = 1
+PositionNodePath = NodePath(".")
+
+[sub_resource type="Resource" id="Resource_djvex"]
+script = ExtResource("3_ieyo8")
+Checkers = []
+
+[sub_resource type="Resource" id="Resource_6krhq"]
+script = ExtResource("4_u8g4n")
+Signal = "StateEnter"
+Active = true
+Checker = SubResource("Resource_djvex")
+Actions = [SubResource("Resource_7vf53")]
+
+[sub_resource type="Resource" id="Resource_pdp6g"]
+script = ExtResource("5_sabdg")
+Id = "Battle"
+Active = true
+Units = [SubResource("Resource_6krhq")]
+
+[resource]
+script = ExtResource("6_dtqpo")
+Name = "Black"
+BehaviorStates = [SubResource("Resource_juu82"), SubResource("Resource_pdp6g")]

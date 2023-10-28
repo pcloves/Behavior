@@ -16,9 +16,9 @@ ResourceScriptDirectories=["res://"]
 
 [application]
 
-config/name="Behavior"
-run/main_scene="res://addons/Behavior/Examples/Black.tscn"
-config/features=PackedStringArray("4.1", "C#", "GL Compatibility")
+config/name="BehaviorAI"
+run/main_scene="res://addons/BehaviorAI/Examples/Black.tscn"
+config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 
 [display]
 
@@ -27,11 +27,11 @@ window/stretch/mode="viewport"
 
 [dotnet]
 
-project/assembly_name="Behavior"
+project/assembly_name="BehaviorAI"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Behavior/plugin.cfg")
+enabled=PackedStringArray()
 
 [rendering]
 

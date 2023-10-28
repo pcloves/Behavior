@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://d3m7dd205y4a0"]
+
+[ext_resource type="StyleBox" uid="uid://d1nnkasdi3mot" path="res://addons/BehaviorAI/UI/Themes/PanelContainerStyles.tres" id="1_wei1d"]
+[ext_resource type="Script" path="res://addons/BehaviorAI/UI/UiBehaviorCheckers.cs" id="1_wtmdp"]
+[ext_resource type="Theme" uid="uid://b6f12mmg7ircu" path="res://addons/BehaviorAI/UI/Themes/AndOrButton.tres" id="2_kv7bs"]
+[ext_resource type="Theme" uid="uid://blpde8jj8enqp" path="res://addons/BehaviorAI/UI/Themes/DeleteButton.tres" id="3_66tkq"]
+[ext_resource type="Texture2D" uid="uid://tgn0bgv7ylal" path="res://addons/BehaviorAI/Image/plus-small.png" id="3_s183w"]
+[ext_resource type="Texture2D" uid="uid://ddfh0vl1dg71b" path="res://addons/BehaviorAI/Image/layer-plus.png" id="4_byj0e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2dbio"]
+content_margin_left = 26.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="PanelContainer" type="PanelContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 45.0
+grow_horizontal = 2
+theme_override_styles/panel = ExtResource("1_wei1d")
+script = ExtResource("1_wtmdp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="And" type="Button" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("2_kv7bs")
+toggle_mode = true
+text = "AND"
+
+[node name="Or" type="Button" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("2_kv7bs")
+toggle_mode = true
+text = "OR"
+
+[node name="AddRule" type="Button" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(65, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("2_kv7bs")
+text = "Rule"
+icon = ExtResource("3_s183w")
+
+[node name="AddGroup" type="Button" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(65, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("2_kv7bs")
+text = "Group"
+icon = ExtResource("4_byj0e")
+
+[node name="Remove" type="Button" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+theme = ExtResource("3_66tkq")
+text = "X"
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2dbio")
+
+[node name="ChildContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

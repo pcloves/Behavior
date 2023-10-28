@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ckydtwnb124wv"]
-
-[ext_resource type="Script" path="res://addons/Behavior/Core/Behavior.cs" id="1_tmobp"]
-
-[node name="BehaviorAi" type="Node"]
-script = ExtResource("1_tmobp")
