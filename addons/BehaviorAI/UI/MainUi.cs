@@ -8,7 +8,7 @@ namespace BehaviorAI;
 [Tool]
 public partial class MainUi : Control
 {
-    private const string UiBehaviorDefineScenePath = "res://addons/BehaviorAI/UI/UiBehaviorDefine.tscn";
+    private const string UiBehaviorDefineScenePath = "res://addons/BehaviorAI/UI/UiBehaviorConfig.tscn";
 
     private static readonly PackedScene UiBehaviorDefinePackedScene =
         ResourceLoader.Load<PackedScene>(UiBehaviorDefineScenePath);
@@ -55,11 +55,11 @@ public partial class MainUi : Control
         EditorInterface.Singleton.EditResource(newBehaviorDefine);
 
         //先把之前的删掉
-        _splitContainer.RemoveFirstChild<UiBehaviorDefine>();
+        _splitContainer.RemoveFirstChild<UiBehaviorConfig>();
         _currentBehavior?.Save();
         _currentBehavior = newBehaviorDefine;
 
-        var uiBehaviorDefine = UiBehaviorDefinePackedScene.Instantiate<UiBehaviorDefine>();
+        var uiBehaviorDefine = UiBehaviorDefinePackedScene.Instantiate<UiBehaviorConfig>();
         uiBehaviorDefine.BehaviorConfig = newBehaviorDefine;
 
         _splitContainer.AddChild(uiBehaviorDefine);

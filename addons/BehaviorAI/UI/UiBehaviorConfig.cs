@@ -4,7 +4,7 @@ using Godot.Collections;
 namespace BehaviorAI;
 
 [Tool]
-public partial class UiBehaviorDefine : ScrollContainer
+public partial class UiBehaviorConfig : ScrollContainer
 {
     private const string UiBehaviorStateScenePath = "res://addons/BehaviorAI/UI/UiBehaviorState.tscn";
 

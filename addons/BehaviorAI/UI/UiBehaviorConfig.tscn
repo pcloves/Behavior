@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ywtlyot4uiqf"]
 
-[ext_resource type="Script" path="res://addons/BehaviorAI/UI/UiBehaviorDefine.cs" id="1_qv6dw"]
+[ext_resource type="Script" path="res://addons/BehaviorAI/UI/UiBehaviorConfig.cs" id="1_qv6dw"]
 
 [node name="UiBehaviorDefine" type="ScrollContainer"]
 anchors_preset = 15
