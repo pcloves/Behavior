@@ -8,10 +8,10 @@ namespace BehaviorAI;
 [Tool]
 public partial class MainUi : Control
 {
-    private const string UiBehaviorDefineScenePath = "res://addons/BehaviorAI/UI/UiBehaviorConfig.tscn";
+    private const string UiBehaviorConfigScenePath = "res://addons/BehaviorAI/UI/UiBehaviorConfig.tscn";
 
-    private static readonly PackedScene UiBehaviorDefinePackedScene =
-        ResourceLoader.Load<PackedScene>(UiBehaviorDefineScenePath);
+    private static readonly PackedScene UiBehaviorConfigPackedScene =
+        ResourceLoader.Load<PackedScene>(UiBehaviorConfigScenePath);
 
     public BehaviorAiPlugin Plugin { get; set; }
 
@@ -20,8 +20,8 @@ public partial class MainUi : Control
     private Label _label;
     private string _path = "res://";
     private BehaviorConfig _currentBehavior;
-    private readonly Dictionary<string, BehaviorConfig> _behaviorDefines = new();
-    private readonly Dictionary<string, TreeItem> _behaviorDefinePath2TreeItems = new();
+    private readonly Dictionary<string, BehaviorConfig> _behaviorConfigs = new();
+    private readonly Dictionary<string, TreeItem> _behaviorConfigPath2TreeItems = new();
 
     public override void _Ready()
     {
@@ -33,13 +33,13 @@ public partial class MainUi : Control
         _label = GetNodeOrNull<Label>("%Label");
         _label.Visible = true;
 
-        var behaviorDefinePath = HasMeta("behaviorDefinePath") ? GetMeta("behaviorDefinePath").AsString() : null;
-        LoadBehaviorDefine(behaviorDefinePath);
+        var behaviorConfigPath = HasMeta("behaviorConfigPath") ? GetMeta("behaviorConfigPath").AsString() : null;
+        LoadBehaviorConfig(behaviorConfigPath);
     }
 
     public void SetSelected(string path)
     {
-        var treeItem = _behaviorDefinePath2TreeItems[path];
+        var treeItem = _behaviorConfigPath2TreeItems[path];
         if (treeItem != null && _tree.GetSelected() != treeItem)
         {
             _tree.SetSelected(treeItem, 0);
@@ -51,55 +51,55 @@ public partial class MainUi : Control
         var treeItem = _tree.GetSelected();
         var path = treeItem.GetMeta("path").AsString();
 
-        var newBehaviorDefine = _behaviorDefines[path];
-        EditorInterface.Singleton.EditResource(newBehaviorDefine);
+        var newBehaviorConfig = _behaviorConfigs[path];
+        EditorInterface.Singleton.EditResource(newBehaviorConfig);
 
         //先把之前的删掉
         _splitContainer.RemoveFirstChild<UiBehaviorConfig>();
         _currentBehavior?.Save();
-        _currentBehavior = newBehaviorDefine;
+        _currentBehavior = newBehaviorConfig;
 
-        var uiBehaviorDefine = UiBehaviorDefinePackedScene.Instantiate<UiBehaviorConfig>();
-        uiBehaviorDefine.BehaviorConfig = newBehaviorDefine;
+        var uiBehaviorConfig = UiBehaviorConfigPackedScene.Instantiate<UiBehaviorConfig>();
+        uiBehaviorConfig.BehaviorConfig = newBehaviorConfig;
 
-        _splitContainer.AddChild(uiBehaviorDefine);
+        _splitContainer.AddChild(uiBehaviorConfig);
         _label.Visible = false;
     }
 
-    private void LoadBehaviorDefine(string selectedBehaviorDefine = null)
+    private void LoadBehaviorConfig(string selectedBehaviorConfig = null)
     {
         var globalizePath = ProjectSettings.GlobalizePath(_path);
         var paths = Directory.GetFiles(globalizePath, "*.tres", SearchOption.AllDirectories);
 
         _tree.Clear();
         _tree.CreateItem().SetText(0, "Root");
-        _behaviorDefines.Clear();
-        _behaviorDefinePath2TreeItems.Clear();
+        _behaviorConfigs.Clear();
+        _behaviorConfigPath2TreeItems.Clear();
 
         foreach (var path in paths)
         {
-            if (_behaviorDefines.ContainsKey(path)) continue;
+            if (_behaviorConfigs.ContainsKey(path)) continue;
 
             var resource = ResourceLoader.Load(path);
-            if (resource is not BehaviorConfig behaviorDefine) continue;
+            if (resource is not BehaviorConfig behaviorConfig) continue;
 
             var treeItem = _tree.CreateItem();
 
-            treeItem.SetText(0, behaviorDefine.Name);
-            treeItem.SetTooltipText(0, behaviorDefine.ResourcePath);
-            treeItem.SetMeta("path", behaviorDefine.ResourcePath);
+            treeItem.SetText(0, behaviorConfig.Name);
+            treeItem.SetTooltipText(0, behaviorConfig.ResourcePath);
+            treeItem.SetMeta("path", behaviorConfig.ResourcePath);
 
-            if (behaviorDefine.ResourcePath.Equals(selectedBehaviorDefine))
+            if (behaviorConfig.ResourcePath.Equals(selectedBehaviorConfig))
             {
                 _tree.SetSelected(treeItem, 0);
             }
 
-            _behaviorDefinePath2TreeItems[behaviorDefine.ResourcePath] = treeItem;
-            _behaviorDefines[behaviorDefine.ResourcePath] = behaviorDefine;
+            _behaviorConfigPath2TreeItems[behaviorConfig.ResourcePath] = treeItem;
+            _behaviorConfigs[behaviorConfig.ResourcePath] = behaviorConfig;
         }
         
 #if DEBUG
-        GD.Print($"{nameof(LoadBehaviorDefine)}:{string.Join(",", _behaviorDefines.Keys.ToArray())}");
+        GD.Print($"{nameof(LoadBehaviorConfig)}:{string.Join(",", _behaviorConfigs.Keys.ToArray())}");
 #endif
     }
 }

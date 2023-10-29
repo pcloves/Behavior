@@ -43,9 +43,9 @@ public partial class BehaviorAiPlugin : EditorPlugin
     
     public override bool _Handles(GodotObject godotObject)
     {
-        if (godotObject is not BehaviorConfig define) return false;
+        if (godotObject is not BehaviorConfig config) return false;
         
-        _mainUi.SetSelected(define.ResourcePath);
+        _mainUi.SetSelected(config.ResourcePath);
         
         _MakeVisible(true);
         return true;
